@@ -3,46 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover campus events, technical hackathons, and register online on StudentHub.">
     <title>StudentHub | Campus Events</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">🎓 StudentHub</a>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html" class="active" aria-current="page">Events</a></li>
+                <li><a href="notices.html">Notices</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <span class="wireframe-badge">Low-Fidelity Blueprint Page 8/11</span>
-        <h2>Campus Events & Hackathons</h2>
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Events</li>
+            </ol>
+        </nav>
+    </div>
 
-        <div class="grid-3">
-            <div class="card">
-                <h3>🚀 Annual CodeHack 2026</h3>
-                <p>Date: August 10-12, 2026</p>
-                <p>Location: Central Tech Lab</p>
-                <p>Collaborate and build innovative web solutions over 36 hours.</p>
-                <br>
-                <button type="button" class="btn">Register Event</button>
+    <main id="main-content" class="container" tabindex="-1">
+        <section aria-labelledby="events-heading">
+            <span class="wireframe-badge">Low-Fidelity Blueprint Page 8/11</span>
+            <h1 id="events-heading">Campus Events & Technical Workshops</h1>
+
+            <div class="grid-3" style="margin-top: 1.5rem;">
+                <article class="card">
+                    <h2>🚀 Annual CodeHack 2026</h2>
+                    <p><strong>Date:</strong> August 10-12, 2026</p>
+                    <p><strong>Location:</strong> Central Tech Lab</p>
+                    <p>Collaborate and build innovative web solutions over 36 hours.</p>
+                    <div style="margin-top: 1rem;">
+                        <button type="button" class="btn" aria-label="Register for Annual CodeHack 2026">Register Event</button>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h2>🌐 Git & Open Source Workshop</h2>
+                    <p><strong>Date:</strong> July 28, 2026</p>
+                    <p><strong>Location:</strong> Seminar Hall B</p>
+                    <p>Master Git rebase, pull requests, and open-source contributions.</p>
+                    <div style="margin-top: 1rem;">
+                        <button type="button" class="btn" aria-label="Register for Git & Open Source Workshop">Register Event</button>
+                    </div>
+                </article>
             </div>
-            <div class="card">
-                <h3>🌐 Git & Open Source Workshop</h3>
-                <p>Date: July 28, 2026</p>
-                <p>Location: Seminar Hall B</p>
-                <p>Master Git rebase, pull requests, and open-source contributions.</p>
-                <br>
-                <button type="button" class="btn">Register Event</button>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal</p>
+        <p>&copy; 2026 StudentHub Portal | Event Registration Engine</p>
     </footer>
 </body>
 </html>

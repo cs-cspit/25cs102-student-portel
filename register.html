@@ -3,49 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudentHub | Register Account</title>
+    <meta name="description" content="Register a new Student, Faculty, or Admin account on StudentHub Portal.">
+    <title>StudentHub | Account Registration</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .role-fields {
+            display: none;
+        }
+        .role-fields.active-role {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">🎓 StudentHub</a>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="login.html">Login</a></li>
-                <li><a href="register.html" class="active">Register</a></li>
+                <li><a href="register.html" class="active" aria-current="page">Register</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="card" style="max-width: 500px; margin: 2rem auto;">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Register</li>
+            </ol>
+        </nav>
+    </div>
+
+    <main id="main-content" class="container" tabindex="-1">
+        <section aria-labelledby="register-heading" class="card" style="max-width: 580px; margin: 1rem auto;">
             <span class="wireframe-badge">Low-Fidelity Blueprint Page 3/11</span>
-            <h2>Create Account</h2>
-            <form style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-                <div>
-                    <label for="fullname">Full Name</label>
-                    <input type="text" id="fullname" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;" placeholder="Daksh Patel">
+            <h1 id="register-heading" style="font-size: 1.8rem;">Create StudentHub Account</h1>
+
+            <form action="login.html" method="POST" style="margin-top: 1.5rem;">
+                <!-- Role Selection Fieldset -->
+                <fieldset>
+                    <legend>Select Registration Role <span style="color: red;">*</span></legend>
+                    <div style="display: flex; gap: 1.2rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                        <label for="reg-role-student">
+                            <input type="radio" id="reg-role-student" name="role" value="student" checked onclick="switchRoleFields('student')"> 🎓 Student
+                        </label>
+                        <label for="reg-role-faculty">
+                            <input type="radio" id="reg-role-faculty" name="role" value="faculty" onclick="switchRoleFields('faculty')"> 👨‍🏫 Faculty
+                        </label>
+                        <label for="reg-role-admin">
+                            <input type="radio" id="reg-role-admin" name="role" value="admin" onclick="switchRoleFields('admin')"> 🔑 Admin
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Common Field: Full Name -->
+                <div class="form-group">
+                    <label for="fullname">Full Name <span style="color: red;">*</span></label>
+                    <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Daksh Patel" required aria-required="true">
                 </div>
-                <div>
-                    <label for="regno">Student ID / Roll No</label>
-                    <input type="text" id="regno" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;" placeholder="25CS102">
+
+                <!-- Common Field: Email -->
+                <div class="form-group">
+                    <label for="reg-email">Email Address <span style="color: red;">*</span></label>
+                    <input type="email" id="reg-email" name="email" class="form-control" placeholder="user@charusat.edu.in" required aria-required="true">
                 </div>
-                <div>
-                    <label for="reg-email">Email</label>
-                    <input type="email" id="reg-email" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
+
+                <!-- Dynamic Student Fields -->
+                <div id="student-fields" class="role-fields active-role">
+                    <div class="form-group">
+                        <label for="regno">Student ID / Roll No <span style="color: red;">*</span></label>
+                        <input type="text" id="regno" name="regno" class="form-control" placeholder="25CS102">
+                        <p class="form-hint" id="regno-hint">Enter your CHARUSAT student roll number (e.g., 25CS102)</p>
+                    </div>
                 </div>
-                <div>
-                    <label for="reg-password">Password</label>
-                    <input type="password" id="reg-password" style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
+
+                <!-- Dynamic Faculty Fields -->
+                <div id="faculty-fields" class="role-fields">
+                    <div class="form-group">
+                        <label for="faculty-id">Faculty Employee ID <span style="color: red;">*</span></label>
+                        <input type="text" id="faculty-id" name="faculty_id" class="form-control" placeholder="FAC2026-88">
+                        <p class="form-hint">Enter your university employee code (e.g., FAC2026-88)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="designation">Designation <span style="color: red;">*</span></label>
+                        <select id="designation" name="designation" class="form-control">
+                            <option value="">-- Select Designation --</option>
+                            <option value="assistant_prof">Assistant Professor</option>
+                            <option value="associate_prof">Associate Professor</option>
+                            <option value="head_of_dept">Head of Department (HOD)</option>
+                        </select>
+                    </div>
                 </div>
-                <button type="button" class="btn">Register</button>
+
+                <!-- Dynamic Admin Fields -->
+                <div id="admin-fields" class="role-fields">
+                    <div class="form-group">
+                        <label for="admin-code">Admin Secret Security Code <span style="color: red;">*</span></label>
+                        <input type="password" id="admin-code" name="admin_code" class="form-control" placeholder="••••••••">
+                        <p class="form-hint">Enter institutional secret authorization token for admin privilege creation.</p>
+                    </div>
+                </div>
+
+                <!-- Common Field: Department -->
+                <div class="form-group">
+                    <label for="department">Department / Branch <span style="color: red;">*</span></label>
+                    <select id="department" name="department" class="form-control" required aria-required="true">
+                        <option value="">-- Select Department --</option>
+                        <option value="ce">Computer Engineering (CE)</option>
+                        <option value="cse">Computer Science Engineering (CSE)</option>
+                        <option value="it">Information Technology (IT)</option>
+                    </select>
+                </div>
+
+                <!-- Common Field: Password -->
+                <div class="form-group">
+                    <label for="reg-password">Password <span style="color: red;">*</span></label>
+                    <input type="password" id="reg-password" name="password" class="form-control" required aria-required="true" aria-describedby="password-hint">
+                    <p class="form-hint" id="password-hint">Must be at least 8 characters with numbers and symbols.</p>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Create Account</button>
             </form>
-        </div>
+
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; text-align: center;">
+                Already have an account? <a href="login.html">Sign In Here</a>
+            </p>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal</p>
+        <p>&copy; 2026 StudentHub Portal | Accessible Multi-Role Registration</p>
     </footer>
+
+    <script>
+        function switchRoleFields(role) {
+            document.querySelectorAll('.role-fields').forEach(function(el) {
+                el.classList.remove('active-role');
+            });
+            if (role === 'student') {
+                document.getElementById('student-fields').classList.add('active-role');
+            } else if (role === 'faculty') {
+                document.getElementById('faculty-fields').classList.add('active-role');
+            } else if (role === 'admin') {
+                document.getElementById('admin-fields').classList.add('active-role');
+            }
+        }
+    </script>
 </body>
 </html>

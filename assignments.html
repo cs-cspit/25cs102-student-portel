@@ -3,46 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Submit lab practicals and track assignment evaluation status on StudentHub.">
     <title>StudentHub | Assignment Submissions</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">🎓 StudentHub</a>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="assignments.html" class="active">Assignments</a></li>
+                <li><a href="assignments.html" class="active" aria-current="page">Assignments</a></li>
+                <li><a href="courses.html">Courses</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <span class="wireframe-badge">Low-Fidelity Blueprint Page 7/11</span>
-        <h2>Assignment Submissions</h2>
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Assignments</li>
+            </ol>
+        </nav>
+    </div>
 
-        <div class="card" style="margin-top: 1.5rem;">
-            <h3>Practical 1: StudentHub Foundation Setup</h3>
-            <p><strong>Course:</strong> CS201 Web Development</p>
-            <p><strong>Due Date:</strong> Today, 11:59 PM</p>
-            <p><strong>Status:</strong> <span style="color: #d97706; font-weight: bold;">Pending Submission</span></p>
-            <div style="margin-top: 1rem;">
-                <label for="file">Upload Submission (Zip/PDF):</label><br>
-                <input type="file" id="file">
-                <button type="button" class="btn" style="margin-top: 0.5rem;">Submit Task</button>
-            </div>
-        </div>
+    <main id="main-content" class="container" tabindex="-1">
+        <section aria-labelledby="assignments-heading">
+            <span class="wireframe-badge">Low-Fidelity Blueprint Page 7/11</span>
+            <h1 id="assignments-heading">Assignment Submissions</h1>
 
-        <div class="card" style="margin-top: 1.5rem;">
-            <h3>Practical 0: HTML Structural Baseline</h3>
-            <p><strong>Course:</strong> CS201 Web Development</p>
-            <p><strong>Status:</strong> <span style="color: #10b981; font-weight: bold;">Graded (10/10)</span></p>
-        </div>
+            <article class="card" style="margin-top: 1.5rem;">
+                <h2>Practical 2: HTML5 Skeletons & Accessibility</h2>
+                <p><strong>Course:</strong> CS201 Web Development</p>
+                <p><strong>Due Date:</strong> Today, 11:59 PM</p>
+                <p><strong>Status:</strong> <span style="color: #d97706; font-weight: bold;">Pending Submission</span></p>
+
+                <form action="#" method="POST" style="margin-top: 1.2rem;" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="submission-file">Upload Submission File (Zip/PDF) <span style="color: red;">*</span></label>
+                        <input type="file" id="submission-file" name="submission-file" class="form-control" required aria-required="true" aria-describedby="file-hint">
+                        <p class="form-hint" id="file-hint">Accepted formats: .zip, .pdf (Max size: 15MB)</p>
+                    </div>
+                    <button type="submit" class="btn">Submit Task</button>
+                </form>
+            </article>
+
+            <article class="card" style="margin-top: 1.5rem;">
+                <h2>Practical 1: StudentHub Project Blueprint & Wireframes</h2>
+                <p><strong>Course:</strong> CS201 Web Development</p>
+                <p><strong>Status:</strong> <span style="color: #10b981; font-weight: bold;">Graded (10/10)</span></p>
+                <p><strong>Feedback:</strong> Excellent semantic layout breakdown and clean directory structure.</p>
+            </article>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal</p>
+        <p>&copy; 2026 StudentHub Portal | Accessible Form Portal</p>
     </footer>
 </body>
 </html>

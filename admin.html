@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard for system-wide configuration, user management, and portal oversight.">
+    <title>StudentHub | Administrator Panel</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header style="background-color: #0f172a; border-bottom: 3px solid #dc2626;">
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub Admin</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Student Dashboard</a></li>
+                <li><a href="admin.html" class="active" aria-current="page">Admin Panel</a></li>
+                <li><a href="login.html" class="btn" style="background-color: #dc2626; padding: 0.3rem 0.8rem;">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Admin Panel</li>
+            </ol>
+        </nav>
+    </div>
+
+    <main id="main-content" class="container" tabindex="-1">
+        <header style="margin-bottom: 1.5rem;">
+            <span class="wireframe-badge" style="background-color: #fee2e2; color: #991b1b;">Administrative Overview Page</span>
+            <h1>System Administration Panel</h1>
+            <p>System configuration, user role allocation, and audit logs control panel.</p>
+        </header>
+
+        <div class="grid-3">
+            <article class="card">
+                <h2>👥 User Role Management</h2>
+                <p>Manage student registrations, assign faculty privileges, and review pending registrations.</p>
+                <div style="margin-top: 1rem;">
+                    <button type="button" class="btn" aria-label="Manage Users">Manage Users &rarr;</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <h2>📢 Announcement Control</h2>
+                <p>Post emergency alerts, publish mid-semester timetables, and broadcast site notices.</p>
+                <div style="margin-top: 1rem;">
+                    <button type="button" class="btn" aria-label="Publish Notice">Publish Notice &rarr;</button>
+                </div>
+            </article>
+
+            <article class="card">
+                <h2>📊 Accessibility Audit Logs</h2>
+                <p>Monitor portal access logs, WCAG compliance metrics, and system response times.</p>
+                <div style="margin-top: 1rem;">
+                    <button type="button" class="btn" style="background-color: #475569;" aria-label="View Audit Logs">View Logs &rarr;</button>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub Portal | Administrative Engine</p>
+    </footer>
+</body>
+</html>

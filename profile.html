@@ -3,36 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and manage StudentHub user profile settings and preferences.">
     <title>StudentHub | User Profile</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">🎓 StudentHub</a>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="profile.html" class="active" aria-current="page">Profile</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <div class="card" style="max-width: 600px; margin: 2rem auto;">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Profile</li>
+            </ol>
+        </nav>
+    </div>
+
+    <main id="main-content" class="container" tabindex="-1">
+        <section aria-labelledby="profile-heading" class="card" style="max-width: 650px; margin: 1rem auto;">
             <span class="wireframe-badge">Low-Fidelity Blueprint Page 10/11</span>
-            <h2>User Profile Settings</h2>
-            <div style="margin-top: 1rem; line-height: 2;">
-                <p><strong>Name:</strong> Daksh Patel</p>
+            <h1 id="profile-heading" style="font-size: 1.8rem;">User Profile Settings</h1>
+
+            <div style="margin-top: 1.2rem; line-height: 2;">
+                <p><strong>Full Name:</strong> Daksh Patel</p>
                 <p><strong>Student ID:</strong> 25CS102</p>
-                <p><strong>Branch:</strong> Computer Engineering</p>
-                <p><strong>Email:</strong> 25cs102@charusat.edu.in</p>
+                <p><strong>Department:</strong> Computer Engineering</p>
+                <p><strong>Email Address:</strong> 25cs102@charusat.edu.in</p>
+                <p><strong>Current Semester:</strong> Semester 3</p>
             </div>
-            <button type="button" class="btn" style="margin-top: 1rem;">Edit Profile</button>
-        </div>
+
+            <div style="margin-top: 1.5rem;">
+                <button type="button" class="btn">Edit Profile Information</button>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal</p>
+        <p>&copy; 2026 StudentHub Portal | Profile Management</p>
     </footer>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* StudentHub Stylesheet - Shared CSS Variables & Wireframe Helpers */
+/* StudentHub Stylesheet - Shared CSS Variables, Clean Navigation & Practical 2 Accessibility */
 
 :root {
   --primary-color: #2563eb;
@@ -9,9 +9,10 @@
   --text-color: #334155;
   --heading-color: #0f172a;
   --accent-color: #10b981;
-  --border-color: #e2e8f0;
+  --border-color: #cbd5e1;
   --radius: 8px;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --focus-ring: #2563eb;
 }
 
 * {
@@ -30,48 +31,144 @@ body {
   min-height: 100vh;
 }
 
-/* Header & Navigation */
-.navbar {
+/* Skip-to-content Link (Advanced Extension) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  z-index: 1000;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid #f59e0b;
+}
+
+/* Header & Navigation Bar Styling */
+header {
   background-color: var(--secondary-color);
-  color: white;
-  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.navbar {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .navbar .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #ffffff;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.2rem;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.nav-links li {
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav-links a {
   color: #cbd5e1;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
+  font-size: 0.92rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 1.3;
 }
 
 .nav-links a:hover,
+.nav-links a:focus-visible {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
 .nav-links a.active {
   color: #ffffff;
-  border-bottom: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.nav-links a.btn-login {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+}
+
+.nav-links a.btn-login:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0.5rem;
+  align-items: center;
+  color: #64748b;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  margin-right: 0.5rem;
+  color: #94a3b8;
+}
+
+.breadcrumb-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item[aria-current="page"] {
+  color: #0f172a;
+  font-weight: 600;
 }
 
 /* Main Layout Container */
 .container {
   max-width: 1200px;
   width: 100%;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: 1.5rem auto;
+  padding: 0 1.5rem;
   flex: 1;
 }
 
@@ -87,7 +184,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 1rem;
 }
 
@@ -99,13 +196,24 @@ body {
   text-decoration: none;
   border-radius: var(--radius);
   font-weight: 600;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  font-size: 1rem;
 }
 
 .btn:hover {
   background-color: var(--primary-hover);
+}
+
+/* Accessibility Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* Cards & Grid Layout */
@@ -129,6 +237,47 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Form Accessibility Styles */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--heading-color);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #0f172a;
+}
+
+.form-hint {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.3rem;
+}
+
+fieldset {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.2rem;
+}
+
+legend {
+  font-weight: 600;
+  padding: 0 0.5rem;
+  color: var(--heading-color);
+}
+
 /* Wireframe Tag Marker */
 .wireframe-badge {
   display: inline-block;
@@ -142,6 +291,19 @@ body {
   font-weight: bold;
 }
 
+/* Sidebar & Content Layout */
+.layout-with-sidebar {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .layout-with-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Footer */
 footer {
   background-color: var(--secondary-color);
@@ -152,15 +314,18 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Responsive Menu */
-@media (max-width: 768px) {
+footer a {
+  color: #cbd5e1;
+}
+
+/* Responsive Navigation Bar adjustments */
+@media (max-width: 1100px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.8rem;
   }
   .nav-links {
-    flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 0.3rem;
   }
 }

@@ -65,18 +65,23 @@ The **StudentHub Portal** addresses the need for a unified academic platform whe
                                      [ Notice Board ]
 ```
 
-### Core Pages Breakdown (Minimum 10 Pages)
+### Core Pages Breakdown (16 Developed Pages)
 1. `index.html` - Landing / Home Page introducing StudentHub features.
-2. `login.html` - Secure login for Students, Faculty, and Admins.
-3. `register.html` - Account creation page with role selection.
-4. `dashboard.html` - Central dashboard displaying announcements, upcoming deadlines, and quick links.
-5. `courses.html` - Course list catalog with filter and search.
-6. `course-details.html` - Specific course overview, syllabus, instructor details, and materials.
-7. `assignments.html` - Assignment list, deadline trackers, and file upload interface.
-8. `events.html` - Campus event listings, registration forms, and calendar view.
-9. `resources.html` - Central library of study notes, reference books, and past exam papers.
-10. `profile.html` - User profile, account settings, and notification configurations.
-11. `notices.html` - Official notice board with filterable announcements.
+2. `about.html` - Mission, objectives, and institutional platform capabilities.
+3. `login.html` - Secure role-based login (Student, Faculty, Admin).
+4. `register.html` - Account registration form with field validation metadata.
+5. `dashboard.html` - Student Dashboard displaying course summaries, deadlines, and notices.
+6. `courses.html` - Course list catalog with links to detailed course pages.
+7. `course-details.html` - Specific course overview, module syllabus, and learning resources.
+8. `assignments.html` - Practical assignment list, deadline tracker, and upload form.
+9. `events.html` - Campus event listings and registration action triggers.
+10. `resources.html` - Library of lecture slides and Previous Year Questions (PYQs).
+11. `profile.html` - User profile, account details, and branch configurations.
+12. `notices.html` - Official notice board with institutional updates.
+13. `contact.html` - Helpdesk contact form and office details.
+14. `faq.html` - Frequently Asked Questions and portal guidance.
+15. `feedback.html` - Student portal feedback, rating system, and usability notes.
+16. `admin.html` - Administrator control panel and audit log management.
 
 ---
 
@@ -86,28 +91,33 @@ The **StudentHub Portal** addresses the need for a unified academic platform whe
 dhara maam/
 │
 ├── index.html               # Landing page
+├── about.html               # About platform
 ├── login.html               # Login page
 ├── register.html            # User Registration
 ├── dashboard.html           # Student/Faculty Dashboard
-├── courses.html             # Course listing page
+├── courses.html             # Course listing catalog
 ├── course-details.html      # Detailed course page
 ├── assignments.html         # Assignment submission portal
 ├── events.html              # Campus events & registration
 ├── resources.html           # Learning resources hub
 ├── profile.html            # User profile & settings
 ├── notices.html            # Notice board
+├── contact.html            # Helpdesk contact form
+├── faq.html                # Frequently Asked Questions
+├── feedback.html           # Portal feedback form
+├── admin.html              # Administrative management panel
 │
 ├── assets/
 │   ├── css/
-│   │   ├── style.css        # Main stylesheet
-│   │   └── wireframe.css    # Wireframe helper styling
+│   │   └── style.css        # Shared CSS stylesheet & accessibility helpers
 │   ├── js/
 │   │   └── main.js          # Core JavaScript interactions
 │   └── images/              # Assets & Wireframe diagrams
 │
 ├── docs/
 │   ├── wireframes.md        # Low-Fidelity UI Wireframes & Layout Specs
-│   └── lab-answers.md       # Conceptual Q&A (URL, HTML Processing, Git Workflow)
+│   ├── lab-answers.md       # Conceptual Q&A (URL, HTML Processing, Git Workflow)
+│   └── lab-accessibility-checklist.md  # Practical 2 Accessibility Audit & Checklist
 │
 └── README.md                # Project documentation (this file)
 ```

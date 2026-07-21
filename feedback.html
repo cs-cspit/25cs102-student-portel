@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Submit portal feedback, usability ratings, and feature requests for StudentHub.">
+    <title>StudentHub | Portal Feedback</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Feedback</li>
+            </ol>
+        </nav>
+    </div>
+
+    <main id="main-content" class="container" tabindex="-1">
+        <section aria-labelledby="feedback-heading" class="card" style="max-width: 600px; margin: 1rem auto;">
+            <h1 id="feedback-heading" style="font-size: 1.8rem;">Student Feedback Form</h1>
+            <p style="margin-top: 0.4rem;">Help us improve StudentHub by sharing your experience and reporting any accessibility or navigation issues.</p>
+
+            <form action="#" method="POST" style="margin-top: 1.5rem;">
+                <div class="form-group">
+                    <label for="fb-name">Name (Optional)</label>
+                    <input type="text" id="fb-name" name="name" class="form-control" placeholder="Daksh Patel">
+                </div>
+
+                <fieldset>
+                    <legend>Portal Satisfaction Rating <span style="color: red;">*</span></legend>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                        <label for="rate-5">
+                            <input type="radio" id="rate-5" name="rating" value="5" checked> 5 - Excellent
+                        </label>
+                        <label for="rate-4">
+                            <input type="radio" id="rate-4" name="rating" value="4"> 4 - Good
+                        </label>
+                        <label for="rate-3">
+                            <input type="radio" id="rate-3" name="rating" value="3"> 3 - Average
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="fb-category">Feedback Category <span style="color: red;">*</span></label>
+                    <select id="fb-category" name="category" class="form-control" required aria-required="true">
+                        <option value="ui">User Interface & Layout</option>
+                        <option value="a11y">Accessibility & Screen Readers</option>
+                        <option value="speed">Performance & Speed</option>
+                        <option value="feature">New Feature Suggestion</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fb-comments">Detailed Comments <span style="color: red;">*</span></label>
+                    <textarea id="fb-comments" name="comments" class="form-control" rows="5" placeholder="Share your suggestions or suggestions for practical lab improvements..." required aria-required="true"></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Submit Feedback</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub Portal | Portal Feedback Engine</p>
+    </footer>
+</body>
+</html>

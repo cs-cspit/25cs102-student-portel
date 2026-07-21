@@ -3,39 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View official notices, exam timetables, and academic announcements on StudentHub.">
     <title>StudentHub | Notice Board</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">🎓 StudentHub</a>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="notices.html" class="active">Notices</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="notices.html" class="active" aria-current="page">Notices</a></li>
+                <li><a href="events.html">Events</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <span class="wireframe-badge">Low-Fidelity Blueprint Page 11/11</span>
-        <h2>Official Notice Board</h2>
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Notices</li>
+            </ol>
+        </nav>
+    </div>
 
-        <div class="card" style="margin-top: 1.5rem;">
-            <h3>📢 Mid-Semester Examination Schedule</h3>
-            <p><em>Posted on: July 20, 2026 by Exam Cell</em></p>
-            <p>The mid-semester practical and theory examinations for Semester 3 will commence from August 16, 2026. Detailed seating arrangement will follow.</p>
-        </div>
+    <main id="main-content" class="container" tabindex="-1">
+        <section aria-labelledby="notices-heading">
+            <span class="wireframe-badge">Low-Fidelity Blueprint Page 11/11</span>
+            <h1 id="notices-heading">Official Notice Board</h1>
 
-        <div class="card" style="margin-top: 1.5rem;">
-            <h3>📢 Web Development Practical Lab Guidelines</h3>
-            <p><em>Posted on: July 15, 2026 by Prof. Dhara</em></p>
-            <p>All students must maintain clean GitHub repositories and commit updates after each practical lab session.</p>
-        </div>
+            <article class="card" style="margin-top: 1.5rem;">
+                <h2>📢 Mid-Semester Examination Schedule</h2>
+                <p><em>Posted on: July 20, 2026 by Exam Cell</em></p>
+                <p style="margin-top: 0.5rem;">The mid-semester practical and theory examinations for Semester 3 will commence from August 16, 2026. Detailed seating arrangement will follow.</p>
+            </article>
+
+            <article class="card" style="margin-top: 1.5rem;">
+                <h2>📢 Web Development Practical Lab Guidelines</h2>
+                <p><em>Posted on: July 15, 2026 by Prof. Dhara</em></p>
+                <p style="margin-top: 0.5rem;">All students must maintain clean GitHub repositories, follow HTML5 accessibility conventions, and commit updates after each practical lab session.</p>
+            </article>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal</p>
+        <p>&copy; 2026 StudentHub Portal | Institutional Announcements</p>
     </footer>
 </body>
 </html>
