@@ -1,6 +1,15 @@
 # StudentHub Portal - Web Development Lab Project
 
-Welcome to the **StudentHub Portal** project repository. This project is a semester-long web development laboratory assignment designed to build a comprehensive, multi-role portal for academic management, student collaboration, event registration, and resource sharing.
+Welcome to the **StudentHub Portal** project repository. This repository contains the complete laboratory submissions for the **Web Development (CS201)** course, Semester 3, Computer Engineering department at CHARUSAT.
+
+---
+
+## 👨‍🎓 Student Details
+- **Student Name:** Daksh Patel
+- **Roll Number / Student ID:** 25CS102
+- **Class / Branch:** Semester 3 - Computer Engineering (CE)
+- **Course:** CS201 - Web Development Lab
+- **Faculty Guide:** Prof. Dhara
 
 ---
 
@@ -10,8 +19,17 @@ The **StudentHub Portal** addresses the need for a unified academic platform whe
 
 ### Key Objectives
 - Provide role-based access for **Students**, **Faculty/Instructors**, and **Administrators**.
-- Build an intuitive, accessible navigation flow across **10+ core pages**.
-- Establish clean directory structuring, Git workflow, and frontend foundational artifacts.
+- Build an intuitive, accessible navigation flow across **16 core pages** (exceeding the minimum 10 required pages).
+- Incorporate HTML5 semantic tags, WCAG accessibility rules, breadcrumb navigation, and keyboard skip-links.
+
+---
+
+## 🧪 Completed Practicals Log
+
+| Lab Practical | Topic / Title | Key Deliverables & Documentation |
+| :--- | :--- | :--- |
+| **Practical 1 (PR1)** | Scope, Setup & UI Blueprint | Sitemap, 16 Low-Fidelity UI Wireframes, Conceptual Answers ([`docs/lab-answers.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/lab-answers.md)) |
+| **Practical 2 (PR2)** | HTML5 Semantic Skeletons & Accessibility | 16 HTML5 Page Skeletons, Multi-Role Registration (Student/Faculty/Admin), Accessibility Audit ([`docs/lab-accessibility-checklist.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/lab-accessibility-checklist.md)) |
 
 ---
 
@@ -20,56 +38,56 @@ The **StudentHub Portal** addresses the need for a unified academic platform whe
 1. **Student**
    - Access course dashboard, timetables, grades, and attendance.
    - Submit assignments, download study materials, and register for campus events.
-   - Profile management and notification preferences.
+   - Profile management and feedback submissions.
 
 2. **Faculty / Instructor**
-   - Manage assigned courses, upload syllabus and lecture notes.
-   - Create assignments, evaluate student submissions, and update grades/attendance.
-   - Issue announcements and notices for enrolled students.
+   - Faculty account registration with Employee ID and Designation.
+   - Manage assigned courses, upload syllabus, lecture notes, and practical guides.
+   - Create assignments, evaluate submissions, and post announcements.
 
 3. **Administrator**
-   - System-wide configuration, user role assignments, and batch creation.
-   - Approve campus events, oversee portal notifications, and review system logs.
+   - Admin account registration using security tokens.
+   - System-wide configuration, user role allocations, site notices, and accessibility audit logs.
 
 ---
 
 ## 🧩 Key Modules
 
-- **Authentication & User Management**: Login, Register, Profile Management, Role Selection.
-- **Academic & Course Management**: Course Directory, Detailed Course Page, Timetable, Gradebook.
-- **Assignment & Submission Engine**: Assignment list, Submission portal with status tracking.
-- **Events & Announcement Hub**: Notice Board, Campus Event Registration, Calendar.
-- **Resource Center**: E-books, Previous Year Questions (PYQs), Lecture Slides repository.
+- **Authentication & Multi-Role User Management**: Login, Register (Student, Faculty, Admin), Profile Management.
+- **Academic & Course Management**: Course Catalog (`courses.html`), Detailed Specification (`course-details.html`).
+- **Assignment & Submission Engine**: Assignment list, deadline trackers, and file upload interface (`assignments.html`).
+- **Events & Announcement Hub**: Notice Board (`notices.html`), Campus Event Registration (`events.html`).
+- **Resource Center**: E-books, Previous Year Questions (PYQs), Lecture Slides repository (`resources.html`).
+- **Support & Portal Utilities**: Contact Helpdesk (`contact.html`), FAQ (`faq.html`), Feedback (`feedback.html`), Admin Panel (`admin.html`).
 
 ---
 
 ## 🗺️ Sitemap & Page Navigation Flow
 
 ```
-                                  [ Index / Landing Page ]
-                                             │
-                        ┌────────────────────┴────────────────────┐
-                        ▼                                         ▼
-                 [ Login Page ]                         [ Registration Page ]
-                        │                                         │
-                        └────────────────────┬────────────────────┘
-                                             ▼
-                                  [ Student Dashboard ]
-                                             │
-      ┌────────────────┬─────────────────────┼─────────────────────┬────────────────┐
-      ▼                ▼                     ▼                     ▼                ▼
-[ Course Details ] [ Assignments ]  [ Event Registration ] [ Resource Center ] [ User Profile ]
-      │                │                     │                     │
-      └────────────────┴─────────────────────┼─────────────────────┴────────────────┘
-                                             ▼
-                                     [ Notice Board ]
+                                      [ Index / Landing Page ]
+                                                 │
+                   ┌─────────────────────────────┼─────────────────────────────┐
+                   ▼                             ▼                             ▼
+            [ Login Page ]             [ Registration Page ]            [ About Us Page ]
+                   │                             │                             │
+                   └─────────────────────────────┼─────────────────────────────┘
+                                                 ▼
+                                      [ Student Dashboard ]
+                                                 │
+ ┌───────────────┬───────────────────┬───────────┴───────────┬───────────────────┬───────────────┐
+ ▼               ▼                   ▼                       ▼                   ▼               ▼
+[ Courses ] [ Assignments ] [ Event Registration ] [ Resource Center ] [ Helpdesk Contact ] [ Admin Panel ]
+ │               │                   │                       │                   │
+ ▼               ▼                   ▼                       ▼                   ▼
+[ Course Details ] [ Practical Uploads ] [ Notice Board ]     [ FAQ ]            [ User Profile & Feedback ]
 ```
 
 ### Core Pages Breakdown (16 Developed Pages)
 1. `index.html` - Landing / Home Page introducing StudentHub features.
 2. `about.html` - Mission, objectives, and institutional platform capabilities.
 3. `login.html` - Secure role-based login (Student, Faculty, Admin).
-4. `register.html` - Account registration form with field validation metadata.
+4. `register.html` - Multi-role registration form (Student, Faculty, Admin).
 5. `dashboard.html` - Student Dashboard displaying course summaries, deadlines, and notices.
 6. `courses.html` - Course list catalog with links to detailed course pages.
 7. `course-details.html` - Specific course overview, module syllabus, and learning resources.
@@ -93,7 +111,7 @@ dhara maam/
 ├── index.html               # Landing page
 ├── about.html               # About platform
 ├── login.html               # Login page
-├── register.html            # User Registration
+├── register.html            # Multi-Role User Registration (Student/Faculty/Admin)
 ├── dashboard.html           # Student/Faculty Dashboard
 ├── courses.html             # Course listing catalog
 ├── course-details.html      # Detailed course page
@@ -109,7 +127,7 @@ dhara maam/
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css        # Shared CSS stylesheet & accessibility helpers
+│   │   └── style.css        # Shared beginner-friendly CSS stylesheet
 │   ├── js/
 │   │   └── main.js          # Core JavaScript interactions
 │   └── images/              # Assets & Wireframe diagrams
@@ -135,12 +153,6 @@ Detailed answers to lab evaluation questions can be found in [`docs/lab-answers.
 
 ---
 
-## 🎨 Low-Fidelity Wireframes
-
-Refer to [`docs/wireframes.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/wireframes.md) for textual layout blueprints and responsive low-fidelity wireframe representations for Desktop and Mobile viewports.
-
----
-
 ## 🚀 How to Run the Project Locally
 
 1. **Clone the Repository**:
@@ -155,7 +167,7 @@ Refer to [`docs/wireframes.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%20
 ---
 
 ## 🛠️ Tools & Technologies
-- **Markup & Styling**: HTML5, CSS3 (Vanilla CSS, Responsive Grid/Flexbox)
+- **Markup & Styling**: HTML5, CSS3 (Vanilla CSS, Beginner-Friendly Layouts)
 - **Scripting**: JavaScript (ES6+)
 - **Version Control**: Git & GitHub
 - **IDE**: Visual Studio Code
@@ -163,4 +175,4 @@ Refer to [`docs/wireframes.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%20
 ---
 
 ## 📜 License & Acknowledgments
-Designed and developed for the **Web Development Lab (Semester 3)** under the guidance of Prof. Dhara.
+Designed and developed for the **Web Development Lab (Semester 3)** under the guidance of Prof. Dhara at CHARUSAT.
