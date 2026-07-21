@@ -1,18 +1,10 @@
-/* StudentHub Stylesheet - Shared CSS Variables, Clean Navigation & Practical 2 Accessibility */
+/* StudentHub - Simple Beginner CSS Stylesheet (Practical Lab 2 Baseline) */
 
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --secondary-color: #0f172a;
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-color: #334155;
-  --heading-color: #0f172a;
-  --accent-color: #10b981;
-  --border-color: #cbd5e1;
-  --radius: 8px;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --focus-ring: #2563eb;
+  --primary-color: #0056b3;
+  --bg-color: #f4f4f4;
+  --text-color: #333333;
+  --border-color: #cccccc;
 }
 
 * {
@@ -22,131 +14,100 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
-/* Skip-to-content Link (Advanced Extension) */
+/* Skip Link for Accessibility */
 .skip-link {
   position: absolute;
   top: -100px;
-  left: 1rem;
-  background-color: #000000;
+  left: 10px;
+  background: #000000;
   color: #ffffff;
-  padding: 0.75rem 1.25rem;
-  z-index: 1000;
-  border-radius: 4px;
-  font-weight: bold;
-  text-decoration: underline;
-  transition: top 0.2s ease;
+  padding: 8px 12px;
+  z-index: 100;
 }
 
 .skip-link:focus {
-  top: 1rem;
-  outline: 3px solid #f59e0b;
+  top: 10px;
 }
 
-/* Header & Navigation Bar Styling */
+/* Header & Navigation Bar */
 header {
-  background-color: var(--secondary-color);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background-color: #333333;
+  color: #ffffff;
 }
 
 .navbar {
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .navbar .logo {
-  font-size: 1.4rem;
-  font-weight: 700;
   color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  gap: 12px;
   flex-wrap: wrap;
-}
-
-.nav-links li {
-  display: inline-flex;
-  align-items: center;
 }
 
 .nav-links a {
-  color: #cbd5e1;
+  color: #ffffff;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.92rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  display: inline-block;
-  line-height: 1.3;
+  padding: 6px 12px;
+  border-radius: 4px;
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
 .nav-links a.active {
-  color: #ffffff;
   background-color: var(--primary-color);
-  font-weight: 600;
 }
 
 .nav-links a.btn-login {
-  background-color: var(--primary-color);
+  background-color: #28a745;
   color: #ffffff;
-  font-weight: 600;
-  padding: 0.4rem 1rem;
-  border-radius: 6px;
 }
 
-.nav-links a.btn-login:hover {
-  background-color: var(--primary-hover);
+/* Container */
+.container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 20px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  min-height: 80vh;
 }
 
-/* Breadcrumb Navigation */
+/* Breadcrumbs */
 .breadcrumb-nav {
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
 
 .breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
   list-style: none;
-  gap: 0.5rem;
-  align-items: center;
-  color: #64748b;
+  display: flex;
+  gap: 5px;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  content: "/";
-  margin-right: 0.5rem;
-  color: #94a3b8;
+  content: "/ ";
+  color: #666666;
 }
 
 .breadcrumb-item a {
@@ -154,178 +115,116 @@ header {
   text-decoration: none;
 }
 
-.breadcrumb-item a:hover {
-  text-decoration: underline;
+/* Page Elements & Cards */
+h1, h2, h3 {
+  margin-bottom: 12px;
+  color: #222222;
 }
 
-.breadcrumb-item[aria-current="page"] {
-  color: #0f172a;
-  font-weight: 600;
+p {
+  margin-bottom: 10px;
 }
 
-/* Main Layout Container */
-.container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 1.5rem auto;
-  padding: 0 1.5rem;
-  flex: 1;
-}
-
-/* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  color: white;
-  padding: 3rem 2rem;
-  border-radius: var(--radius);
+  background-color: #e9ecef;
+  border: 1px solid #d6d8db;
+  padding: 30px 20px;
   text-align: center;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow);
-}
-
-.hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
+  border-radius: 4px;
 }
 
 .btn {
   display: inline-block;
   background-color: var(--primary-color);
-  color: white;
-  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  padding: 8px 16px;
   text-decoration: none;
-  border-radius: var(--radius);
-  font-weight: 600;
-  border: 1px solid transparent;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  font-size: 1rem;
+  font-size: 15px;
 }
 
 .btn:hover {
-  background-color: var(--primary-hover);
+  background-color: #004085;
 }
 
-/* Accessibility Focus States */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-/* Cards & Grid Layout */
 .grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
 }
 
 .card {
-  background-color: var(--card-bg);
+  flex: 1 1 300px;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 4px;
 }
 
-.card h3 {
-  color: var(--heading-color);
-  margin-bottom: 0.5rem;
-}
-
-/* Form Accessibility Styles */
+/* Basic Form Styling */
 .form-group {
-  margin-bottom: 1.2rem;
+  margin-bottom: 15px;
 }
 
 .form-group label {
   display: block;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-  color: var(--heading-color);
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .form-control {
   width: 100%;
-  padding: 0.65rem 0.8rem;
+  padding: 8px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
-  color: #0f172a;
-}
-
-.form-hint {
-  font-size: 0.85rem;
-  color: #64748b;
-  margin-top: 0.3rem;
 }
 
 fieldset {
   border: 1px solid var(--border-color);
-  padding: 1rem;
-  border-radius: 6px;
-  margin-bottom: 1.2rem;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 4px;
 }
 
 legend {
-  font-weight: 600;
-  padding: 0 0.5rem;
-  color: var(--heading-color);
-}
-
-/* Wireframe Tag Marker */
-.wireframe-badge {
-  display: inline-block;
-  background-color: #fef3c7;
-  color: #92400e;
-  font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
   font-weight: bold;
+  padding: 0 5px;
 }
 
-/* Sidebar & Content Layout */
+/* Sidebar Layout */
 .layout-with-sidebar {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 1.5rem;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 900px) {
-  .layout-with-sidebar {
-    grid-template-columns: 1fr;
-  }
+.layout-with-sidebar > section {
+  flex: 3 1 500px;
+}
+
+.layout-with-sidebar > aside {
+  flex: 1 1 250px;
 }
 
 /* Footer */
 footer {
-  background-color: var(--secondary-color);
-  color: #94a3b8;
+  background-color: #333333;
+  color: #ffffff;
   text-align: center;
-  padding: 1.5rem;
-  margin-top: auto;
-  font-size: 0.9rem;
+  padding: 15px;
+  margin-top: 30px;
+  font-size: 14px;
 }
 
-footer a {
-  color: #cbd5e1;
+/* Role fields dynamic display */
+.role-fields {
+  display: none;
 }
 
-/* Responsive Navigation Bar adjustments */
-@media (max-width: 1100px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-  .nav-links {
-    gap: 0.3rem;
-  }
+.role-fields.active-role {
+  display: block;
 }
