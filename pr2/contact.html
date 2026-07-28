@@ -16,10 +16,11 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
                 <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
-                <li><a href="faq.html">FAQ</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="login.html" class="btn-login">Login</a></li>
+                <li><a href="register.html" class="btn-login">Register</a></li>
             </ul>
         </nav>
     </header>
@@ -34,27 +35,28 @@
     </div>
 
     <main id="main-content" class="container" tabindex="-1">
-        <section aria-labelledby="contact-heading">
-            <h1 id="contact-heading">Contact Academic Helpdesk</h1>
+        <section aria-labelledby="contact-heading" style="margin-bottom: 2rem;">
+            <span class="wireframe-badge">Support Helpdesk</span>
+            <h1 id="contact-heading" style="margin-top: 0.5rem;">Contact Academic Helpdesk</h1>
             <p>Have questions regarding courses, lab submissions, or exam schedules? Reach out to us.</p>
         </section>
 
-        <div class="layout-with-sidebar" style="margin-top: 1.5rem;">
+        <div class="layout-with-sidebar">
             <section aria-labelledby="form-heading" class="card">
-                <h2 id="form-heading" style="font-size: 1.4rem;">Send a Message</h2>
-                <form action="#" method="POST" style="margin-top: 1rem;">
+                <h2 id="form-heading" style="font-size: 1.4rem; margin-bottom: 1.5rem;">Send a Message</h2>
+                <form action="#" method="POST">
                     <div class="form-group">
-                        <label for="contact-name">Your Full Name <span style="color: red;">*</span></label>
+                        <label for="contact-name">Your Full Name <span style="color: var(--danger);">*</span></label>
                         <input type="text" id="contact-name" name="name" class="form-control" placeholder="Daksh Patel" required aria-required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-email">Email Address <span style="color: red;">*</span></label>
+                        <label for="contact-email">Email Address <span style="color: var(--danger);">*</span></label>
                         <input type="email" id="contact-email" name="email" class="form-control" placeholder="25cs102@charusat.edu.in" required aria-required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-subject">Subject / Inquiry Type <span style="color: red;">*</span></label>
+                        <label for="contact-subject">Subject / Inquiry Type <span style="color: var(--danger);">*</span></label>
                         <select id="contact-subject" name="subject" class="form-control" required aria-required="true">
                             <option value="">-- Select Subject --</option>
                             <option value="academic">Academic / Course Issue</option>
@@ -64,28 +66,28 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-message">Message Details <span style="color: red;">*</span></label>
+                        <label for="contact-message">Message Details <span style="color: var(--danger);">*</span></label>
                         <textarea id="contact-message" name="message" class="form-control" rows="5" placeholder="Describe your query in detail..." required aria-required="true"></textarea>
                     </div>
 
-                    <button type="submit" class="btn">Send Inquiry</button>
+                    <button type="submit" class="btn" style="width: 100%;">Send Inquiry</button>
                 </form>
             </section>
 
             <aside aria-labelledby="info-heading" class="card">
-                <h2 id="info-heading" style="font-size: 1.3rem;">📍 Helpdesk Info</h2>
-                <div style="margin-top: 1rem; line-height: 1.8;">
-                    <p><strong>Location:</strong> CSPIT CE Building, Ground Floor</p>
-                    <p><strong>Email:</strong> helpdesk@charusat.ac.in</p>
-                    <p><strong>Phone:</strong> +91 2697 265000</p>
-                    <p><strong>Hours:</strong> Mon - Sat: 9:00 AM - 4:30 PM</p>
+                <h2 id="info-heading" style="font-size: 1.3rem; margin-bottom: 1rem;">📍 Helpdesk Info</h2>
+                <div style="line-height: 2; color: var(--text-muted);">
+                    <p style="margin-bottom: 10px;"><strong>Location:</strong><br>CSPIT CE Building, Ground Floor</p>
+                    <p style="margin-bottom: 10px;"><strong>Email:</strong><br>helpdesk@charusat.ac.in</p>
+                    <p style="margin-bottom: 10px;"><strong>Phone:</strong><br>+91 2697 265000</p>
+                    <p style="margin-bottom: 10px;"><strong>Hours:</strong><br>Mon - Sat: 9:00 AM - 4:30 PM</p>
                 </div>
             </aside>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal | Accessible Contact Form</p>
+        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
     </footer>
 </body>
 </html>

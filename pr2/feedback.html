@@ -16,9 +16,11 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
+                <li><a href="register.html" class="btn-login">Register</a></li>
             </ul>
         </nav>
     </header>
@@ -34,32 +36,33 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="feedback-heading" class="card" style="max-width: 600px; margin: 1rem auto;">
-            <h1 id="feedback-heading" style="font-size: 1.8rem;">Student Feedback Form</h1>
-            <p style="margin-top: 0.4rem;">Help us improve StudentHub by sharing your experience and reporting any accessibility or navigation issues.</p>
+            <span class="wireframe-badge">Feedback Engine</span>
+            <h1 id="feedback-heading" style="font-size: 1.8rem; margin-top: 0.5rem;">Student Feedback Form</h1>
+            <p style="margin-top: 0.4rem; margin-bottom: 1.5rem;">Help us improve StudentHub by sharing your experience and reporting any accessibility or navigation issues.</p>
 
-            <form action="#" method="POST" style="margin-top: 1.5rem;">
+            <form action="#" method="POST">
                 <div class="form-group">
                     <label for="fb-name">Name (Optional)</label>
                     <input type="text" id="fb-name" name="name" class="form-control" placeholder="Daksh Patel">
                 </div>
 
                 <fieldset>
-                    <legend>Portal Satisfaction Rating <span style="color: red;">*</span></legend>
-                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
-                        <label for="rate-5">
+                    <legend>Portal Satisfaction Rating <span style="color: var(--danger);">*</span></legend>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 0.8rem; flex-wrap: wrap;">
+                        <label for="rate-5" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="rate-5" name="rating" value="5" checked> 5 - Excellent
                         </label>
-                        <label for="rate-4">
+                        <label for="rate-4" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="rate-4" name="rating" value="4"> 4 - Good
                         </label>
-                        <label for="rate-3">
+                        <label for="rate-3" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="rate-3" name="rating" value="3"> 3 - Average
                         </label>
                     </div>
                 </fieldset>
 
                 <div class="form-group">
-                    <label for="fb-category">Feedback Category <span style="color: red;">*</span></label>
+                    <label for="fb-category">Feedback Category <span style="color: var(--danger);">*</span></label>
                     <select id="fb-category" name="category" class="form-control" required aria-required="true">
                         <option value="ui">User Interface & Layout</option>
                         <option value="a11y">Accessibility & Screen Readers</option>
@@ -69,17 +72,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="fb-comments">Detailed Comments <span style="color: red;">*</span></label>
+                    <label for="fb-comments">Detailed Comments <span style="color: var(--danger);">*</span></label>
                     <textarea id="fb-comments" name="comments" class="form-control" rows="5" placeholder="Share your suggestions or suggestions for practical lab improvements..." required aria-required="true"></textarea>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%;">Submit Feedback</button>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Submit Feedback</button>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal | Portal Feedback Engine</p>
+        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
     </footer>
 </body>
 </html>

@@ -6,14 +6,6 @@
     <meta name="description" content="Register a new Student, Faculty, or Admin account on StudentHub Portal.">
     <title>StudentHub | Account Registration</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .role-fields {
-            display: none;
-        }
-        .role-fields.active-role {
-            display: block;
-        }
-    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -24,9 +16,11 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html" class="active" aria-current="page">Register</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="register.html" class="active btn-login">Register</a></li>
             </ul>
         </nav>
     </header>
@@ -42,21 +36,21 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="register-heading" class="card" style="max-width: 580px; margin: 1rem auto;">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 3/11</span>
-            <h1 id="register-heading" style="font-size: 1.8rem;">Create StudentHub Account</h1>
+            <span class="wireframe-badge">Multi-Role Registration</span>
+            <h1 id="register-heading" style="font-size: 1.8rem; margin-top: 0.5rem;">Create StudentHub Account</h1>
 
             <form action="login.html" method="POST" style="margin-top: 1.5rem;">
                 <!-- Role Selection Fieldset -->
                 <fieldset>
-                    <legend>Select Registration Role <span style="color: red;">*</span></legend>
-                    <div style="display: flex; gap: 1.2rem; margin-top: 0.5rem; flex-wrap: wrap;">
-                        <label for="reg-role-student">
+                    <legend>Select Registration Role <span style="color: var(--danger);">*</span></legend>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 0.8rem; flex-wrap: wrap;">
+                        <label for="reg-role-student" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="reg-role-student" name="role" value="student" checked onclick="switchRoleFields('student')"> 🎓 Student
                         </label>
-                        <label for="reg-role-faculty">
+                        <label for="reg-role-faculty" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="reg-role-faculty" name="role" value="faculty" onclick="switchRoleFields('faculty')"> 👨‍🏫 Faculty
                         </label>
-                        <label for="reg-role-admin">
+                        <label for="reg-role-admin" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="reg-role-admin" name="role" value="admin" onclick="switchRoleFields('admin')"> 🔑 Admin
                         </label>
                     </div>
@@ -64,20 +58,20 @@
 
                 <!-- Common Field: Full Name -->
                 <div class="form-group">
-                    <label for="fullname">Full Name <span style="color: red;">*</span></label>
+                    <label for="fullname">Full Name <span style="color: var(--danger);">*</span></label>
                     <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Daksh Patel" required aria-required="true">
                 </div>
 
                 <!-- Common Field: Email -->
                 <div class="form-group">
-                    <label for="reg-email">Email Address <span style="color: red;">*</span></label>
+                    <label for="reg-email">Email Address <span style="color: var(--danger);">*</span></label>
                     <input type="email" id="reg-email" name="email" class="form-control" placeholder="user@charusat.edu.in" required aria-required="true">
                 </div>
 
                 <!-- Dynamic Student Fields -->
                 <div id="student-fields" class="role-fields active-role">
                     <div class="form-group">
-                        <label for="regno">Student ID / Roll No <span style="color: red;">*</span></label>
+                        <label for="regno">Student ID / Roll No <span style="color: var(--danger);">*</span></label>
                         <input type="text" id="regno" name="regno" class="form-control" placeholder="25CS102">
                         <p class="form-hint" id="regno-hint">Enter your CHARUSAT student roll number (e.g., 25CS102)</p>
                     </div>
@@ -86,12 +80,12 @@
                 <!-- Dynamic Faculty Fields -->
                 <div id="faculty-fields" class="role-fields">
                     <div class="form-group">
-                        <label for="faculty-id">Faculty Employee ID <span style="color: red;">*</span></label>
+                        <label for="faculty-id">Faculty Employee ID <span style="color: var(--danger);">*</span></label>
                         <input type="text" id="faculty-id" name="faculty_id" class="form-control" placeholder="FAC2026-88">
                         <p class="form-hint">Enter your university employee code (e.g., FAC2026-88)</p>
                     </div>
                     <div class="form-group">
-                        <label for="designation">Designation <span style="color: red;">*</span></label>
+                        <label for="designation">Designation <span style="color: var(--danger);">*</span></label>
                         <select id="designation" name="designation" class="form-control">
                             <option value="">-- Select Designation --</option>
                             <option value="assistant_prof">Assistant Professor</option>
@@ -104,7 +98,7 @@
                 <!-- Dynamic Admin Fields -->
                 <div id="admin-fields" class="role-fields">
                     <div class="form-group">
-                        <label for="admin-code">Admin Secret Security Code <span style="color: red;">*</span></label>
+                        <label for="admin-code">Admin Secret Security Code <span style="color: var(--danger);">*</span></label>
                         <input type="password" id="admin-code" name="admin_code" class="form-control" placeholder="••••••••">
                         <p class="form-hint">Enter institutional secret authorization token for admin privilege creation.</p>
                     </div>
@@ -112,7 +106,7 @@
 
                 <!-- Common Field: Department -->
                 <div class="form-group">
-                    <label for="department">Department / Branch <span style="color: red;">*</span></label>
+                    <label for="department">Department / Branch <span style="color: var(--danger);">*</span></label>
                     <select id="department" name="department" class="form-control" required aria-required="true">
                         <option value="">-- Select Department --</option>
                         <option value="ce">Computer Engineering (CE)</option>
@@ -123,22 +117,22 @@
 
                 <!-- Common Field: Password -->
                 <div class="form-group">
-                    <label for="reg-password">Password <span style="color: red;">*</span></label>
+                    <label for="reg-password">Password <span style="color: var(--danger);">*</span></label>
                     <input type="password" id="reg-password" name="password" class="form-control" required aria-required="true" aria-describedby="password-hint">
                     <p class="form-hint" id="password-hint">Must be at least 8 characters with numbers and symbols.</p>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Create Account</button>
             </form>
 
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; text-align: center;">
-                Already have an account? <a href="login.html">Sign In Here</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; text-align: center; color: var(--text-muted);">
+                Already have an account? <a href="login.html" style="color: var(--primary-color); text-decoration: none;">Sign In Here</a>
             </p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 StudentHub Portal | Accessible Multi-Role Registration</p>
+        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
     </footer>
 
     <script>
