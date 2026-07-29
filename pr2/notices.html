@@ -8,24 +8,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="notices.html" class="active" aria-current="page">Notices</a></li>
-                <li><a href="events.html">Events</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
                 <li class="breadcrumb-item" aria-current="page">Notices</li>
             </ol>
         </nav>
@@ -33,25 +23,33 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="notices-heading">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 11/11</span>
-            <h1 id="notices-heading">Official Notice Board</h1>
+            <span class="wireframe-badge">Notice Board</span>
+            <h1 id="notices-heading" style="margin-top: 0.5rem;">Official Notice Board</h1>
 
             <article class="card" style="margin-top: 1.5rem;">
                 <h2>📢 Mid-Semester Examination Schedule</h2>
                 <p><em>Posted on: July 20, 2026 by Exam Cell</em></p>
                 <p style="margin-top: 0.5rem;">The mid-semester practical and theory examinations for Semester 3 will commence from August 16, 2026. Detailed seating arrangement will follow.</p>
+                <div style="margin-top: 1rem;">
+                    <button type="button" class="btn" data-modal-title="Exam Schedule Details" data-modal-body="<strong>Date:</strong> Aug 16 - Aug 24, 2026<br><strong>Venue:</strong> Lab Block 3 & Auditorium<br><p>Hall tickets will be generated on StudentHub portal 3 days prior.</p>">Full Circular Modal</button>
+                </div>
             </article>
 
             <article class="card" style="margin-top: 1.5rem;">
                 <h2>📢 Web Development Practical Lab Guidelines</h2>
                 <p><em>Posted on: July 15, 2026 by Prof. Dhara</em></p>
-                <p style="margin-top: 0.5rem;">All students must maintain clean GitHub repositories, follow HTML5 accessibility conventions, and commit updates after each practical lab session.</p>
+                <p style="margin-top: 0.5rem;">All students must maintain clean GitHub repositories, follow HTML5 accessibility conventions, and implement dynamic JS components.</p>
+                <div style="margin-top: 1rem;">
+                    <button type="button" class="btn" data-modal-title="Lab Practical Guidelines" data-modal-body="<strong>Practical 3 Requirements:</strong> Collapsible FAQ accordion, Modal popup, Image/Content slider, Notification banner, Hamburger menu, Light/Dark theme switcher with localStorage.">Read Instructions</button>
+                </div>
             </article>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Institutional Announcements</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

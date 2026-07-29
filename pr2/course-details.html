@@ -8,22 +8,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html" class="active" aria-current="page">Courses</a></li>
-                <li><a href="assignments.html">Assignments</a></li>
-                <li><a href="resources.html">Resources</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="courses.html">Courses</a></li>
@@ -33,18 +22,18 @@
     </div>
 
     <main id="main-content" class="container" tabindex="-1">
-        <header style="margin-bottom: 1.5rem;">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 6/11</span>
-            <h1>CS201: Web Development - Course Overview</h1>
+        <div class="course-header" style="margin-bottom: 1.5rem;">
+            <span class="wireframe-badge">Course Specification</span>
+            <h1 style="margin-top: 0.5rem;">CS201: Web Development - Course Overview</h1>
             <p><strong>Faculty:</strong> Prof. Dhara | <strong>Credits:</strong> 4 | <strong>Semester:</strong> 3</p>
-        </header>
+        </div>
 
         <section aria-labelledby="syllabus-heading" class="card">
             <h2 id="syllabus-heading" style="font-size: 1.4rem;">Syllabus & Course Modules</h2>
             <ol style="margin-left: 1.5rem; margin-top: 0.8rem; line-height: 1.8;">
                 <li><strong>Module 1:</strong> Web Architecture, HTTP/HTTPS, URLs, and HTML Processing.</li>
                 <li><strong>Module 2:</strong> Page Layouts, CSS Flexbox/Grid, and Responsive Design.</li>
-                <li><strong>Module 3:</strong> JavaScript DOM Manipulation, Events, and Client-Side Scripts.</li>
+                <li><strong>Module 3:</strong> JavaScript DOM Manipulation, Event Handling, LocalStorage, and Dynamic UI Components.</li>
                 <li><strong>Module 4:</strong> Version Control with Git, GitHub Repository Workflows, and READMEs.</li>
             </ol>
         </section>
@@ -53,13 +42,15 @@
             <h2 id="materials-heading" style="font-size: 1.4rem;">Course Learning Materials</h2>
             <ul style="margin-left: 1.5rem; margin-top: 0.8rem; line-height: 1.8;">
                 <li>📁 <a href="resources.html" aria-label="Download Lecture 1 Slides PDF from Resources">Download Lecture 1 Slides (PDF)</a></li>
-                <li>📁 <a href="resources.html" aria-label="Download Lab Practical 2 Guide from Resources">Download Lab Practical 2 Guide</a></li>
+                <li>📁 <a href="resources.html" aria-label="Download Lab Practical 3 Guide from Resources">Download Lab Practical 3 Guide</a></li>
             </ul>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Course Specification Page</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

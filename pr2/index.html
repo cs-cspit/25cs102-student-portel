@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +8,13 @@
     <title>StudentHub Portal | Home</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <!-- Skip to Content Link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">
-                🎓 StudentHub
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="register.html" class="btn-login">Register</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item" aria-current="page">Home</li>
             </ol>
@@ -37,17 +22,46 @@
     </div>
 
     <main id="main-content" class="container" tabindex="-1">
+        <!-- Image / Content Slider Carousel Component -->
+        <section aria-label="Portal Announcements Carousel" class="slider-container">
+            <button type="button" class="slider-nav-btn slider-prev" aria-label="Previous Slide">&lsaquo;</button>
+            <div class="slider-track">
+                <article class="slide">
+                    <span class="slide-badge">Semester Update</span>
+                    <h2>🚀 Semester 3 Mid-Term Practical Exams</h2>
+                    <p>Schedule and lab guidelines have been uploaded. Download practical manuals from the resource portal.</p>
+                    <button type="button" class="btn" data-modal-title="Mid-Term Exam Schedule" data-modal-body="Mid-term practicals commence from August 15, 2026. All students must bring completed practical journals signed by lab instructors.">View Exam Schedule</button>
+                </article>
+                <article class="slide">
+                    <span class="slide-badge">Campus Event</span>
+                    <h2>💻 Annual CodeHack 2026 Registration</h2>
+                    <p>Join CHARUSAT's biggest 36-hour hackathon! Build web apps, solve real-world problems, and win cash prizes.</p>
+                    <button type="button" class="btn" data-modal-title="CodeHack 2026 Registration" data-modal-body="Registration deadline: August 8, 2026. Teams of 2-4 students can register under Computer Engineering department.">Hackathon Details</button>
+                </article>
+                <article class="slide">
+                    <span class="slide-badge">New Feature</span>
+                    <h2>🌙 Personalized Theme & Dynamic UI</h2>
+                    <p>Experience light/dark mode persistence, collapsible FAQs, and interactive modal dialogs across StudentHub.</p>
+                    <a href="faq.html" class="btn">Explore FAQs</a>
+                </article>
+            </div>
+            <button type="button" class="slider-nav-btn slider-next" aria-label="Next Slide">&rsaquo;</button>
+            <div class="slider-dots"></div>
+        </section>
+
+        <!-- Hero Section -->
         <section class="hero" aria-labelledby="hero-heading">
             <h1 id="hero-heading">Welcome to StudentHub Portal</h1>
             <p>Your unified platform for course tracking, assignments, campus events, and academic resources.</p>
             <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                 <a href="register.html" class="btn">Register Account</a>
-                <a href="dashboard.html" class="btn" style="background-image: none; background-color: var(--border-color);">Explore Dashboard</a>
+                <button type="button" class="btn btn-secondary" data-modal-title="Quick Portal Tour" data-modal-body="StudentHub brings course materials, submission trackers, faculty contacts, and event updates into a seamless responsive web experience.">Portal Quick Overview</button>
             </div>
         </section>
 
+        <!-- Core Modules Grid -->
         <section aria-labelledby="modules-heading">
-            <h2 id="modules-heading" style="text-align: center; margin-bottom: 2rem;">Core Platform Modules</h2>
+            <h2 id="modules-heading" style="text-align: center; margin-bottom: 1.5rem;">Core Platform Modules</h2>
             <div class="grid-3">
                 <article class="card">
                     <h3>📚 Academic Management</h3>
@@ -66,12 +80,42 @@
                 </article>
             </div>
         </section>
+
+        <!-- Collapsible FAQ Preview Accordion -->
+        <section aria-labelledby="quick-faq-heading" style="margin-top: 2.5rem;">
+            <h2 id="quick-faq-heading">Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ How do I toggle between Light and Dark themes?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Click the theme toggle button in the top right corner of the navigation bar. Your preference is automatically remembered using browser localStorage.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ How do I submit my practical lab code?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Navigate to the Assignments section on the Dashboard page, upload your source code package, and click submit.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="faq.html" class="btn btn-secondary">View All FAQs &rarr;</a>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
 
+    <script src="assets/js/layout.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

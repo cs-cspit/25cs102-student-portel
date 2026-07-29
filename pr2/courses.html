@@ -8,26 +8,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="courses.html" class="active" aria-current="page">Courses</a></li>
-                <li><a href="assignments.html">Assignments</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="resources.html">Resources</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
                 <li class="breadcrumb-item" aria-current="page">Courses</li>
             </ol>
         </nav>
@@ -35,17 +23,17 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="catalog-heading">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 5/11</span>
-            <h1 id="catalog-heading">Semester 3 Courses Catalog</h1>
+            <span class="wireframe-badge">Course Directory</span>
+            <h1 id="catalog-heading" style="margin-top: 0.5rem;">Semester 3 Courses Catalog</h1>
             <p>Select a course to view syllabus, lecture resources, and faculty details.</p>
 
             <div class="grid-3" style="margin-top: 1.5rem;">
                 <article class="card">
                     <h2>CS201: Web Development</h2>
                     <p><strong>Instructor:</strong> Prof. Dhara</p>
-                    <p>Learn HTML5, CSS3, JavaScript, Git/GitHub, and modern web application setup.</p>
+                    <p>Learn HTML5, CSS3, JavaScript ES6+, Git/GitHub, and modern web application setup.</p>
                     <div style="margin-top: 1rem;">
-                        <a href="course-details.html" class="btn" aria-label="View details for CS201 Web Development">View Course Details</a>
+                        <a href="course-details.html" class="btn" aria-label="View details for CS201 Web Development">View Course Details &rarr;</a>
                     </div>
                 </article>
 
@@ -54,7 +42,7 @@
                     <p><strong>Instructor:</strong> Prof. Sharma</p>
                     <p>Arrays, Stacks, Queues, Linked Lists, Trees, Graphs, and Sorting Algorithms.</p>
                     <div style="margin-top: 1rem;">
-                        <a href="course-details.html" class="btn" aria-label="View details for CS202 Data Structures">View Course Details</a>
+                        <a href="course-details.html" class="btn" aria-label="View details for CS202 Data Structures">View Course Details &rarr;</a>
                     </div>
                 </article>
 
@@ -63,15 +51,17 @@
                     <p><strong>Instructor:</strong> Prof. Mehta</p>
                     <p>Relational Databases, SQL, ER Modeling, Normalization, and Transaction Management.</p>
                     <div style="margin-top: 1rem;">
-                        <a href="course-details.html" class="btn" aria-label="View details for CS203 Database Systems">View Course Details</a>
+                        <a href="course-details.html" class="btn" aria-label="View details for CS203 Database Systems">View Course Details &rarr;</a>
                     </div>
                 </article>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Course Directory</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

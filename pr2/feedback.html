@@ -8,25 +8,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
-                <li><a href="register.html" class="btn-login">Register</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">Feedback</li>
@@ -40,14 +26,14 @@
             <h1 id="feedback-heading" style="font-size: 1.8rem; margin-top: 0.5rem;">Student Feedback Form</h1>
             <p style="margin-top: 0.4rem; margin-bottom: 1.5rem;">Help us improve StudentHub by sharing your experience and reporting any accessibility or navigation issues.</p>
 
-            <form action="#" method="POST">
+            <form action="#" method="POST" onsubmit="event.preventDefault(); window.StudentHubApp.openModal('Feedback Submitted!', '<p>Thank you for rating StudentHub! Your feedback has been logged for evaluation by the Web Development lab team.</p>');">
                 <div class="form-group">
                     <label for="fb-name">Name (Optional)</label>
-                    <input type="text" id="fb-name" name="name" class="form-control" placeholder="Daksh Patel">
+                    <input type="text" id="fb-name" name="name" class="form-control" placeholder="Daksh Soni">
                 </div>
 
                 <fieldset>
-                    <legend>Portal Satisfaction Rating <span style="color: var(--danger);">*</span></legend>
+                    <legend>Portal Satisfaction Rating <span style="color: var(--danger-color);">*</span></legend>
                     <div style="display: flex; gap: 1.5rem; margin-top: 0.8rem; flex-wrap: wrap;">
                         <label for="rate-5" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
                             <input type="radio" id="rate-5" name="rating" value="5" checked> 5 - Excellent
@@ -62,7 +48,7 @@
                 </fieldset>
 
                 <div class="form-group">
-                    <label for="fb-category">Feedback Category <span style="color: var(--danger);">*</span></label>
+                    <label for="fb-category">Feedback Category <span style="color: var(--danger-color);">*</span></label>
                     <select id="fb-category" name="category" class="form-control" required aria-required="true">
                         <option value="ui">User Interface & Layout</option>
                         <option value="a11y">Accessibility & Screen Readers</option>
@@ -72,7 +58,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="fb-comments">Detailed Comments <span style="color: var(--danger);">*</span></label>
+                    <label for="fb-comments">Detailed Comments <span style="color: var(--danger-color);">*</span></label>
                     <textarea id="fb-comments" name="comments" class="form-control" rows="5" placeholder="Share your suggestions or suggestions for practical lab improvements..." required aria-required="true"></textarea>
                 </div>
 
@@ -81,8 +67,10 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

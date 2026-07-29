@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,13 @@
     <title>StudentHub | FAQ</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="faq.html" class="active" aria-current="page">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">FAQ</li>
@@ -35,34 +25,77 @@
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="faq-heading">
             <h1 id="faq-heading">Frequently Asked Questions (FAQ)</h1>
-            <p>Find quick answers to common queries regarding portal access, lab practicals, and account management.</p>
+            <p>Find quick answers to common queries regarding portal access, lab practicals, accessibility features, and account management.</p>
 
-            <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem;">
-                <article class="card">
-                    <h2>❓ How do I log in to StudentHub?</h2>
-                    <p style="margin-top: 0.5rem;">Click on the <a href="login.html">Login link</a> in the header, select your role (Student/Faculty/Admin), enter your CHARUSAT email and password, and click Sign In.</p>
-                </article>
+            <div class="accordion" style="margin-top: 1.5rem;">
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ How do I log in to StudentHub?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Click on the <a href="login.html">Login link</a> in the header, select your role (Student / Faculty / Admin), enter your registered email address and password, and click Sign In.</p>
+                    </div>
+                </div>
 
-                <article class="card">
-                    <h2>❓ How do I submit my lab practical assignments?</h2>
-                    <p style="margin-top: 0.5rem;">Navigate to the <a href="assignments.html">Assignments section</a>, locate the relevant practical module, upload your .zip or .pdf file, and click Submit Task.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ How do I submit my lab practical assignments?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Navigate to the <a href="assignments.html">Assignments section</a>, locate the relevant practical module, upload your .zip or .pdf solution file, and click Submit Task.</p>
+                    </div>
+                </div>
 
-                <article class="card">
-                    <h2>❓ What accessibility standards does StudentHub comply with?</h2>
-                    <p style="margin-top: 0.5rem;">StudentHub adheres to HTML5 semantic structural standards, WCAG 2.1 contrast ratios, explicit form label pairings, skip-to-content links, and keyboard navigation support.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ How does the Light/Dark theme switcher work?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Click the 🌙 Dark / ☀️ Light button in the navbar header. Your preference is instantly applied across all pages and saved in browser <code>localStorage</code> so it persists across sessions.</p>
+                    </div>
+                </div>
 
-                <article class="card">
-                    <h2>❓ How can I access previous year question papers (PYQs)?</h2>
-                    <p style="margin-top: 0.5rem;">Visit the <a href="resources.html">Resource Center</a> to view and download subject-wise lecture notes and past examination papers.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ What accessibility standards does StudentHub comply with?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>StudentHub adheres to HTML5 semantic structural standards, WCAG 2.1 contrast ratios, explicit form label pairings, skip-to-content links, keyboard navigation support, and ARIA state announcements.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ How can I access previous year question papers (PYQs)?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Visit the <a href="resources.html">Resource Center</a> to view and download subject-wise lecture notes, lab practical sheets, and past examination papers.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>❓ Can I reset my saved UI preferences (Theme & Banner)?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes! Scroll to the footer on any page and click "Reset UI Preferences". This will clear your localStorage preferences and reload default settings.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Frequently Asked Questions</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>

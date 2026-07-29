@@ -8,25 +8,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="register.html" class="btn-login">Register</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">Contact Us</li>
@@ -44,19 +30,19 @@
         <div class="layout-with-sidebar">
             <section aria-labelledby="form-heading" class="card">
                 <h2 id="form-heading" style="font-size: 1.4rem; margin-bottom: 1.5rem;">Send a Message</h2>
-                <form action="#" method="POST">
+                <form action="#" method="POST" onsubmit="event.preventDefault(); window.StudentHubApp.openModal('Message Sent!', '<p>Thank you! Your inquiry has been received. Support ticket #8492 has been generated and dispatched to the academic helpdesk team.</p>');">
                     <div class="form-group">
-                        <label for="contact-name">Your Full Name <span style="color: var(--danger);">*</span></label>
-                        <input type="text" id="contact-name" name="name" class="form-control" placeholder="Daksh Patel" required aria-required="true">
+                        <label for="contact-name">Your Full Name <span style="color: var(--danger-color);">*</span></label>
+                        <input type="text" id="contact-name" name="name" class="form-control" placeholder="Daksh Soni" required aria-required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-email">Email Address <span style="color: var(--danger);">*</span></label>
+                        <label for="contact-email">Email Address <span style="color: var(--danger-color);">*</span></label>
                         <input type="email" id="contact-email" name="email" class="form-control" placeholder="25cs102@charusat.edu.in" required aria-required="true">
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-subject">Subject / Inquiry Type <span style="color: var(--danger);">*</span></label>
+                        <label for="contact-subject">Subject / Inquiry Type <span style="color: var(--danger-color);">*</span></label>
                         <select id="contact-subject" name="subject" class="form-control" required aria-required="true">
                             <option value="">-- Select Subject --</option>
                             <option value="academic">Academic / Course Issue</option>
@@ -66,7 +52,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-message">Message Details <span style="color: var(--danger);">*</span></label>
+                        <label for="contact-message">Message Details <span style="color: var(--danger-color);">*</span></label>
                         <textarea id="contact-message" name="message" class="form-control" rows="5" placeholder="Describe your query in detail..." required aria-required="true"></textarea>
                     </div>
 
@@ -76,7 +62,7 @@
 
             <aside aria-labelledby="info-heading" class="card">
                 <h2 id="info-heading" style="font-size: 1.3rem; margin-bottom: 1rem;">📍 Helpdesk Info</h2>
-                <div style="line-height: 2; color: var(--text-muted);">
+                <div style="line-height: 2; color: var(--text-color);">
                     <p style="margin-bottom: 10px;"><strong>Location:</strong><br>CSPIT CE Building, Ground Floor</p>
                     <p style="margin-bottom: 10px;"><strong>Email:</strong><br>helpdesk@charusat.ac.in</p>
                     <p style="margin-bottom: 10px;"><strong>Phone:</strong><br>+91 2697 265000</p>
@@ -86,8 +72,10 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

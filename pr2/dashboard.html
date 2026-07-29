@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,13 @@
     <title>StudentHub | Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="dashboard.html" class="active" aria-current="page">Dashboard</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="register.html" class="btn-login">Register</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">Dashboard</li>
@@ -35,28 +23,31 @@
     </div>
 
     <main id="main-content" class="container" tabindex="-1">
-        <header style="margin-bottom: 2rem;">
+        <div class="dashboard-header" style="margin-bottom: 2rem;">
             <span class="wireframe-badge">Academic Dashboard</span>
             <h1>Student Dashboard</h1>
-            <p style="margin-top: 0.5rem;">Welcome back, <strong>Daksh Patel (25CS102)</strong> | Semester 3 - Computer Engineering</p>
-        </header>
+            <p style="margin-top: 0.5rem;">Welcome back, <strong>Daksh Soni (25CS102)</strong> | Semester 3 - Computer Engineering</p>
+        </div>
 
         <div class="layout-with-sidebar">
             <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                 <section aria-labelledby="courses-overview-heading" class="card">
                     <h2 id="courses-overview-heading" style="font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">📖 Enrolled Courses Overview</h2>
-                    <ul style="margin-left: 1.2rem; margin-top: 0.8rem; line-height: 2; color: var(--text-muted);">
-                        <li><strong>CS201 - Web Development:</strong> <span style="color: var(--success);">88% Attendance</span> | 2 Pending Assignments</li>
-                        <li><strong>CS202 - Data Structures & Algorithms:</strong> <span style="color: var(--success);">92% Attendance</span> | All Submitted</li>
-                        <li><strong>CS203 - Database Management Systems:</strong> <span style="color: var(--success);">85% Attendance</span> | 1 Pending Quiz</li>
+                    <ul style="margin-left: 1.2rem; margin-top: 0.8rem; line-height: 2; color: var(--text-color);">
+                        <li><strong>CS201 - Web Development:</strong> <span style="color: var(--success-color);">88% Attendance</span> | 2 Pending Assignments</li>
+                        <li><strong>CS202 - Data Structures & Algorithms:</strong> <span style="color: var(--success-color);">92% Attendance</span> | All Submitted</li>
+                        <li><strong>CS203 - Database Management Systems:</strong> <span style="color: var(--success-color);">85% Attendance</span> | 1 Pending Quiz</li>
                     </ul>
+                    <div style="margin-top: 1rem;">
+                        <button type="button" class="btn" data-modal-title="Enrolled Courses Breakdown" data-modal-body="<strong>CS201:</strong> 4 Credits, Prof. Dhara Ma'am<br><strong>CS202:</strong> 4 Credits, Prof. Patel<br><strong>CS203:</strong> 3 Credits, Prof. Shah<br><br><p>Full syllabus manuals available in Resources.</p>">Course Details Modal</button>
+                    </div>
                 </section>
 
                 <section aria-labelledby="deadlines-heading" class="card">
                     <h2 id="deadlines-heading" style="font-size: 1.4rem; display: flex; align-items: center; gap: 8px;">⚡ Upcoming Deadlines</h2>
-                    <ul style="margin-left: 1.2rem; margin-top: 0.8rem; line-height: 2; color: var(--text-muted);">
-                        <li><strong>Web Dev Lab Practical 2:</strong> <span style="color: var(--danger);">Today, 11:59 PM</span></li>
-                        <li><strong>DBMS ER-Diagram Assignment:</strong> <span style="color: var(--warning);">July 25, 2026</span></li>
+                    <ul style="margin-left: 1.2rem; margin-top: 0.8rem; line-height: 2; color: var(--text-color);">
+                        <li><strong>Web Dev Lab Practical 3 (Dynamic JS UI):</strong> <span style="color: var(--danger-color);">Today, 11:59 PM</span></li>
+                        <li><strong>DBMS ER-Diagram Assignment:</strong> <span style="color: var(--warning-color);">August 05, 2026</span></li>
                     </ul>
                 </section>
             </div>
@@ -70,7 +61,7 @@
                 <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--border-color);">
                 <article>
                     <h3 style="font-size: 1.1rem; color: var(--primary-color);">Tech Club</h3>
-                    <p style="font-size: 0.95rem;">Annual Hackathon registration closes tomorrow.</p>
+                    <p style="font-size: 0.95rem;">Annual Hackathon registration closes soon.</p>
                 </article>
                 <div style="margin-top: 1.5rem;">
                     <a href="events.html" class="btn" style="width: 100%; text-align: center; display: block;">View Events & Notices</a>
@@ -79,8 +70,11 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Responsive Lab Practical Design | CHARUSAT</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>

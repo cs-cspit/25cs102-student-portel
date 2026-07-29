@@ -8,23 +8,11 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="login.html" class="active" aria-current="page">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">Login</li>
@@ -34,46 +22,48 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="login-heading" class="card" style="max-width: 480px; margin: 1rem auto;">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 2/11</span>
-            <h1 id="login-heading" style="font-size: 1.8rem;">Sign In to StudentHub</h1>
+            <span class="wireframe-badge">Institutional Login</span>
+            <h1 id="login-heading" style="font-size: 1.8rem; margin-top: 0.5rem;">Sign In to StudentHub</h1>
 
             <form action="dashboard.html" method="GET" style="margin-top: 1.5rem;">
                 <fieldset>
                     <legend>Select User Role</legend>
                     <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
-                        <label for="role-student">
-                            <input type="radio" id="role-student" name="role" value="student" checked> Student
+                        <label for="role-student" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                            <input type="radio" id="role-student" name="role" value="student" checked> 🎓 Student
                         </label>
-                        <label for="role-faculty">
-                            <input type="radio" id="role-faculty" name="role" value="faculty"> Faculty
+                        <label for="role-faculty" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                            <input type="radio" id="role-faculty" name="role" value="faculty"> 👨‍🏫 Faculty
                         </label>
-                        <label for="role-admin">
-                            <input type="radio" id="role-admin" name="role" value="admin"> Admin
+                        <label for="role-admin" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                            <input type="radio" id="role-admin" name="role" value="admin"> 🔑 Admin
                         </label>
                     </div>
                 </fieldset>
 
                 <div class="form-group">
-                    <label for="login-email">Email Address <span style="color: red;">*</span></label>
+                    <label for="login-email">Email Address <span style="color: var(--danger-color);">*</span></label>
                     <input type="email" id="login-email" name="email" class="form-control" placeholder="25cs102@charusat.edu.in" required aria-required="true" autocomplete="email">
                 </div>
 
                 <div class="form-group">
-                    <label for="login-password">Password <span style="color: red;">*</span></label>
+                    <label for="login-password">Password <span style="color: var(--danger-color);">*</span></label>
                     <input type="password" id="login-password" name="password" class="form-control" required aria-required="true" autocomplete="current-password">
                 </div>
 
                 <button type="submit" class="btn" style="width: 100%;">Sign In</button>
             </form>
 
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; text-align: center;">
-                New User? <a href="register.html">Create an Account</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; text-align: center; color: var(--text-color);">
+                New User? <a href="register.html" style="color: var(--primary-color);">Create an Account</a>
             </p>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Accessible Form Design</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

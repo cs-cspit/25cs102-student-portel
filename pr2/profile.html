@@ -8,23 +8,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="profile.html" class="active" aria-current="page">Profile</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
                 <li class="breadcrumb-item" aria-current="page">Profile</li>
             </ol>
         </nav>
@@ -32,25 +23,27 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="profile-heading" class="card" style="max-width: 650px; margin: 1rem auto;">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 10/11</span>
-            <h1 id="profile-heading" style="font-size: 1.8rem;">User Profile Settings</h1>
+            <span class="wireframe-badge">User Profile</span>
+            <h1 id="profile-heading" style="font-size: 1.8rem; margin-top: 0.5rem;">User Profile Settings</h1>
 
             <div style="margin-top: 1.2rem; line-height: 2;">
-                <p><strong>Full Name:</strong> Daksh Patel</p>
+                <p><strong>Full Name:</strong> Daksh Soni</p>
                 <p><strong>Student ID:</strong> 25CS102</p>
                 <p><strong>Department:</strong> Computer Engineering</p>
                 <p><strong>Email Address:</strong> 25cs102@charusat.edu.in</p>
                 <p><strong>Current Semester:</strong> Semester 3</p>
             </div>
 
-            <div style="margin-top: 1.5rem;">
-                <button type="button" class="btn">Edit Profile Information</button>
+            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" class="btn" data-modal-title="Edit Profile Information" data-modal-body="<form><div class='form-group'><label>Full Name</label><input type='text' class='form-control' value='Daksh Soni'></div><div class='form-group'><label>Email Address</label><input type='email' class='form-control' value='25cs102@charusat.edu.in'></div><button type='button' class='btn' onclick='window.StudentHubApp.closeModal()'>Save Profile Changes</button></form>">Edit Profile</button>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Profile Management</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

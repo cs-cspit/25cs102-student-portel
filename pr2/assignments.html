@@ -8,24 +8,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="assignments.html" class="active" aria-current="page">Assignments</a></li>
-                <li><a href="courses.html">Courses</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
                 <li class="breadcrumb-item" aria-current="page">Assignments</li>
             </ol>
         </nav>
@@ -33,18 +23,18 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="assignments-heading">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 7/11</span>
-            <h1 id="assignments-heading">Assignment Submissions</h1>
+            <span class="wireframe-badge">Assignment Engine</span>
+            <h1 id="assignments-heading" style="margin-top: 0.5rem;">Lab Practical Submissions</h1>
 
             <article class="card" style="margin-top: 1.5rem;">
-                <h2>Practical 2: HTML5 Skeletons & Accessibility</h2>
+                <h2>Practical 3: Dynamic JavaScript UI Components</h2>
                 <p><strong>Course:</strong> CS201 Web Development</p>
                 <p><strong>Due Date:</strong> Today, 11:59 PM</p>
-                <p><strong>Status:</strong> <span style="color: #d97706; font-weight: bold;">Pending Submission</span></p>
+                <p><strong>Status:</strong> <span style="color: var(--warning-color); font-weight: bold;">Pending Upload</span></p>
 
-                <form action="#" method="POST" style="margin-top: 1.2rem;" enctype="multipart/form-data">
+                <form action="#" method="POST" style="margin-top: 1.2rem;" enctype="multipart/form-data" onsubmit="event.preventDefault(); window.StudentHubApp.openModal('Assignment Submitted!', '<p>Practical 3 solution archive uploaded successfully! Faculty evaluation in progress.</p>');">
                     <div class="form-group">
-                        <label for="submission-file">Upload Submission File (Zip/PDF) <span style="color: red;">*</span></label>
+                        <label for="submission-file">Upload Submission File (Zip/PDF) <span style="color: var(--danger-color);">*</span></label>
                         <input type="file" id="submission-file" name="submission-file" class="form-control" required aria-required="true" aria-describedby="file-hint">
                         <p class="form-hint" id="file-hint">Accepted formats: .zip, .pdf (Max size: 15MB)</p>
                     </div>
@@ -53,16 +43,18 @@
             </article>
 
             <article class="card" style="margin-top: 1.5rem;">
-                <h2>Practical 1: StudentHub Project Blueprint & Wireframes</h2>
+                <h2>Practical 2: HTML5 Skeletons & Responsive Layouts</h2>
                 <p><strong>Course:</strong> CS201 Web Development</p>
-                <p><strong>Status:</strong> <span style="color: #10b981; font-weight: bold;">Graded (10/10)</span></p>
-                <p><strong>Feedback:</strong> Excellent semantic layout breakdown and clean directory structure.</p>
+                <p><strong>Status:</strong> <span style="color: var(--success-color); font-weight: bold;">Graded (10/10)</span></p>
+                <p><strong>Feedback:</strong> Excellent semantic layout breakdown and clean responsive navigation.</p>
             </article>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Accessible Form Portal</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

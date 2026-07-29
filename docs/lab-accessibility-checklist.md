@@ -3,7 +3,7 @@
 ## 📋 Overview
 - **Subject:** Web Development (CS201)
 - **Practical Number:** Practical Lab 2 (PR2)
-- **Student Name:** Daksh Patel
+- **Student Name:** Daksh Soni
 - **Roll Number / Student ID:** 25CS102
 - **Topic:** Development of static HTML5 skeletons for 12 StudentHub pages using semantic elements, accessibility best practices, breadcrumb navigation, and skip-to-content links.
 

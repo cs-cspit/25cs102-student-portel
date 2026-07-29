@@ -8,24 +8,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header dynamically rendered by layout.js -->
+    <header></header>
 
-    <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="index.html" class="logo" aria-label="StudentHub Portal Home">🎓 StudentHub</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="resources.html" class="active" aria-current="page">Resources</a></li>
-                <li><a href="courses.html">Courses</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container" style="margin-bottom: 0; margin-top: 1rem;">
-        <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+    <div class="container" style="margin-bottom: 0; margin-top: 1rem; padding-top: 10px; padding-bottom: 10px;">
+        <nav aria-label="Breadcrumb" class="breadcrumb-nav" style="margin-bottom: 0;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
                 <li class="breadcrumb-item" aria-current="page">Resources</li>
             </ol>
         </nav>
@@ -33,29 +23,31 @@
 
     <main id="main-content" class="container" tabindex="-1">
         <section aria-labelledby="resources-heading">
-            <span class="wireframe-badge">Low-Fidelity Blueprint Page 9/11</span>
-            <h1 id="resources-heading">Resource Library & Exam Preparation</h1>
+            <span class="wireframe-badge">Resource Library</span>
+            <h1 id="resources-heading" style="margin-top: 0.5rem;">Resource Library & Exam Preparation</h1>
 
             <article class="card" style="margin-top: 1.5rem;">
                 <h2>📄 Web Development Notes & Slides</h2>
                 <ul style="margin-left: 1.5rem; margin-top: 0.8rem; line-height: 1.8;">
-                    <li><a href="#" aria-label="Download Lecture 1 HTTP Protocols and URLs PDF">Lecture 1: HTTP Protocols and URLs (PDF)</a></li>
-                    <li><a href="#" aria-label="Download Lecture 2 HTML Parsing and Browser Engines PDF">Lecture 2: HTML Parsing and Browser Engines (PDF)</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); window.StudentHubApp.openModal('Downloading Material', '<p>Downloading Lecture 1: HTTP Protocols & DOM Manipulation.pdf...</p>');">Lecture 1: HTTP Protocols and URLs (PDF)</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); window.StudentHubApp.openModal('Downloading Material', '<p>Downloading Lecture 2: Dynamic JS UI Components & LocalStorage.pdf...</p>');">Lecture 2: Dynamic JS UI Components & LocalStorage (PDF)</a></li>
                 </ul>
             </article>
 
             <article class="card" style="margin-top: 1.5rem;">
                 <h2>📑 Previous Year Question Papers (PYQs)</h2>
                 <ul style="margin-left: 1.5rem; margin-top: 0.8rem; line-height: 1.8;">
-                    <li><a href="#" aria-label="Download Semester 3 Mid-Exam Web Dev 2025 PDF">Semester 3 Mid-Exam Web Dev 2025 (PDF)</a></li>
-                    <li><a href="#" aria-label="Download Semester 3 Final-Exam Web Dev 2024 PDF">Semester 3 Final-Exam Web Dev 2024 (PDF)</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); window.StudentHubApp.openModal('Downloading PYQ', '<p>Downloading Semester 3 Mid-Exam Web Dev 2025 (PDF)...</p>');">Semester 3 Mid-Exam Web Dev 2025 (PDF)</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); window.StudentHubApp.openModal('Downloading PYQ', '<p>Downloading Semester 3 Final-Exam Web Dev 2024 (PDF)...</p>');">Semester 3 Final-Exam Web Dev 2024 (PDF)</a></li>
                 </ul>
             </article>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 StudentHub Portal | Repository Library</p>
-    </footer>
+    <!-- Footer dynamically rendered by layout.js -->
+    <footer></footer>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

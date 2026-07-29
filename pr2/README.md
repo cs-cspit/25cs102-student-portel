@@ -5,7 +5,7 @@ Welcome to the **StudentHub Portal** project repository. This repository contain
 ---
 
 ## 👨‍🎓 Student Details
-- **Student Name:** Daksh Patel
+- **Student Name:** Daksh Soni
 - **Roll Number / Student ID:** 25CS102
 - **Class / Branch:** Semester 3 - Computer Engineering (CE)
 - **Course:** CS201 - Web Development Lab
@@ -15,12 +15,13 @@ Welcome to the **StudentHub Portal** project repository. This repository contain
 
 ## 📌 Problem Definition & Scope
 
-The **StudentHub Portal** addresses the need for a unified academic platform where students, faculty, and administrators can seamlessly interact. The portal streamlines academic tracking, assignment submissions, campus event updates, notice dissemination, and resource sharing.
+The **StudentHub Portal** addresses the need for a unified academic platform where students, faculty, and administrators can seamlessly interact. The portal streamlines academic tracking, assignment submissions, campus event updates, notice dissemination, dynamic client-side interactivity, and resource sharing.
 
 ### Key Objectives
 - Provide role-based access for **Students**, **Faculty/Instructors**, and **Administrators**.
-- Build an intuitive, accessible navigation flow across **16 core pages** (exceeding the minimum 10 required pages).
+- Build an intuitive, accessible navigation flow across core portal pages.
 - Incorporate HTML5 semantic tags, WCAG accessibility rules, breadcrumb navigation, and keyboard skip-links.
+- Deliver dynamic client-side interactivity using **JavaScript ES6+**, CSS custom properties, and **localStorage** persistence.
 
 ---
 
@@ -29,146 +30,107 @@ The **StudentHub Portal** addresses the need for a unified academic platform whe
 | Lab Practical | Topic / Title | Key Deliverables & Documentation |
 | :--- | :--- | :--- |
 | **Practical 1 (PR1)** | Scope, Setup & UI Blueprint | Sitemap, 16 Low-Fidelity UI Wireframes, Conceptual Answers ([`docs/lab-answers.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/lab-answers.md)) |
-| **Practical 2 (PR2)** | HTML5 Semantic Skeletons & Accessibility | 16 HTML5 Page Skeletons, Multi-Role Registration (Student/Faculty/Admin), Accessibility Audit ([`docs/lab-accessibility-checklist.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/lab-accessibility-checklist.md)) |
+| **Practical 2 (PR2)** | HTML5 Semantic Skeletons & Accessibility | HTML5 Page Skeletons, Multi-Role Registration (Student/Faculty/Admin), Accessibility Audit ([`docs/lab-accessibility-checklist.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/lab-accessibility-checklist.md)) |
+| **Practical 3 (PR3)** | Dynamic UI Components & LocalStorage | Light/Dark Theme Switcher, Hamburger Navigation Menu, Dismissible Notification Banner, Collapsible FAQ Accordion, Modal Popup System, Image/Content Slider Carousel, Micro-animations & LocalStorage Persistence |
 
 ---
 
-## 👥 User Roles & Responsibilities
+## ⚡ Dynamic JavaScript UI Components (Practical 3 Implementation)
 
-1. **Student**
-   - Access course dashboard, timetables, grades, and attendance.
-   - Submit assignments, download study materials, and register for campus events.
-   - Profile management and feedback submissions.
+### 1. Light / Dark Theme Switcher
+- **DOM Selection & Manipulation:** Selects `#theme-toggle-btn`, updates icon and text, toggles `.dark-theme` class on `document.body` & `document.documentElement`.
+- **LocalStorage Persistence:** Remembers user theme preference (`studenthub_theme`). Automatically applies the saved theme on DOM load without flickering.
 
-2. **Faculty / Instructor**
-   - Faculty account registration with Employee ID and Designation.
-   - Manage assigned courses, upload syllabus, lecture notes, and practical guides.
-   - Create assignments, evaluate submissions, and post announcements.
+### 2. Responsive Hamburger Menu
+- **DOM Logic & Event Handling:** Attaches click listener to `#hamburger-btn` to toggle `.active` class on `.nav-links`.
+- **Accessibility:** Toggles `aria-expanded` between `"true"` and `"false"`. Closes drawer automatically on `Escape` key press or outside click.
 
-3. **Administrator**
-   - Admin account registration using security tokens.
-   - System-wide configuration, user role allocations, site notices, and accessibility audit logs.
+### 3. Notification Banner
+- **Dismissible Alert:** Renders top notification banner bar with close button (`&times;`).
+- **State Memory:** Saves dismissal state in `localStorage.setItem('studenthub_banner_dismissed', 'true')` with smooth CSS slide/fade exit.
 
----
+### 4. Collapsible FAQ Accordion
+- **Dynamic Content Heights:** Accordion buttons toggle active state and calculate `scrollHeight` for smooth CSS height transitions.
+- **Accessibility Compliance:** Operates with keyboard (`Enter`/`Space`), managing `aria-expanded` and `aria-controls` attributes.
 
-## 🧩 Key Modules
+### 5. Accessible Modal Popup System
+- **Global Modal Controller:** Function `window.StudentHubApp.openModal(title, htmlContent)` creates accessible backdrop overlays (`aria-modal="true"`, `role="dialog"`).
+- **Dismiss Triggers:** Closes via close button (✕), backdrop click, or `Escape` key press.
 
-- **Authentication & Multi-Role User Management**: Login, Register (Student, Faculty, Admin), Profile Management.
-- **Academic & Course Management**: Course Catalog (`courses.html`), Detailed Specification (`course-details.html`).
-- **Assignment & Submission Engine**: Assignment list, deadline trackers, and file upload interface (`assignments.html`).
-- **Events & Announcement Hub**: Notice Board (`notices.html`), Campus Event Registration (`events.html`).
-- **Resource Center**: E-books, Previous Year Questions (PYQs), Lecture Slides repository (`resources.html`).
-- **Support & Portal Utilities**: Contact Helpdesk (`contact.html`), FAQ (`faq.html`), Feedback (`feedback.html`), Admin Panel (`admin.html`).
-
----
-
-## 🗺️ Sitemap & Page Navigation Flow
-
-```
-                                      [ Index / Landing Page ]
-                                                 │
-                   ┌─────────────────────────────┼─────────────────────────────┐
-                   ▼                             ▼                             ▼
-            [ Login Page ]             [ Registration Page ]            [ About Us Page ]
-                   │                             │                             │
-                   └─────────────────────────────┼─────────────────────────────┘
-                                                 ▼
-                                      [ Student Dashboard ]
-                                                 │
- ┌───────────────┬───────────────────┬───────────┴───────────┬───────────────────┬───────────────┐
- ▼               ▼                   ▼                       ▼                   ▼               ▼
-[ Courses ] [ Assignments ] [ Event Registration ] [ Resource Center ] [ Helpdesk Contact ] [ Admin Panel ]
- │               │                   │                       │                   │
- ▼               ▼                   ▼                       ▼                   ▼
-[ Course Details ] [ Practical Uploads ] [ Notice Board ]     [ FAQ ]            [ User Profile & Feedback ]
-```
-
-### Core Pages Breakdown (16 Developed Pages)
-1. `index.html` - Landing / Home Page introducing StudentHub features.
-2. `about.html` - Mission, objectives, and institutional platform capabilities.
-3. `login.html` - Secure role-based login (Student, Faculty, Admin).
-4. `register.html` - Multi-role registration form (Student, Faculty, Admin).
-5. `dashboard.html` - Student Dashboard displaying course summaries, deadlines, and notices.
-6. `courses.html` - Course list catalog with links to detailed course pages.
-7. `course-details.html` - Specific course overview, module syllabus, and learning resources.
-8. `assignments.html` - Practical assignment list, deadline tracker, and upload form.
-9. `events.html` - Campus event listings and registration action triggers.
-10. `resources.html` - Library of lecture slides and Previous Year Questions (PYQs).
-11. `profile.html` - User profile, account details, and branch configurations.
-12. `notices.html` - Official notice board with institutional updates.
-13. `contact.html` - Helpdesk contact form and office details.
-14. `faq.html` - Frequently Asked Questions and portal guidance.
-15. `feedback.html` - Student portal feedback, rating system, and usability notes.
-16. `admin.html` - Administrator control panel and audit log management.
+### 6. Image / Content Slider (Carousel Component)
+- **Controls & Pagination:** Previous/Next slide buttons, dot indicator synchronization, touch/keyboard navigation.
+- **Auto-Play:** Auto-slides every 5 seconds, pausing automatically on mouse hover.
 
 ---
 
-## 📂 Project Directory Structure
+## 🎓 Key Questions / Analysis & Evaluation Strategy
+
+1. **How are DOM elements selected and modified?**
+   - Elements are selected using `document.getElementById`, `querySelector`, and `querySelectorAll`. Attributes and class lists are updated using `classList.toggle()`, `classList.add()`, `setAttribute()`, and `style.maxHeight`.
+
+2. **Are event listeners attached correctly?**
+   - Event listeners (`addEventListener('click')`, `'keydown'`, `'mouseenter'`, `'mouseleave'`) are initialized cleanly on `DOMContentLoaded` without inline event clutter or duplicate bindings.
+
+3. **Is localStorage used for remembering theme choice & UI preferences?**
+   - Yes! User theme choice (`studenthub_theme`) and notification banner dismissal status (`studenthub_banner_dismissed`) are stored in `localStorage` and retrieved on page load. A "Reset UI Preferences" option is available in the footer.
+
+4. **Does interactivity improve usability without breaking accessibility?**
+   - Accessibility is fully preserved with ARIA state announcements (`aria-expanded`, `aria-hidden`, `aria-modal`), keyboard focus handling, high-contrast HSL color tokens, and `Escape` key listeners.
+
+---
+
+## 📁 Repository Structure
 
 ```
 dhara maam/
-│
-├── index.html               # Landing page
-├── about.html               # About platform
-├── login.html               # Login page
-├── register.html            # Multi-Role User Registration (Student/Faculty/Admin)
-├── dashboard.html           # Student/Faculty Dashboard
-├── courses.html             # Course listing catalog
-├── course-details.html      # Detailed course page
-├── assignments.html         # Assignment submission portal
-├── events.html              # Campus events & registration
-├── resources.html           # Learning resources hub
-├── profile.html            # User profile & settings
-├── notices.html            # Notice board
-├── contact.html            # Helpdesk contact form
-├── faq.html                # Frequently Asked Questions
-├── feedback.html           # Portal feedback form
-├── admin.html              # Administrative management panel
-│
-├── assets/
-│   ├── css/
-│   │   └── style.css        # Shared beginner-friendly CSS stylesheet
-│   ├── js/
-│   │   └── main.js          # Core JavaScript interactions
-│   └── images/              # Assets & Wireframe diagrams
-│
-├── docs/
-│   ├── wireframes.md        # Low-Fidelity UI Wireframes & Layout Specs
-│   ├── lab-answers.md       # Conceptual Q&A (URL, HTML Processing, Git Workflow)
-│   └── lab-accessibility-checklist.md  # Practical 2 Accessibility Audit & Checklist
-│
-└── README.md                # Project documentation (this file)
+├── pr2/
+│   ├── index.html               # Main Portal Landing Page (Slider, Quick FAQs, Hero)
+│   ├── about.html               # Mission, Vision, and Core Capabilities
+│   ├── dashboard.html           # Student Dashboard & Course Progress
+│   ├── courses.html             # Course Directory Catalog
+│   ├── course-details.html      # Course Specification & Syllabus
+│   ├── assignments.html         # Lab Practical Upload & Submissions
+│   ├── events.html              # Campus Events Slider & Modal Registration
+│   ├── login.html               # Institutional Multi-Role Login
+│   ├── register.html            # Role-based Account Registration
+│   ├── resources.html           # Learning Resources & PYQ Library
+│   ├── profile.html            # User Profile Settings & Edit Modal
+│   ├── notices.html            # Official Notice Board & Circular Modals
+│   ├── contact.html            # Helpdesk Contact Form & Support
+│   ├── faq.html                # Collapsible FAQ Accordion Page
+│   ├── feedback.html           # Portal Feedback Form
+│   ├── admin.html              # System Administrator Control Panel
+│   │
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── style.css        # Design Tokens, Dark Theme & Component Animations
+│   │   ├── js/
+│   │   │   ├── layout.js        # Reusable Layout Component Injector
+│   │   │   └── main.js          # Dynamic UI Component JS Engine
+│   │   └── images/
+│   │
+│   └── README.md                # Project documentation
 ```
-
----
-
-## ❓ Conceptual Analysis & Key Questions
-
-Detailed answers to lab evaluation questions can be found in [`docs/lab-answers.md`](file:///c:/Users/daksh/Documents/1.%20SEM%20-%203/web%20devlopement/dhara%20maam/docs/lab-answers.md):
-
-1. **URL & Parts of URL**: Breakdown of Scheme, Hostname, Port, Path, Query Parameters, and Anchor/Fragment.
-2. **HTML Processing in Browser**: Parsing, DOM creation, CSSOM construction, Render Tree creation, Layout phase, and Painting phase.
-3. **Page Navigation Flow**: Multi-Page Application (MPA) hyperlink navigation strategies, clean relative paths, breadcrumbs, and state persistence.
-4. **Git Commit Maintenance**: Practical-by-practical branching, clean commit messages standard (`feat:`, `docs:`, `fix:`), and tag releases.
 
 ---
 
 ## 🚀 How to Run the Project Locally
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/25csdaksh/web-devlopment-dss-.git
-   cd "dhara maam"
-   ```
-2. **Open in Browser / VS Code**:
-   - Open the directory in **VS Code**.
-   - Use **Live Server** extension or open `index.html` directly in any web browser.
+1. **Open in Browser**:
+   - Open `index.html` directly in any modern web browser (Chrome, Edge, Firefox, Safari).
+2. **Test Dynamic UI Components**:
+   - **Theme Switcher:** Click 🌙 Dark / ☀️ Light in top navbar.
+   - **Hamburger Menu:** Resize browser window to mobile width (<768px) and click ☰.
+   - **Collapsible FAQ:** Visit `faq.html` or `index.html` and click question headers.
+   - **Modal Popups:** Click "Register Event", "Details", or "View Exam Schedule".
+   - **Notification Banner:** Click ✕ on the top banner and refresh the page to verify `localStorage` persistence.
+   - **Reset UI Preferences:** Click "Reset UI Preferences" link in the footer.
 
 ---
 
 ## 🛠️ Tools & Technologies
-- **Markup & Styling**: HTML5, CSS3 (Vanilla CSS, Beginner-Friendly Layouts)
-- **Scripting**: JavaScript (ES6+)
+- **Markup & Styling**: HTML5, CSS3 (Vanilla CSS, CSS Custom Variables, Animations)
+- **Scripting**: JavaScript ES6+ (DOM Selection, Event Handling, LocalStorage, Modals, Accordions, Carousels)
 - **Version Control**: Git & GitHub
 - **IDE**: Visual Studio Code
 
