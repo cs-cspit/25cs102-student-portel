@@ -1,4 +1,4 @@
-/**
+ /**
  * StudentHub Reusable Layout Components
  * Dynamically builds and injects the header, navbar, notification banner,
  * theme toggle, hamburger menu, global modal, and footer across all pages.

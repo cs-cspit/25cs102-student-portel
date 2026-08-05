@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevUI Components</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Notification Banner -->
+    <div id="notification-banner" class="banner">
+        <div class="banner-content container">
+            <p>Welcome to our new interactive platform! 🎉</p>
+            <button id="close-banner" class="close-btn">&times;</button>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <h2>DevUI</h2>
+            </div>
+            <nav class="nav-links" id="nav-links">
+                <ul>
+                    <li><a href="#slider-section">Slider</a></li>
+                    <li><a href="#faq-section">FAQ</a></li>
+                    <li><a href="#modal-section">Modal</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-secondary">Dark Mode</button>
+                <button id="mobile-menu-btn" class="hamburger">&#9776;</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container main-content">
+        <!-- Slider Section -->
+        <section id="slider-section" class="ui-section">
+            <div class="section-header">
+                <h2>Content Slider</h2>
+                <p>A standard JavaScript image/content slider.</p>
+            </div>
+            <div class="slider">
+                <div class="slide active">
+                    <h3>Slide 1</h3>
+                    <p>Discover new possibilities with modern web development.</p>
+                </div>
+                <div class="slide">
+                    <h3>Slide 2</h3>
+                    <p>Build interactive UI components easily.</p>
+                </div>
+                <div class="slide">
+                    <h3>Slide 3</h3>
+                    <p>Responsive design is a standard practice today.</p>
+                </div>
+                
+                <div class="slider-controls">
+                    <button id="prev-btn" class="btn-primary">&laquo; Prev</button>
+                    <button id="next-btn" class="btn-primary">Next &raquo;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq-section" class="ui-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">What is this project? <span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>This project demonstrates standard UI components built with HTML, CSS, and vanilla JS.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is it responsive? <span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Yes, we use Flexbox and media queries to ensure a proper layout across devices.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How to toggle dark mode? <span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Click the "Dark Mode" button in the header. It toggles a CSS class on the body.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Section -->
+        <section id="modal-section" class="ui-section">
+            <div class="section-header">
+                <h2>Modal Popup</h2>
+            </div>
+            <button id="open-modal-btn" class="btn-primary">Open Modal</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 DevUI Project. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>System Information</h3>
+                <button id="close-modal-btn" class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is a standard modal dialog. It overlays the rest of the application content.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-modal-btn" class="btn-primary">Acknowledge</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
