@@ -6,10 +6,18 @@
     <meta name="description" content="Frequently Asked Questions (FAQ) regarding StudentHub account registration, event bookings, and portal usage.">
     <title>Frequently Asked Questions | StudentHub Portal</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <!-- Accessible Skip Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Notification Banner -->
+    <div id="portal-announcement-banner" class="notification-banner" role="region" aria-label="Campus Announcement">
+        <span>📢 Mid-Term Exam Lab Schedule and CodeSprint 2026 guidelines are now live!</span>
+        <button type="button" id="banner-close-btn" class="banner-close-btn" aria-label="Dismiss Announcement">&times;</button>
+    </div>
 
     <!-- Global Header -->
     <header class="site-header">
@@ -28,6 +36,7 @@
                 </ul>
             </nav>
             <div class="nav-cta-group">
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
                 <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
                 <a href="register.html" class="btn btn-primary btn-sm">Register</a>
             </div>
@@ -47,62 +56,102 @@
 
             <header style="margin-bottom: 2rem;">
                 <h1>Frequently Asked Questions (FAQ)</h1>
-                <p>Find quick answers to common questions about student accounts, event registrations, and campus services.</p>
+                <p>Click on any question below to expand detailed information regarding student accounts, events, and technical support.</p>
             </header>
 
-            <!-- FAQ Section: General & Account Creation -->
-            <section class="card" aria-labelledby="faq-accounts" style="margin-bottom: 1.5rem;">
-                <h2 id="faq-accounts" style="color: var(--primary-color); font-size: 1.35rem; margin-bottom: 1rem;">1. Account Registration & Authentication</h2>
+            <!-- FAQ Section: Accounts -->
+            <section aria-labelledby="faq-accounts" style="margin-bottom: 2rem;">
+                <h2 id="faq-accounts" style="color: var(--primary-600); font-size: 1.35rem; margin-bottom: 1rem;">1. Account Registration & Authentication</h2>
                 
-                <article style="margin-bottom: 1.25rem;">
-                    <h3>Q: Who is eligible to create a StudentHub account?</h3>
-                    <p>All enrolled undergraduate and postgraduate students of CHARUSAT university can register using their verified university email ID (e.g., <code>25cs102@charusat.edu.in</code>).</p>
-                </article>
+                <div class="accordion-item active">
+                    <button type="button" class="accordion-header" aria-expanded="true">
+                        <span>Who is eligible to create a StudentHub account?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>All enrolled undergraduate and postgraduate students of CHARUSAT university can register using their verified university email ID (e.g., <code>25cs102@charusat.edu.in</code>).</p>
+                    </div>
+                </div>
 
-                <article style="margin-bottom: 1.25rem;">
-                    <h3>Q: What should I do if I forget my account password?</h3>
-                    <p>You can contact the department administrative coordinator or use the <a href="contact.html">Support Contact Form</a> to initiate a secure password reset request.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>What should I do if I forget my account password?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>You can contact the department administrative coordinator or use the <a href="contact.html">Support Contact Form</a> to initiate a secure password reset request.</p>
+                    </div>
+                </div>
 
-                <article>
-                    <h3>Q: How is my personal contact information protected?</h3>
-                    <p>StudentHub stores user credentials using industry-standard BCRYPT hashing algorithms and enforces Role-Based Access Control to ensure data privacy.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>How is my personal contact information protected?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>StudentHub stores user credentials using industry-standard BCRYPT hashing algorithms and enforces Role-Based Access Control (RBAC) to ensure data privacy.</p>
+                    </div>
+                </div>
             </section>
 
-            <!-- FAQ Section: Event Participation -->
-            <section class="card" aria-labelledby="faq-events" style="margin-bottom: 1.5rem;">
-                <h2 id="faq-events" style="color: var(--primary-color); font-size: 1.35rem; margin-bottom: 1rem;">2. Campus Events & Workshops</h2>
+            <!-- FAQ Section: Events -->
+            <section aria-labelledby="faq-events" style="margin-bottom: 2rem;">
+                <h2 id="faq-events" style="color: var(--primary-600); font-size: 1.35rem; margin-bottom: 1rem;">2. Campus Events & Workshops</h2>
 
-                <article style="margin-bottom: 1.25rem;">
-                    <h3>Q: How do I register for an upcoming hackathon or workshop?</h3>
-                    <p>Navigate to the <a href="events.html">Campus Events Catalog</a>, select your desired event, and click "Register for Event". You can review all your active registrations on your <a href="dashboard.html">Student Dashboard</a>.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>How do I register for an upcoming hackathon or workshop?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Navigate to the <a href="events.html">Campus Events Catalog</a>, select your desired event, and click "Register for Event". You can review all your active registrations on your <a href="dashboard.html">Student Dashboard</a>.</p>
+                    </div>
+                </div>
 
-                <article style="margin-bottom: 1.25rem;">
-                    <h3>Q: Are event registrations free for students?</h3>
-                    <p>Most university department workshops, cultural fests, and technical coding competitions are completely free for registered students unless specifically noted by the organizing committee.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>Are event registrations free for students?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Most university department workshops, cultural fests, and technical coding competitions are completely free for registered students unless specifically noted by the organizing committee.</p>
+                    </div>
+                </div>
 
-                <article>
-                    <h3>Q: Will I receive an event participation certificate?</h3>
-                    <p>Yes. Students who successfully attend and verify their attendance through the event coordinator will receive digital certificates accessible via their dashboard.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>Will I receive an event participation certificate?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes. Students who successfully attend and verify their attendance through the event coordinator will receive digital certificates accessible via their dashboard.</p>
+                    </div>
+                </div>
             </section>
 
-            <!-- FAQ Section: Technical Support & Feedback -->
-            <section class="card" aria-labelledby="faq-support">
-                <h2 id="faq-support" style="color: var(--primary-color); font-size: 1.35rem; margin-bottom: 1rem;">3. Technical Support & Inquiries</h2>
+            <!-- FAQ Section: Tech Support -->
+            <section aria-labelledby="faq-support">
+                <h2 id="faq-support" style="color: var(--primary-600); font-size: 1.35rem; margin-bottom: 1rem;">3. Technical Support & Inquiries</h2>
 
-                <article style="margin-bottom: 1.25rem;">
-                    <h3>Q: Can I access StudentHub from my mobile or tablet?</h3>
-                    <p>Yes. StudentHub is designed with responsive CSS Grid and Flexbox layouts, providing full accessibility across mobile smartphones, tablets, laptops, and desktops.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>Can I access StudentHub from my mobile or tablet?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes. StudentHub is designed with responsive CSS Grid and Flexbox layouts, providing full accessibility across mobile smartphones, tablets, laptops, and desktops.</p>
+                    </div>
+                </div>
 
-                <article>
-                    <h3>Q: How can I suggest a new feature or report an issue?</h3>
-                    <p>We welcome your insights! Please visit our <a href="feedback.html">Feedback Page</a> or write to us directly through the <a href="contact.html">Contact Page</a>.</p>
-                </article>
+                <div class="accordion-item">
+                    <button type="button" class="accordion-header" aria-expanded="false">
+                        <span>How can I suggest a new feature or report an issue?</span>
+                        <span class="accordion-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>We welcome your insights! Please visit our <a href="feedback.html">Feedback Page</a> or write to us directly through the <a href="contact.html">Contact Page</a>.</p>
+                    </div>
+                </div>
             </section>
         </div>
     </main>

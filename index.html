@@ -7,10 +7,17 @@
     <title>StudentHub | Student Management & Campus Portal</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
-    <!-- Accessible Skip to Content Landmark -->
+    <!-- Accessible Skip Link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Dismissible Notification Banner -->
+    <div id="portal-announcement-banner" class="notification-banner" role="region" aria-label="Campus Announcement">
+        <span>📢 Mid-Term Practical Exam Schedule and CodeSprint Hackathon 2026 are live!</span>
+        <button type="button" id="banner-close-btn" class="banner-close-btn" aria-label="Dismiss Announcement">&times;</button>
+    </div>
 
     <!-- Global Header & Navigation -->
     <header class="site-header">
@@ -29,6 +36,7 @@
                 </ul>
             </nav>
             <div class="nav-cta-group">
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
                 <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
                 <a href="register.html" class="btn btn-primary btn-sm">Register</a>
             </div>
@@ -38,6 +46,33 @@
     <!-- Main Content Area -->
     <main id="main-content">
         <div class="container">
+            <!-- Content Slider / Carousel -->
+            <section aria-label="Campus Announcements Slider" class="slider-container">
+                <button type="button" class="slider-nav-btn slider-prev" aria-label="Previous Slide">&lsaquo;</button>
+                <div class="slider-track">
+                    <article class="slide">
+                        <span class="slide-badge">Semester Update</span>
+                        <h2>🚀 Semester 3 Mid-Term Practical Exams</h2>
+                        <p>Laboratory schedules and guidelines for ITUE203 Web Development Frameworks are now published.</p>
+                        <button type="button" class="btn btn-primary btn-sm" data-modal-target="info-modal" data-modal-title="Exam Schedule Notice" data-modal-body="Mid-term practical examinations commence from August 15, 2026. All students are required to submit signed laboratory manuals.">View Exam Schedule</button>
+                    </article>
+                    <article class="slide">
+                        <span class="slide-badge">Campus Hackathon</span>
+                        <h2>💻 CodeSprint 2026: 24-Hour Hackathon</h2>
+                        <p>Join CHARUSAT's premier software competition. Build web apps, solve smart campus problems, and win prizes.</p>
+                        <a href="events.html" class="btn btn-primary btn-sm">Hackathon Details &rarr;</a>
+                    </article>
+                    <article class="slide">
+                        <span class="slide-badge">Portal Feature</span>
+                        <h2>🌙 Dark Mode & Dynamic Interactivity</h2>
+                        <p>Experience personalized theme settings, collapsible accordions, and modal alerts across StudentHub.</p>
+                        <a href="faq.html" class="btn btn-secondary btn-sm">Explore FAQ Accordions</a>
+                    </article>
+                </div>
+                <button type="button" class="slider-nav-btn slider-next" aria-label="Next Slide">&rsaquo;</button>
+                <div class="slider-dots"></div>
+            </section>
+
             <!-- Hero Section -->
             <section class="hero-section" aria-labelledby="hero-title">
                 <h1 id="hero-title">Connect. Learn. Participate.</h1>
@@ -127,18 +162,20 @@
                     </article>
                 </div>
             </section>
-
-            <!-- Call to Action Section -->
-            <section class="card" aria-labelledby="cta-heading" style="text-align: center; background-color: #eff6ff; border-color: #bfdbfe; padding: 2.5rem 1.5rem;">
-                <h2 id="cta-heading" style="color: var(--primary-color);">Ready to Elevate Your Campus Experience?</h2>
-                <p style="max-width: 600px; margin: 0 auto 1.5rem auto;">Create your StudentHub account today to register for university events, connect with student clubs, and track your campus activities.</p>
-                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a href="register.html" class="btn btn-primary">Create Student Account</a>
-                    <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
-                </div>
-            </section>
         </div>
     </main>
+
+    <!-- Modal Dialog Popup Component -->
+    <div id="info-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title-elem">
+        <div class="modal-box">
+            <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
+            <h2 id="modal-title-elem" class="modal-title" style="color: var(--primary-600); margin-bottom: 1rem;">Portal Notice</h2>
+            <p class="modal-body" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">Modal announcement details.</p>
+            <div style="text-align: right;">
+                <button type="button" class="btn btn-primary btn-sm" data-modal-close>Understood</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Global Accessible Footer -->
     <footer class="site-footer">
