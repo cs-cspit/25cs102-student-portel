@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <script src="js/main.js" defer></script>
+    <script src="js/validation.js" defer></script>
 </head>
 <body>
     <!-- Accessible Skip Link -->
@@ -30,6 +31,7 @@
                 </ul>
             </nav>
             <div class="nav-cta-group">
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
                 <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
                 <a href="register.html" class="btn btn-primary btn-sm active" aria-current="page">Register</a>
             </div>
@@ -53,7 +55,7 @@
                     <p>Join StudentHub to register for university events, participate in hackathons, and manage your campus activities.</p>
                 </header>
 
-                <!-- Registration Form -->
+                <!-- Registration Form with Client Validation -->
                 <form action="php/register.php" method="POST" novalidate>
                     <!-- Personal Information Group -->
                     <fieldset>
@@ -62,7 +64,7 @@
                         <div class="form-group">
                             <label for="fullname">Full Name <span aria-hidden="true" style="color: #dc2626;">*</span></label>
                             <input type="text" id="fullname" name="fullname" class="form-control" placeholder="e.g., Daksh Shah" required autocomplete="name">
-                            <span class="form-hint">Enter your full official university name.</span>
+                            <span class="form-hint">Enter your full official university name (min 3 letters).</span>
                         </div>
 
                         <div class="form-group">
@@ -128,7 +130,14 @@
                         <div class="form-group">
                             <label for="password">Create Password <span aria-hidden="true" style="color: #dc2626;">*</span></label>
                             <input type="password" id="password" name="password" class="form-control" placeholder="Minimum 8 characters" required autocomplete="new-password">
-                            <span class="form-hint">Must contain at least 8 characters with letters, numbers, and symbols.</span>
+                            
+                            <!-- Password Strength Meter Component -->
+                            <div style="margin-top: 0.5rem;">
+                                <div style="width: 100%; height: 6px; background-color: var(--border-color); border-radius: 3px; overflow: hidden;">
+                                    <div id="password-strength-bar" style="height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+                                </div>
+                                <span id="password-strength-text" style="font-size: 0.8rem; font-weight: 600; display: block; margin-top: 0.25rem;"></span>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -153,7 +162,7 @@
                     </div>
 
                     <div style="text-align: center; margin-top: 1.25rem; font-size: 0.9rem;">
-                        <span>Already registered? <a href="login.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Sign in to your account</a></span>
+                        <span>Already registered? <a href="login.html" style="color: var(--primary-600); font-weight: 600; text-decoration: none;">Sign in to your account</a></span>
                     </div>
                 </form>
             </div>
