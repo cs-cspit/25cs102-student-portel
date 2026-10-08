@@ -1,0 +1,46 @@
+/* StudentHub - Admin Dashboard Styling (Practical 03) */
+
+.admin-header {
+    background-color: var(--secondary-900);
+    border-bottom: 1px solid var(--secondary-800);
+}
+
+.admin-sidebar {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius-md);
+    color: var(--secondary-700);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.925rem;
+    transition: all var(--transition-fast);
+}
+
+.admin-nav-item a:hover,
+.admin-nav-item a.active {
+    background-color: var(--primary-50);
+    color: var(--primary-600);
+}
+
+.admin-badge-danger {
+    background-color: var(--danger-50);
+    color: var(--danger-700);
+    border: 1px solid #fecaca;
+}
