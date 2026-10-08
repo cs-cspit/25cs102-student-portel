@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for a student account on StudentHub to access campus events, workshops, and academic tools.">
+    <title>Student Registration | StudentHub Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="StudentHub Home">
+                🎓 StudentHub <span class="brand-badge">Campus Portal</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm active" aria-current="page">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Student Registration</li>
+                </ol>
+            </nav>
+
+            <div class="form-container">
+                <header style="text-align: center; margin-bottom: 1.5rem;">
+                    <h1>Create Student Account</h1>
+                    <p>Join StudentHub to register for university events, participate in hackathons, and manage your campus activities.</p>
+                </header>
+
+                <!-- Registration Form -->
+                <form action="php/register.php" method="POST" novalidate>
+                    <!-- Personal Information Group -->
+                    <fieldset>
+                        <legend>Personal Information</legend>
+
+                        <div class="form-group">
+                            <label for="fullname">Full Name <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="text" id="fullname" name="fullname" class="form-control" placeholder="e.g., Daksh Shah" required autocomplete="name">
+                            <span class="form-hint">Enter your full official university name.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">University Email Address <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="e.g., 25cs102@charusat.edu.in" required autocomplete="email">
+                            <span class="form-hint">Use your official CHARUSAT student email ID.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="e.g., 9876543210" required autocomplete="tel">
+                            <span class="form-hint">10-digit Indian mobile number for SMS event alerts.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <div class="radio-group" role="radiogroup" aria-label="Gender Selection">
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="male" required> Male
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="female" required> Female
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="other" required> Other
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Academic Details Group -->
+                    <fieldset>
+                        <legend>Academic Details</legend>
+
+                        <div class="form-group">
+                            <label for="course">Degree & Branch <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <select id="course" name="course" class="form-control" required>
+                                <option value="" disabled selected>-- Select Your Department --</option>
+                                <option value="B.Tech CSE">B.Tech Computer Science & Engineering (CSE)</option>
+                                <option value="B.Tech IT">B.Tech Information Technology (IT)</option>
+                                <option value="B.Tech CE">B.Tech Computer Engineering (CE)</option>
+                                <option value="B.Tech EC">B.Tech Electronics & Communication (EC)</option>
+                                <option value="B.Tech ME">B.Tech Mechanical Engineering (ME)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Year of Study <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <select id="year" name="year" class="form-control" required>
+                                <option value="" disabled selected>-- Select Academic Year --</option>
+                                <option value="1">1st Year (Semester 1 & 2)</option>
+                                <option value="2">2nd Year (Semester 3 & 4)</option>
+                                <option value="3">3rd Year (Semester 5 & 6)</option>
+                                <option value="4">4th Year (Semester 7 & 8)</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <!-- Account Security Group -->
+                    <fieldset>
+                        <legend>Account Security</legend>
+
+                        <div class="form-group">
+                            <label for="password">Create Password <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Minimum 8 characters" required autocomplete="new-password">
+                            <span class="form-hint">Must contain at least 8 characters with letters, numbers, and symbols.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Re-type your password" required autocomplete="new-password">
+                        </div>
+                    </fieldset>
+
+                    <!-- Terms and Conditions Agreement -->
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span>I accept the <a href="about.html#terms" target="_blank">StudentHub Terms of Service</a> and Campus Code of Conduct.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div style="margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Create Student Account</button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 1.25rem; font-size: 0.9rem;">
+                        <span>Already registered? <a href="login.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Sign in to your account</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🎓 StudentHub</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">The unified student management and campus activity portal for CHARUSAT University.</p>
+                    <p style="color: #64748b; font-size: 0.8rem;">Subject: ITUE203 - Web Development Frameworks</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About StudentHub</a></li>
+                        <li><a href="events.html">Campus Events</a></li>
+                        <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        <li><a href="contact.html">Contact & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portals</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                        <li><a href="profile.html">Student Profile</a></li>
+                        <li><a href="feedback.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Administrative</h4>
+                    <ul class="footer-links">
+                        <li><a href="admin/index.html">Admin Console</a></li>
+                        <li><a href="about.html#privacy">Privacy Guidelines</a></li>
+                        <li><a href="about.html#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub - CHARUSAT CSPIT. All rights reserved. Built for ITUE203 Web Development Frameworks Practical Project.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

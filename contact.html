@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact the StudentHub support team and CHARUSAT campus administration for inquiries and portal assistance.">
+    <title>Contact & Campus Directory | StudentHub Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="StudentHub Home">
+                🎓 StudentHub <span class="brand-badge">Campus Portal</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Contact Us</li>
+                </ol>
+            </nav>
+
+            <header style="margin-bottom: 2rem;">
+                <h1>Contact & Campus Support</h1>
+                <p>Have questions regarding campus events, portal access, or department activities? Reach out to our team.</p>
+            </header>
+
+            <div class="grid-2">
+                <!-- Campus Address & Information -->
+                <section class="card" aria-labelledby="contact-info-title">
+                    <h2 id="contact-info-title" style="font-size: 1.35rem; margin-bottom: 1.25rem;">Campus Directory Information</h2>
+                    
+                    <address style="font-style: normal; display: flex; flex-direction: column; gap: 1.25rem;">
+                        <div>
+                            <h3 style="font-size: 1.05rem; margin-bottom: 0.25rem;">📍 University Campus</h3>
+                            <p style="margin-bottom: 0;">Chandubhai S. Patel Institute of Technology (CSPIT)<br>
+                            Charotar University of Science and Technology (CHARUSAT)<br>
+                            CHARUSAT Campus, Changa - 388421, Anand, Gujarat, India</p>
+                        </div>
+
+                        <div>
+                            <h3 style="font-size: 1.05rem; margin-bottom: 0.25rem;">✉️ Email Inquiries</h3>
+                            <p style="margin-bottom: 0;">
+                                Student Inquiries: <a href="mailto:support@studenthub.edu" style="color: var(--primary-color);">support@studenthub.edu</a><br>
+                                Department Office: <a href="mailto:cse.cspit@charusat.ac.in" style="color: var(--primary-color);">cse.cspit@charusat.ac.in</a>
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 style="font-size: 1.05rem; margin-bottom: 0.25rem;">📞 Helpline & Telephone</h3>
+                            <p style="margin-bottom: 0;">
+                                Support Helpline: <a href="tel:+912697265011" style="color: var(--text-color);">+91 2697 265011</a><br>
+                                Operating Hours: Monday – Saturday (09:00 AM – 05:00 PM IST)
+                            </p>
+                        </div>
+                    </address>
+                </section>
+
+                <!-- Contact Message Form -->
+                <section class="card" aria-labelledby="form-heading">
+                    <h2 id="form-heading" style="font-size: 1.35rem; margin-bottom: 1.25rem;">Send Us a Message</h2>
+                    
+                    <form action="contact.html" method="POST" novalidate>
+                        <div class="form-group">
+                            <label for="contact-name">Your Full Name <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="text" id="contact-name" name="name" class="form-control" placeholder="Daksh Shah" required autocomplete="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email Address <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="email" id="contact-email" name="email" class="form-control" placeholder="student@charusat.edu.in" required autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Inquiry Subject <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <select id="contact-subject" name="subject" class="form-control" required>
+                                <option value="" disabled selected>-- Choose Subject --</option>
+                                <option value="events">Event Registration Query</option>
+                                <option value="technical">Portal Technical Issue</option>
+                                <option value="profile">Profile Information Correction</option>
+                                <option value="general">General Campus Inquiries</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Your Message <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <textarea id="contact-message" name="message" class="form-control" rows="4" placeholder="Describe your question or issue in detail..." required></textarea>
+                        </div>
+
+                        <div style="margin-top: 1.5rem;">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Message</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🎓 StudentHub</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">The unified student management and campus activity portal for CHARUSAT University.</p>
+                    <p style="color: #64748b; font-size: 0.8rem;">Subject: ITUE203 - Web Development Frameworks</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About StudentHub</a></li>
+                        <li><a href="events.html">Campus Events</a></li>
+                        <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        <li><a href="contact.html">Contact & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portals</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                        <li><a href="profile.html">Student Profile</a></li>
+                        <li><a href="feedback.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Administrative</h4>
+                    <ul class="footer-links">
+                        <li><a href="admin/index.html">Admin Console</a></li>
+                        <li><a href="about.html#privacy">Privacy Guidelines</a></li>
+                        <li><a href="about.html#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub - CHARUSAT CSPIT. All rights reserved. Built for ITUE203 Web Development Frameworks Practical Project.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

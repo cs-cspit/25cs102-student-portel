@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to your StudentHub account to access your student dashboard, event registrations, and campus tools.">
+    <title>Account Login | StudentHub Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="StudentHub Home">
+                🎓 StudentHub <span class="brand-badge">Campus Portal</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <a href="login.html" class="btn btn-secondary btn-sm active" aria-current="page">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Account Login</li>
+                </ol>
+            </nav>
+
+            <div class="form-container" style="max-width: 480px;">
+                <header style="text-align: center; margin-bottom: 1.5rem;">
+                    <h1>Portal Authentication</h1>
+                    <p>Enter your student or administrator credentials to access your StudentHub workspace.</p>
+                </header>
+
+                <!-- Login Form -->
+                <form action="php/login.php" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="login-email">Registered Email Address <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                        <input type="email" id="login-email" name="email" class="form-control" placeholder="student@charusat.edu.in" required autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <label for="login-password">Password <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <a href="contact.html" style="font-size: 0.8rem; color: var(--primary-color); text-decoration: none;">Forgot password?</a>
+                        </div>
+                        <input type="password" id="login-password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span>Remember me on this browser (Secure Hash Token)</span>
+                        </label>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In to StudentHub</button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                        <p>Don't have an account yet? <a href="register.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Register as a student</a></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Campus Faculty / Admin? <a href="admin/index.html" style="color: var(--secondary-color);">Go to Admin Console &rarr;</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🎓 StudentHub</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">The unified student management and campus activity portal for CHARUSAT University.</p>
+                    <p style="color: #64748b; font-size: 0.8rem;">Subject: ITUE203 - Web Development Frameworks</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About StudentHub</a></li>
+                        <li><a href="events.html">Campus Events</a></li>
+                        <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        <li><a href="contact.html">Contact & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portals</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                        <li><a href="profile.html">Student Profile</a></li>
+                        <li><a href="feedback.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Administrative</h4>
+                    <ul class="footer-links">
+                        <li><a href="admin/index.html">Admin Console</a></li>
+                        <li><a href="about.html#privacy">Privacy Guidelines</a></li>
+                        <li><a href="about.html#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub - CHARUSAT CSPIT. All rights reserved. Built for ITUE203 Web Development Frameworks Practical Project.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudentHub Administration Console - Manage student profiles, publish campus events, oversee registrations, and inspect audit logs.">
+    <title>Admin Dashboard | StudentHub Administration</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Admin Header -->
+    <header class="site-header" style="background-color: #0f172a; border-bottom: 1px solid #1e293b;">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" style="color: #ffffff;" aria-label="StudentHub Admin Dashboard">
+                ⚙️ StudentHub <span class="brand-badge" style="background-color: #dc2626; color: #ffffff;">Admin Console</span>
+            </a>
+            <nav class="main-nav" aria-label="Admin Navigation">
+                <ul>
+                    <li><a href="index.html" class="active" style="color: #60a5fa;" aria-current="page">Dashboard</a></li>
+                    <li><a href="#students-section" style="color: #cbd5e1;">Students</a></li>
+                    <li><a href="#events-section" style="color: #cbd5e1;">Events</a></li>
+                    <li><a href="#registrations-section" style="color: #cbd5e1;">Registrations</a></li>
+                    <li><a href="#audit-section" style="color: #cbd5e1;">Audit Logs</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <span style="font-size: 0.85rem; color: #cbd5e1; display: flex; align-items: center; gap: 0.35rem;">
+                    🛡️ Admin: Dhara Ma'am
+                </span>
+                <a href="../login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Landmark -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">StudentHub Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Admin Management Console</li>
+                </ol>
+            </nav>
+
+            <header style="margin-bottom: 2rem;">
+                <h1>Administration & System Analytics</h1>
+                <p>Monitor real-time university statistics, manage student directories, configure events, and track security audit trails.</p>
+            </header>
+
+            <!-- KPI Metric Summary Cards -->
+            <section aria-labelledby="kpi-heading" style="margin-bottom: 2rem;">
+                <h2 id="kpi-heading" class="sr-only" style="display: none;">Key Performance Indicators</h2>
+                <div class="grid-4">
+                    <article class="card" style="border-left: 4px solid var(--primary-color);">
+                        <h3 style="font-size: 0.9rem; color: var(--text-muted);">Total Enrolled Students</h3>
+                        <p style="font-size: 2.25rem; font-weight: 700; color: var(--text-color); margin-bottom: 0;">1,248</p>
+                        <small style="color: #15803d;">↑ 12 new this week</small>
+                    </article>
+                    <article class="card" style="border-left: 4px solid #0d9488;">
+                        <h3 style="font-size: 0.9rem; color: var(--text-muted);">Active Campus Events</h3>
+                        <p style="font-size: 2.25rem; font-weight: 700; color: var(--text-color); margin-bottom: 0;">16</p>
+                        <small style="color: var(--text-muted);">4 scheduled next month</small>
+                    </article>
+                    <article class="card" style="border-left: 4px solid #854d0e;">
+                        <h3 style="font-size: 0.9rem; color: var(--text-muted);">Total Registrations</h3>
+                        <p style="font-size: 2.25rem; font-weight: 700; color: var(--text-color); margin-bottom: 0;">482</p>
+                        <small style="color: #15803d;">92% confirmation rate</small>
+                    </article>
+                    <article class="card" style="border-left: 4px solid #dc2626;">
+                        <h3 style="font-size: 0.9rem; color: var(--text-muted);">System Security Events</h3>
+                        <p style="font-size: 2.25rem; font-weight: 700; color: var(--text-color); margin-bottom: 0;">0</p>
+                        <small style="color: #15803d;">All systems normal</small>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Student Directory Section -->
+            <section id="students-section" class="card" aria-labelledby="students-title" style="margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h2 id="students-title" style="margin-bottom: 0; font-size: 1.35rem;">Student Directory (CRUD Preview)</h2>
+                    <button type="button" class="btn btn-primary btn-sm">+ Add New Student</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#101</td>
+                                <td><strong>Daksh Shah</strong></td>
+                                <td>25cs102@charusat.edu.in</td>
+                                <td>B.Tech CSE</td>
+                                <td>2nd Year</td>
+                                <td><span class="status-badge status-confirmed">Active</span></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#102</td>
+                                <td><strong>Aarav Patel</strong></td>
+                                <td>aarav.ce@charusat.edu.in</td>
+                                <td>B.Tech CE</td>
+                                <td>3rd Year</td>
+                                <td><span class="status-badge status-confirmed">Active</span></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#103</td>
+                                <td><strong>Diya Sharma</strong></td>
+                                <td>diya.it@charusat.edu.in</td>
+                                <td>B.Tech IT</td>
+                                <td>2nd Year</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Event Management Section -->
+            <section id="events-section" class="card" aria-labelledby="events-title" style="margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h2 id="events-title" style="margin-bottom: 0; font-size: 1.35rem;">Campus Events Management</h2>
+                    <button type="button" class="btn btn-primary btn-sm">+ Publish New Event</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Event Title</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Event Date</th>
+                                <th scope="col">Registrations</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CodeSprint 2026 Hackathon</strong></td>
+                                <td>Technical</td>
+                                <td>Oct 15, 2026</td>
+                                <td>142 / 150</td>
+                                <td><span class="status-badge status-confirmed">Published</span></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-secondary btn-sm">Upload Poster</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Full-Stack Web Dev Bootcamp</strong></td>
+                                <td>Workshop</td>
+                                <td>Oct 22, 2026</td>
+                                <td>85 / 100</td>
+                                <td><span class="status-badge status-confirmed">Published</span></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-secondary btn-sm">Upload Poster</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Audit Logs Section -->
+            <section id="audit-section" class="card" aria-labelledby="audit-title">
+                <h2 id="audit-title" style="font-size: 1.35rem; margin-bottom: 1.25rem;">Security & Activity Audit Logs</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col">Actor / Role</th>
+                                <th scope="col">Action Taken</th>
+                                <th scope="col">Target Entity</th>
+                                <th scope="col">Client IP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2026-10-09 00:45:12</td>
+                                <td>Admin (Dhara Ma'am)</td>
+                                <td>USER_AUTHENTICATION</td>
+                                <td>Session #8471</td>
+                                <td>192.168.1.45</td>
+                            </tr>
+                            <tr>
+                                <td>2026-10-08 16:30:20</td>
+                                <td>Admin (Dhara Ma'am)</td>
+                                <td>EVENT_CREATED</td>
+                                <td>Event: CodeSprint 2026</td>
+                                <td>192.168.1.45</td>
+                            </tr>
+                            <tr>
+                                <td>2026-10-08 14:15:02</td>
+                                <td>Student (Daksh Shah)</td>
+                                <td>EVENT_REGISTER</td>
+                                <td>Event ID #1</td>
+                                <td>10.0.4.18</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub Admin Console - CHARUSAT CSPIT. Privileged Access Portal.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

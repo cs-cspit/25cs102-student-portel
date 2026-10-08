@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse, search, and register for campus workshops, technical hackathons, and cultural fests at CHARUSAT.">
+    <title>Campus Events & Workshops | StudentHub Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="StudentHub Home">
+                🎓 StudentHub <span class="brand-badge">Campus Portal</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html" class="active" aria-current="page">Events</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Campus Events</li>
+                </ol>
+            </nav>
+
+            <header style="margin-bottom: 2rem;">
+                <h1>Campus Events & Workshops</h1>
+                <p>Explore upcoming student activities, technical bootcamps, cultural festivals, and competitive coding contests.</p>
+            </header>
+
+            <!-- Search & Filter Controls (Semantic Form) -->
+            <section class="card" aria-labelledby="filter-heading" style="margin-bottom: 2rem;">
+                <h2 id="filter-heading" style="font-size: 1.15rem; margin-bottom: 1rem;">Filter & Search Events</h2>
+                <form action="events.html" method="GET">
+                    <div class="grid-3" style="margin-bottom: 0;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="event-search">Search by Keyword</label>
+                            <input type="search" id="event-search" name="q" class="form-control" placeholder="Search hackathon, AI, fest...">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="category-filter">Event Category</label>
+                            <select id="category-filter" name="category" class="form-control">
+                                <option value="all">All Categories</option>
+                                <option value="technical">Technical & Coding</option>
+                                <option value="workshop">Academic Workshop</option>
+                                <option value="cultural">Cultural Festival</option>
+                                <option value="sports">Sports Tournament</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0; display: flex; align-items: flex-end;">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Apply Filters</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Event Catalog Grid -->
+            <section aria-labelledby="catalog-heading">
+                <h2 id="catalog-heading" class="sr-only" style="display: none;">Available Campus Events</h2>
+                <div class="grid-3">
+                    <!-- Event 1 -->
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event1.jpg" onerror="this.src='pr4/index.html'" alt="Collaborative coding contest at CodeSprint Hackathon" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Technical</span>
+                            <h3>CodeSprint 2026 Hackathon</h3>
+                            <div class="event-meta">
+                                <span>📅 <strong>Date:</strong> October 15, 2026</span>
+                                <span>⏰ <strong>Time:</strong> 09:00 AM - 09:00 PM</span>
+                                <span>📍 <strong>Venue:</strong> CSPIT CSE Labs 301-304</span>
+                            </div>
+                            <p>Test your algorithmic thinking and web development prowess in this 24-hour hackathon. Teams of up to 4 members.</p>
+                            <div class="event-actions">
+                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 2 -->
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event2.jpg" onerror="this.src='pr4/index.html'" alt="Presenter demonstrating server side coding on projector" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Workshop</span>
+                            <h3>Full-Stack Web Dev Masterclass</h3>
+                            <div class="event-meta">
+                                <span>📅 <strong>Date:</strong> October 22, 2026</span>
+                                <span>⏰ <strong>Time:</strong> 10:30 AM - 04:30 PM</span>
+                                <span>📍 <strong>Venue:</strong> Seminar Hall 1</span>
+                            </div>
+                            <p>Comprehensive training on PHP 8+, MySQL prepared statements, responsive CSS Grid, and RESTful JSON APIs.</p>
+                            <div class="event-actions">
+                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 3 -->
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event3.jpg" onerror="this.src='pr4/index.html'" alt="University students singing and playing acoustic instruments" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Cultural Fest</span>
+                            <h3>Spandan 2026 Youth Festival</h3>
+                            <div class="event-meta">
+                                <span>📅 <strong>Date:</strong> November 05, 2026</span>
+                                <span>⏰ <strong>Time:</strong> 05:00 PM - 10:00 PM</span>
+                                <span>📍 <strong>Venue:</strong> University Open Air Theatre</span>
+                            </div>
+                            <p>Celebrate campus life with drama, musical band showdowns, solo vocal contests, and cultural choreography.</p>
+                            <div class="event-actions">
+                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 4 -->
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event1.jpg" onerror="this.src='pr4/index.html'" alt="Microcontroller and robotics setup on lab table" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Technical</span>
+                            <h3>RoboQuest: Autonomous Line Follower</h3>
+                            <div class="event-meta">
+                                <span>📅 <strong>Date:</strong> November 18, 2026</span>
+                                <span>⏰ <strong>Time:</strong> 11:00 AM - 03:00 PM</span>
+                                <span>📍 <strong>Venue:</strong> Robotics & IoT Lab</span>
+                            </div>
+                            <p>Design, assemble, and program embedded robotics robots to navigate complex track obstacles against the clock.</p>
+                            <div class="event-actions">
+                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 5 -->
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event2.jpg" onerror="this.src='pr4/index.html'" alt="Terminal window showing network vulnerability scan" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Workshop</span>
+                            <h3>Cybersecurity & Ethical Hacking</h3>
+                            <div class="event-meta">
+                                <span>📅 <strong>Date:</strong> December 02, 2026</span>
+                                <span>⏰ <strong>Time:</strong> 09:30 AM - 01:30 PM</span>
+                                <span>📍 <strong>Venue:</strong> Virtual Zoom Hall</span>
+                            </div>
+                            <p>Learn web application penetration testing fundamentals, OWASP Top 10 vulnerabilities, and security hardening.</p>
+                            <div class="event-actions">
+                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 6 -->
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event3.jpg" onerror="this.src='pr4/index.html'" alt="Badminton players on campus indoor court" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Sports</span>
+                            <h3>Inter-Department Badminton Cup</h3>
+                            <div class="event-meta">
+                                <span>📅 <strong>Date:</strong> December 10, 2026</span>
+                                <span>⏰ <strong>Time:</strong> 08:00 AM - 06:00 PM</span>
+                                <span>📍 <strong>Venue:</strong> University Sports Complex</span>
+                            </div>
+                            <p>Singles and doubles knockout tournament open to all engineering departments. Trophies and medals for winners.</p>
+                            <div class="event-actions">
+                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🎓 StudentHub</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">The unified student management and campus activity portal for CHARUSAT University.</p>
+                    <p style="color: #64748b; font-size: 0.8rem;">Subject: ITUE203 - Web Development Frameworks</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About StudentHub</a></li>
+                        <li><a href="events.html">Campus Events</a></li>
+                        <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        <li><a href="contact.html">Contact & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portals</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                        <li><a href="profile.html">Student Profile</a></li>
+                        <li><a href="feedback.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Administrative</h4>
+                    <ul class="footer-links">
+                        <li><a href="admin/index.html">Admin Console</a></li>
+                        <li><a href="about.html#privacy">Privacy Guidelines</a></li>
+                        <li><a href="about.html#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub - CHARUSAT CSPIT. All rights reserved. Built for ITUE203 Web Development Frameworks Practical Project.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

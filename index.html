@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudentHub - Centralized student management and campus activity portal for CHARUSAT university students.">
+    <title>StudentHub | Student Management & Campus Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip to Content Landmark -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Header & Navigation -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="StudentHub Home">
+                🎓 StudentHub <span class="brand-badge">Campus Portal</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section" aria-labelledby="hero-title">
+                <h1 id="hero-title">Connect. Learn. Participate.</h1>
+                <p>Welcome to StudentHub, the unified academic and campus engagement gateway. Discover upcoming hackathons, technical workshops, cultural fests, and manage your student profile with ease.</p>
+                <div class="hero-actions">
+                    <a href="events.html" class="btn btn-light">Explore Campus Events</a>
+                    <a href="register.html" class="btn btn-outline">Join StudentHub Now</a>
+                </div>
+            </section>
+
+            <!-- Key Platform Highlights -->
+            <section aria-labelledby="pillars-title" style="margin-bottom: 2.5rem;">
+                <h2 id="pillars-title" style="text-align: center; margin-bottom: 1.5rem;">Why Choose StudentHub?</h2>
+                <div class="grid-3">
+                    <article class="card">
+                        <h3>🎉 Centralized Campus Events</h3>
+                        <p>Discover real-time technical workshops, guest lectures, hackathons, and cultural fests conducted across university departments.</p>
+                        <a href="events.html" class="btn btn-secondary btn-sm">Browse Catalog &rarr;</a>
+                    </article>
+                    <article class="card">
+                        <h3>⚡ One-Click Registration</h3>
+                        <p>Register instantly for events with your student credentials and track enrollment confirmations directly from your dashboard.</p>
+                        <a href="register.html" class="btn btn-secondary btn-sm">Get Started &rarr;</a>
+                    </article>
+                    <article class="card">
+                        <h3>🔒 Secure Profile Management</h3>
+                        <p>Maintain your verified academic profile, contact details, and department enrollment securely with enterprise-grade session protection.</p>
+                        <a href="login.html" class="btn btn-secondary btn-sm">Access Portal &rarr;</a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Upcoming Events Preview Section -->
+            <section aria-labelledby="featured-events-title" style="margin-bottom: 2.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h2 id="featured-events-title" style="margin-bottom: 0;">Featured Upcoming Events</h2>
+                    <a href="events.html" class="btn btn-secondary btn-sm">View All Events</a>
+                </div>
+
+                <div class="grid-3">
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event1.jpg" onerror="this.src='pr4/index.html'" alt="Students collaborating at CodeSprint Hackathon 2026" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Technical Hackathon</span>
+                            <h3>CodeSprint 2026 Hackathon</h3>
+                            <div class="event-meta">
+                                <span>📅 Date: October 15, 2026</span>
+                                <span>📍 Venue: CSPIT Computer Labs</span>
+                            </div>
+                            <p>A 24-hour university coding competition focusing on Full-Stack Web Development, AI, and Cloud innovations.</p>
+                            <div class="event-actions">
+                                <a href="events.html" class="btn btn-primary btn-sm">View Details & Register</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event2.jpg" onerror="this.src='pr4/index.html'" alt="Speaker presenting Modern Web Development frameworks" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Workshop</span>
+                            <h3>Full-Stack Web Dev Bootcamp</h3>
+                            <div class="event-meta">
+                                <span>📅 Date: October 22, 2026</span>
+                                <span>📍 Venue: Auditorium Hall B</span>
+                            </div>
+                            <p>Hands-on masterclass on modern PHP 8+, MySQL architecture, and responsive UI engineering.</p>
+                            <div class="event-actions">
+                                <a href="events.html" class="btn btn-primary btn-sm">View Details & Register</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card event-card">
+                        <img src="pr2/html/assets/images/event3.jpg" onerror="this.src='pr4/index.html'" alt="Stage lights and performers at Spandan Cultural Night" class="event-poster">
+                        <div class="event-content">
+                            <span class="event-badge">Cultural Fest</span>
+                            <h3>Spandan 2026 Youth Festival</h3>
+                            <div class="event-meta">
+                                <span>📅 Date: November 05, 2026</span>
+                                <span>📍 Venue: University Central Grounds</span>
+                            </div>
+                            <p>Annual inter-college cultural celebration featuring music, theatre, literary debates, and art showcases.</p>
+                            <div class="event-actions">
+                                <a href="events.html" class="btn btn-primary btn-sm">View Details & Register</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Call to Action Section -->
+            <section class="card" aria-labelledby="cta-heading" style="text-align: center; background-color: #eff6ff; border-color: #bfdbfe; padding: 2.5rem 1.5rem;">
+                <h2 id="cta-heading" style="color: var(--primary-color);">Ready to Elevate Your Campus Experience?</h2>
+                <p style="max-width: 600px; margin: 0 auto 1.5rem auto;">Create your StudentHub account today to register for university events, connect with student clubs, and track your campus activities.</p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <a href="register.html" class="btn btn-primary">Create Student Account</a>
+                    <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Global Accessible Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🎓 StudentHub</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">The unified student management and campus activity portal for CHARUSAT University.</p>
+                    <p style="color: #64748b; font-size: 0.8rem;">Subject: ITUE203 - Web Development Frameworks</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About StudentHub</a></li>
+                        <li><a href="events.html">Campus Events</a></li>
+                        <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        <li><a href="contact.html">Contact & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portals</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                        <li><a href="profile.html">Student Profile</a></li>
+                        <li><a href="feedback.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Administrative</h4>
+                    <ul class="footer-links">
+                        <li><a href="admin/index.html">Admin Console</a></li>
+                        <li><a href="about.html#privacy">Privacy Guidelines</a></li>
+                        <li><a href="about.html#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub - CHARUSAT CSPIT. All rights reserved. Built for ITUE203 Web Development Frameworks Practical Project.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

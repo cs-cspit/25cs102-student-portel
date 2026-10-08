@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and manage student profile details, academic records, and contact preferences on StudentHub.">
+    <title>Student Profile | StudentHub Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessible Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand-logo" aria-label="StudentHub Home">
+                🎓 StudentHub <span class="brand-badge">Campus Portal</span>
+            </a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="profile.html" class="active" aria-current="page">Profile</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta-group">
+                <span style="font-size: 0.9rem; font-weight: 600; color: var(--primary-color);">
+                    👤 Daksh (25CS102)
+                </span>
+                <a href="login.html" class="btn btn-secondary btn-sm">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Student Profile</li>
+                </ol>
+            </nav>
+
+            <header style="margin-bottom: 2rem;">
+                <h1>Student Profile & Academic Details</h1>
+                <p>Manage your verified personal contact details and review your department enrollment records.</p>
+            </header>
+
+            <div class="grid-2">
+                <!-- Profile Information Card -->
+                <section class="card" aria-labelledby="profile-card-title">
+                    <h2 id="profile-card-title" style="font-size: 1.35rem; margin-bottom: 1.25rem;">Academic Identity</h2>
+                    
+                    <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
+                        <div style="width: 72px; height: 72px; border-radius: 50%; background-color: #e0e7ff; color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: 700;" aria-hidden="true">
+                            DS
+                        </div>
+                        <div>
+                            <h3 style="margin-bottom: 0.25rem;">Daksh Shah</h3>
+                            <p style="margin-bottom: 0; font-size: 0.9rem;">Enrollment ID: <strong>25CS102</strong></p>
+                            <span class="status-badge status-confirmed">Active Student</span>
+                        </div>
+                    </div>
+
+                    <table aria-label="Student Academic Identity Details">
+                        <tbody>
+                            <tr>
+                                <th scope="row" style="width: 35%;">Full Name</th>
+                                <td>Daksh Shah</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">University Email</th>
+                                <td>25cs102@charusat.edu.in</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Department</th>
+                                <td>Computer Science & Engineering (CSE)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Academic Year</th>
+                                <td>2nd Year (Semester 3)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Gender</th>
+                                <td>Male</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Contact Phone</th>
+                                <td>+91 98765 43210</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Registered Since</th>
+                                <td>July 2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Edit Profile Form Card -->
+                <section class="card" aria-labelledby="edit-profile-title">
+                    <h2 id="edit-profile-title" style="font-size: 1.35rem; margin-bottom: 1.25rem;">Edit Contact Information</h2>
+                    
+                    <form action="profile.html" method="POST" novalidate>
+                        <div class="form-group">
+                            <label for="prof-fullname">Display Name</label>
+                            <input type="text" id="prof-fullname" name="fullname" class="form-control" value="Daksh Shah" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prof-email">Email Address (Read-Only)</label>
+                            <input type="email" id="prof-email" name="email" class="form-control" value="25cs102@charusat.edu.in" readonly style="background-color: #f1f5f9; cursor: not-allowed;">
+                            <span class="form-hint">Official university email can only be modified by department administration.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prof-mobile">Primary Mobile Number <span aria-hidden="true" style="color: #dc2626;">*</span></label>
+                            <input type="tel" id="prof-mobile" name="mobile" class="form-control" value="9876543210" required>
+                            <span class="form-hint">Ensure your mobile number is active for OTP notifications.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prof-course">Enrolled Program</label>
+                            <select id="prof-course" name="course" class="form-control" disabled style="background-color: #f1f5f9; cursor: not-allowed;">
+                                <option value="B.Tech CSE" selected>B.Tech Computer Science & Engineering (CSE)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-top: 1.5rem;">
+                            <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+                            <a href="dashboard.html" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>🎓 StudentHub</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">The unified student management and campus activity portal for CHARUSAT University.</p>
+                    <p style="color: #64748b; font-size: 0.8rem;">Subject: ITUE203 - Web Development Frameworks</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About StudentHub</a></li>
+                        <li><a href="events.html">Campus Events</a></li>
+                        <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        <li><a href="contact.html">Contact & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Student Portals</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Student Login</a></li>
+                        <li><a href="register.html">Student Registration</a></li>
+                        <li><a href="dashboard.html">Student Dashboard</a></li>
+                        <li><a href="profile.html">Student Profile</a></li>
+                        <li><a href="feedback.html">Submit Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Administrative</h4>
+                    <ul class="footer-links">
+                        <li><a href="admin/index.html">Admin Console</a></li>
+                        <li><a href="about.html#privacy">Privacy Guidelines</a></li>
+                        <li><a href="about.html#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudentHub - CHARUSAT CSPIT. All rights reserved. Built for ITUE203 Web Development Frameworks Practical Project.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
