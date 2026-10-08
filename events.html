@@ -6,7 +6,9 @@
     <meta name="description" content="Browse, search, and register for campus workshops, technical hackathons, and cultural fests at CHARUSAT.">
     <title>Campus Events & Workshops | StudentHub Portal</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <script src="js/main.js" defer></script>
+    <script src="js/events.js" defer></script>
 </head>
 <body>
     <!-- Accessible Skip Link -->
@@ -29,6 +31,7 @@
                 </ul>
             </nav>
             <div class="nav-cta-group">
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
                 <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
                 <a href="register.html" class="btn btn-primary btn-sm">Register</a>
             </div>
@@ -48,147 +51,50 @@
 
             <header style="margin-bottom: 2rem;">
                 <h1>Campus Events & Workshops</h1>
-                <p>Explore upcoming student activities, technical bootcamps, cultural festivals, and competitive coding contests.</p>
+                <p>Explore upcoming student activities, technical bootcamps, cultural festivals, and competitive coding contests rendered live via Fetch API.</p>
             </header>
 
-            <!-- Search & Filter Controls (Semantic Form) -->
+            <!-- Dynamic Search & Filter Controls -->
             <section class="card" aria-labelledby="filter-heading" style="margin-bottom: 2rem;">
-                <h2 id="filter-heading" style="font-size: 1.15rem; margin-bottom: 1rem;">Filter & Search Events</h2>
-                <form action="events.html" method="GET">
-                    <div class="grid-3" style="margin-bottom: 0;">
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label for="event-search">Search by Keyword</label>
-                            <input type="search" id="event-search" name="q" class="form-control" placeholder="Search hackathon, AI, fest...">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0;">
-                            <label for="category-filter">Event Category</label>
-                            <select id="category-filter" name="category" class="form-control">
-                                <option value="all">All Categories</option>
-                                <option value="technical">Technical & Coding</option>
-                                <option value="workshop">Academic Workshop</option>
-                                <option value="cultural">Cultural Festival</option>
-                                <option value="sports">Sports Tournament</option>
-                            </select>
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0; display: flex; align-items: flex-end;">
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Apply Filters</button>
-                        </div>
+                <h2 id="filter-heading" style="font-size: 1.15rem; margin-bottom: 1rem;">Filter & Search Events Catalog</h2>
+                <div class="grid-3" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="event-search-input">Search by Keyword</label>
+                        <input type="search" id="event-search-input" class="form-control" placeholder="Search hackathon, AI, fest, lab...">
                     </div>
-                </form>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="event-category-select">Event Category</label>
+                        <select id="event-category-select" class="form-control">
+                            <option value="all">All Categories</option>
+                            <option value="technical">Technical & Hackathons</option>
+                            <option value="workshop">Academic Workshops</option>
+                            <option value="cultural">Cultural & Arts</option>
+                            <option value="sports">Sports Tournaments</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="event-sort-select">Sort By</label>
+                        <select id="event-sort-select" class="form-control">
+                            <option value="date-asc">Date: Soonest First</option>
+                            <option value="date-desc">Date: Latest First</option>
+                            <option value="title-asc">Title: A to Z</option>
+                            <option value="title-desc">Title: Z to A</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <span id="events-count-text" style="font-size: 0.875rem; font-weight: 600; color: var(--primary-600);">Loading events...</span>
+                </div>
             </section>
 
-            <!-- Event Catalog Grid -->
+            <!-- Dynamic Event Catalog Grid Container -->
             <section aria-labelledby="catalog-heading">
                 <h2 id="catalog-heading" class="sr-only" style="display: none;">Available Campus Events</h2>
-                <div class="grid-3">
-                    <!-- Event 1 -->
-                    <article class="card event-card">
-                        <img src="pr2/html/assets/images/event1.jpg" onerror="this.src='pr4/index.html'" alt="Collaborative coding contest at CodeSprint Hackathon" class="event-poster">
-                        <div class="event-content">
-                            <span class="event-badge">Technical</span>
-                            <h3>CodeSprint 2026 Hackathon</h3>
-                            <div class="event-meta">
-                                <span>📅 <strong>Date:</strong> October 15, 2026</span>
-                                <span>⏰ <strong>Time:</strong> 09:00 AM - 09:00 PM</span>
-                                <span>📍 <strong>Venue:</strong> CSPIT CSE Labs 301-304</span>
-                            </div>
-                            <p>Test your algorithmic thinking and web development prowess in this 24-hour hackathon. Teams of up to 4 members.</p>
-                            <div class="event-actions">
-                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Event 2 -->
-                    <article class="card event-card">
-                        <img src="pr2/html/assets/images/event2.jpg" onerror="this.src='pr4/index.html'" alt="Presenter demonstrating server side coding on projector" class="event-poster">
-                        <div class="event-content">
-                            <span class="event-badge">Workshop</span>
-                            <h3>Full-Stack Web Dev Masterclass</h3>
-                            <div class="event-meta">
-                                <span>📅 <strong>Date:</strong> October 22, 2026</span>
-                                <span>⏰ <strong>Time:</strong> 10:30 AM - 04:30 PM</span>
-                                <span>📍 <strong>Venue:</strong> Seminar Hall 1</span>
-                            </div>
-                            <p>Comprehensive training on PHP 8+, MySQL prepared statements, responsive CSS Grid, and RESTful JSON APIs.</p>
-                            <div class="event-actions">
-                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Event 3 -->
-                    <article class="card event-card">
-                        <img src="pr2/html/assets/images/event3.jpg" onerror="this.src='pr4/index.html'" alt="University students singing and playing acoustic instruments" class="event-poster">
-                        <div class="event-content">
-                            <span class="event-badge">Cultural Fest</span>
-                            <h3>Spandan 2026 Youth Festival</h3>
-                            <div class="event-meta">
-                                <span>📅 <strong>Date:</strong> November 05, 2026</span>
-                                <span>⏰ <strong>Time:</strong> 05:00 PM - 10:00 PM</span>
-                                <span>📍 <strong>Venue:</strong> University Open Air Theatre</span>
-                            </div>
-                            <p>Celebrate campus life with drama, musical band showdowns, solo vocal contests, and cultural choreography.</p>
-                            <div class="event-actions">
-                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Event 4 -->
-                    <article class="card event-card">
-                        <img src="pr2/html/assets/images/event1.jpg" onerror="this.src='pr4/index.html'" alt="Microcontroller and robotics setup on lab table" class="event-poster">
-                        <div class="event-content">
-                            <span class="event-badge">Technical</span>
-                            <h3>RoboQuest: Autonomous Line Follower</h3>
-                            <div class="event-meta">
-                                <span>📅 <strong>Date:</strong> November 18, 2026</span>
-                                <span>⏰ <strong>Time:</strong> 11:00 AM - 03:00 PM</span>
-                                <span>📍 <strong>Venue:</strong> Robotics & IoT Lab</span>
-                            </div>
-                            <p>Design, assemble, and program embedded robotics robots to navigate complex track obstacles against the clock.</p>
-                            <div class="event-actions">
-                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Event 5 -->
-                    <article class="card event-card">
-                        <img src="pr2/html/assets/images/event2.jpg" onerror="this.src='pr4/index.html'" alt="Terminal window showing network vulnerability scan" class="event-poster">
-                        <div class="event-content">
-                            <span class="event-badge">Workshop</span>
-                            <h3>Cybersecurity & Ethical Hacking</h3>
-                            <div class="event-meta">
-                                <span>📅 <strong>Date:</strong> December 02, 2026</span>
-                                <span>⏰ <strong>Time:</strong> 09:30 AM - 01:30 PM</span>
-                                <span>📍 <strong>Venue:</strong> Virtual Zoom Hall</span>
-                            </div>
-                            <p>Learn web application penetration testing fundamentals, OWASP Top 10 vulnerabilities, and security hardening.</p>
-                            <div class="event-actions">
-                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Event 6 -->
-                    <article class="card event-card">
-                        <img src="pr2/html/assets/images/event3.jpg" onerror="this.src='pr4/index.html'" alt="Badminton players on campus indoor court" class="event-poster">
-                        <div class="event-content">
-                            <span class="event-badge">Sports</span>
-                            <h3>Inter-Department Badminton Cup</h3>
-                            <div class="event-meta">
-                                <span>📅 <strong>Date:</strong> December 10, 2026</span>
-                                <span>⏰ <strong>Time:</strong> 08:00 AM - 06:00 PM</span>
-                                <span>📍 <strong>Venue:</strong> University Sports Complex</span>
-                            </div>
-                            <p>Singles and doubles knockout tournament open to all engineering departments. Trophies and medals for winners.</p>
-                            <div class="event-actions">
-                                <a href="register.html" class="btn btn-primary btn-sm" style="width: 100%;">Register for Event</a>
-                            </div>
-                        </div>
-                    </article>
+                <div id="events-grid-container" class="grid-3">
+                    <!-- Events rendered dynamically via js/events.js -->
                 </div>
+                <!-- Pagination Controls Container -->
+                <nav id="events-pagination" aria-label="Events catalog pagination"></nav>
             </section>
         </div>
     </main>

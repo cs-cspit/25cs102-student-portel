@@ -1,0 +1,18 @@
+[
+  { "id": 101, "name": "Daksh Shah", "email": "25cs102@charusat.edu.in", "mobile": "9876543210", "course": "B.Tech CSE", "year": "2nd Year", "gender": "Male", "status": "Active" },
+  { "id": 102, "name": "Aarav Patel", "email": "aarav.ce@charusat.edu.in", "mobile": "9823456781", "course": "B.Tech CE", "year": "3rd Year", "gender": "Male", "status": "Active" },
+  { "id": 103, "name": "Diya Sharma", "email": "diya.it@charusat.edu.in", "mobile": "9834567892", "course": "B.Tech IT", "year": "2nd Year", "gender": "Female", "status": "Active" },
+  { "id": 104, "name": "Rohan Mehta", "email": "rohan.cse@charusat.edu.in", "mobile": "9845678903", "course": "B.Tech CSE", "year": "4th Year", "gender": "Male", "status": "Active" },
+  { "id": 105, "name": "Ananya Joshi", "email": "ananya.ec@charusat.edu.in", "mobile": "9856789014", "course": "B.Tech EC", "year": "1st Year", "gender": "Female", "status": "Active" },
+  { "id": 106, "name": "Kavya Desai", "email": "kavya.it@charusat.edu.in", "mobile": "9867890125", "course": "B.Tech IT", "year": "3rd Year", "gender": "Female", "status": "Active" },
+  { "id": 107, "name": "Vivek Trivedi", "email": "vivek.ce@charusat.edu.in", "mobile": "9878901236", "course": "B.Tech CE", "year": "2nd Year", "gender": "Male", "status": "Active" },
+  { "id": 108, "name": "Pooja Varma", "email": "pooja.cse@charusat.edu.in", "mobile": "9889012347", "course": "B.Tech CSE", "year": "3rd Year", "gender": "Female", "status": "Active" },
+  { "id": 109, "name": "Harshil Dave", "email": "harshil.me@charusat.edu.in", "mobile": "9890123458", "course": "B.Tech ME", "year": "4th Year", "gender": "Male", "status": "Active" },
+  { "id": 110, "name": "Neha Pandya", "email": "neha.ec@charusat.edu.in", "mobile": "9801234569", "course": "B.Tech EC", "year": "2nd Year", "gender": "Female", "status": "Active" },
+  { "id": 111, "name": "Siddharth Rana", "email": "siddharth.cse@charusat.edu.in", "mobile": "9712345670", "course": "B.Tech CSE", "year": "1st Year", "gender": "Male", "status": "Active" },
+  { "id": 112, "name": "Bhavya Solanki", "email": "bhavya.it@charusat.edu.in", "mobile": "9723456781", "course": "B.Tech IT", "year": "2nd Year", "gender": "Female", "status": "Active" },
+  { "id": 113, "name": "Manan Parmar", "email": "manan.ce@charusat.edu.in", "mobile": "9734567892", "course": "B.Tech CE", "year": "3rd Year", "gender": "Male", "status": "Active" },
+  { "id": 114, "name": "Riddhi Soni", "email": "riddhi.cse@charusat.edu.in", "mobile": "9745678903", "course": "B.Tech CSE", "year": "2nd Year", "gender": "Female", "status": "Active" },
+  { "id": 115, "name": "Parth Bhatt", "email": "parth.me@charusat.edu.in", "mobile": "9756789014", "course": "B.Tech ME", "year": "4th Year", "gender": "Male", "status": "Active" },
+  { "id": 116, "name": "Tanvi Shah", "email": "tanvi.it@charusat.edu.in", "mobile": "9767890125", "course": "B.Tech IT", "year": "1st Year", "gender": "Female", "status": "Active" }
+]

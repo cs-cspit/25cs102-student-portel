@@ -1,0 +1,17 @@
+[
+  { "id": 1, "category": "Account", "question": "Who is eligible to create a StudentHub account?", "answer": "All enrolled students of CHARUSAT university with a valid university email address are eligible." },
+  { "id": 2, "category": "Account", "question": "How do I reset my account password?", "answer": "Use the Contact Support form or contact the CSE department coordinator for a password reset link." },
+  { "id": 3, "category": "Account", "question": "Can I update my email address on my profile?", "answer": "Official university emails cannot be edited directly by students to ensure academic integrity." },
+  { "id": 4, "category": "Events", "question": "How do I register for a campus hackathon?", "answer": "Navigate to the Events catalog, select the hackathon, and click 'Register for Event' to confirm enrollment." },
+  { "id": 5, "category": "Events", "question": "Are campus workshops free for all students?", "answer": "Most academic workshops and hackathons organized by university clubs are free for registered students." },
+  { "id": 6, "category": "Events", "question": "How do I cancel my event registration?", "answer": "You can manage and cancel your active event registrations directly from your Student Dashboard." },
+  { "id": 7, "category": "Events", "question": "Will I receive a digital certificate after attending an event?", "answer": "Yes, verified attendance records trigger digital certificates available on your dashboard." },
+  { "id": 8, "category": "Technical", "question": "Does StudentHub support Dark Mode?", "answer": "Yes, toggle the theme button in the top navigation bar. Your choice is saved in localStorage." },
+  { "id": 9, "category": "Technical", "question": "Is the portal responsive on mobile phones?", "answer": "Yes, StudentHub is built using responsive CSS Grid, Flexbox, and media queries for all devices." },
+  { "id": 10, "category": "Technical", "question": "Which web browsers are supported?", "answer": "StudentHub supports all modern evergreen browsers including Google Chrome, Mozilla Firefox, Microsoft Edge, and Safari." },
+  { "id": 11, "category": "Support", "question": "How can I provide feedback on a campus event?", "answer": "Visit our Feedback page to submit ratings and suggestions for recently concluded events." },
+  { "id": 12, "category": "Support", "question": "Where is the campus administration office located?", "answer": "CSPIT Administration Block, CHARUSAT Campus, Changa - 388421, Gujarat." },
+  { "id": 13, "category": "Support", "question": "Who should I contact for portal technical bugs?", "answer": "Submit a ticket via the Contact Support form or email support@studenthub.edu." },
+  { "id": 14, "category": "Account", "question": "How does StudentHub secure my credentials?", "answer": "All passwords are encrypted with bcrypt hashing, and database queries use 100% prepared statements." },
+  { "id": 15, "category": "Events", "question": "Can teams register together for hackathons?", "answer": "Yes, team leads can submit team member enrollment numbers during event registration." }
+]
