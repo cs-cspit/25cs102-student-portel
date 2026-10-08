@@ -4,7 +4,7 @@
 
 ---
 
-## 📌 Project Overview
+## 📌 Academic Project Overview
 
 | Attribute | Details |
 | :--- | :--- |
@@ -15,96 +15,101 @@
 | **Project Type** | Continuous 15-Phase Progressive Web Development Project |
 | **Student Name** | Daksh Shah |
 | **Student ID / Roll** | 25CS102 |
+| **Faculty Mentor** | Dhara Ma'am |
+| **GitHub Repository** | [cs-cspit/25cs102-student-portel](https://github.com/cs-cspit/25cs102-student-portel.git) |
+| **Branch** | `main` |
+| **Project Status** | **15/15 Practicals Complete (100%)** |
 
 ---
 
-## 🎯 Problem Statement & Objectives
+## 🎯 Executive Summary & Problem Statement
 
 ### Problem Statement
-Campus activities, technical workshops, cultural events, and student records are traditionally managed through fragmented tools, physical noticeboards, and disconnected spreadsheets. This causes high administrative overhead, communication lags, and poor student engagement tracking.
+Higher education institutions conduct numerous academic, co-curricular, and extracurricular activities. Traditionally, campus operations suffer from fragmented announcement boards, spreadsheet-based event registrations, lack of student self-service portals, and absence of security audit tracking.
 
-### Objectives
-1. **Centralize Campus Engagement:** Provide an accessible, responsive web application for students to discover, search, and register for university events.
-2. **Streamline Administration:** Equip faculty and campus administrators with complete CRUD capabilities for students, events, registrations, and security audit logs.
-3. **Implement Robust Security:** Enforce secure authentication using bcrypt password hashing, session protection, Role-Based Access Control (RBAC), and 100% prepared SQL statements.
-4. **Foster Asynchronous Interactivity:** Deliver modern UI interactions via JavaScript Fetch API and RESTful PHP JSON endpoints without full-page reloads.
+### Solution: StudentHub
+**StudentHub** is an integrated, secure, and responsive web application engineered using modern standards (HTML5, CSS3, JavaScript ES6+, PHP 8+, and MySQL). It unifies campus event publishing, student registration workflows, profile management, RESTful JSON APIs, administrative CRUD operations, and security audit logs.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Frontend:** HTML5 (Semantic Structure & Accessibility), CSS3 (Grid, Flexbox, Custom Variables, Dark Mode), Vanilla JavaScript ES6+ (Fetch API, DOM manipulation).
-- **Backend:** PHP 8+ (Procedural & Modular Design, Sessions, RBAC Middleware).
-- **Database:** MySQL 8.0 / MariaDB (Prepared Statements via MySQLi, Relational Schema with Foreign Keys & Indexes).
-- **Server Environment:** Apache HTTP Server (via XAMPP).
-- **Tools & Version Control:** Visual Studio Code, Git, GitHub, phpMyAdmin.
+- **Frontend Tier:** Semantic HTML5 (WCAG 2.1 AA Compliant), CSS3 (CSS Grid, Flexbox, Design Tokens, Light/Dark Theming), Vanilla JavaScript ES6+ (Fetch API, DOM Manipulation, Web Storage API).
+- **Backend Tier:** PHP 8+ (Modular Architecture, Session Regeneration, Inactivity Timeout, RBAC Middleware).
+- **Database Tier:** MySQL 8.0 / MariaDB (Normalized 3NF Schema, InnoDB Engine, Foreign Keys with Cascading Actions, Prepared Statements via MySQLi).
+- **Local Server Stack:** Apache HTTP Server & MySQL via XAMPP.
+- **Development Tooling:** Visual Studio Code, Git, GitHub, phpMyAdmin.
 
 ---
 
-## 📁 Project Directory Structure
+## 📁 Complete Project Directory Tree
 
 ```
 StudentHub/
 │
-├── index.html               # Public Home Page & Campus Highlights
-├── about.html               # About StudentHub & Mission
-├── register.html            # Student Registration Form
+├── index.html               # Public Home Page with Content Slider & Modal Dialogs
+├── about.html               # Mission, Objectives & Academic Framework
+├── register.html            # Student Registration with Real-Time Regex Validation
 ├── login.html               # User Authentication & Role Gateway
-├── dashboard.php            # Authenticated Student Dashboard
-├── events.php               # Campus Events Catalog & Interactive Search
-├── profile.php              # Student Profile Management
-├── contact.html             # Contact & Campus Inquiries
-├── faq.html                 # Interactive Accordion FAQ
-├── feedback.html            # Student Feedback Submission Form
+├── dashboard.php            # Authenticated Student Dashboard & Enrolled Events
+├── events.html              # Dynamic Campus Events Catalog with Fetch API Search & Filter
+├── profile.php              # Authenticated Student Academic Profile Management
+├── contact.html             # Contact Directory & Support Inquiry Form
+├── faq.html                 # Interactive Accordion FAQ Knowledge Base
+├── feedback.html            # Student Feedback & Satisfaction Rating Form
 │
-├── admin/                   # Administrative Management Suite (Admin Role Only)
-│   ├── index.php            # Admin KPI Dashboard & Metrics
-│   ├── students.php         # Student Directory CRUD
-│   ├── events.php           # Event Management & Poster Upload
-│   ├── registrations.php    # Participant Registrations & Status Management
-│   └── audit-logs.php       # System Security & Activity Audit Trail
+├── admin/                   # Administrative Management Console (Admin Role Only)
+│   ├── index.php            # Admin Overview KPI Dashboard & Monthly Participation Chart
+│   ├── students.php         # Student Directory CRUD with Department Search & Filter
+│   ├── events.php           # Event Publishing, Seating CRUD & Secure Poster Upload
+│   ├── registrations.php    # Participant Roster Oversight & Status Updates
+│   └── audit-logs.php       # Security Activity Audit Trail with IP Origin Logging
 │
-├── php/                     # Server-Side Business Logic & Helpers
-│   ├── db.php               # Database Connection & Error Handler
-│   ├── register.php         # Server-Side Registration Processor
-│   ├── login.php            # Server-Side Authentication & Session Initializer
+├── php/                     # Server-Side Business Logic & Security Guards
+│   ├── db.php               # Database Connection & Parameterized Query Helpers
+│   ├── register.php         # Server-Side Registration Processor & Dual Table Insert
+│   ├── login.php            # Secure Login Processor with Password Verification & RBAC
 │   ├── logout.php           # Secure Session Destruction & Cookie Clear
-│   ├── auth.php             # Unified Authentication Middleware
-│   ├── student-auth.php     # Student Role Guard
-│   └── admin-auth.php       # Administrator Role Guard
+│   ├── auth.php             # Unified Authentication Middleware & Timeout Checker
+│   ├── student-auth.php     # Student Role Guard Middleware
+│   ├── admin-auth.php       # Administrator Role Guard Middleware
+│   └── contact.php          # Contact Form Processor & Inquiries Storage
 │
-├── api/                     # RESTful PHP JSON API Endpoints
+├── api/                     # RESTful JSON API Endpoints
 │   ├── students.php         # Student CRUD API (GET, POST, PUT, DELETE)
-│   └── events.php           # Events API (GET, POST, PUT, DELETE)
+│   └── events.php           # Event CRUD API (GET, POST, PUT, DELETE)
 │
-├── css/                     # Styling & Themes
-│   ├── style.css            # Global CSS Variables, Base Styles & Utilities
-│   ├── responsive.css       # Mobile, Tablet & Desktop Media Queries
-│   └── admin.css            # Admin Dashboard & Console Styles
+├── css/                     # Styling & Responsive Design System
+│   ├── style.css            # Design Tokens, Light/Dark Theme Variables & Components
+│   ├── responsive.css       # Mobile (<768px), Tablet, and Desktop Media Queries
+│   └── admin.css            # Admin Console Layout & Component Styles
 │
-├── js/                      # Client-Side Interactivity & Validation
-│   ├── main.js              # Theme Toggle, Mobile Nav, Accordions & Modals
-│   ├── validation.js        # Real-Time Regex Form Validation
-│   ├── events.js            # Dynamic Event Filtering, Sorting & Search
-│   └── api.js               # Asynchronous AJAX Fetch Helper
+├── js/                      # Client-Side Interactivity & Validation Engines
+│   ├── main.js              # Theme Switcher, Accordions, Modals, Sliders, Banners
+│   ├── validation.js        # Real-Time Regex Form Validation & Password Strength
+│   ├── events.js            # Asynchronous Fetch API Event Catalog & Pagination
+│   └── api.js               # Reusable AJAX Fetch API Client Library
 │
-├── data/                    # JSON Mock Data & Data Stores
-│   ├── events.json          # Seed Event Catalog
-│   ├── students.json        # Seed Student Directory
-│   └── faqs.json            # Frequently Asked Questions Data
+├── data/                    # JSON Mock Data & Flat-File Stores
+│   ├── events.json          # Seed Event Catalog (16 Records)
+│   ├── students.json        # Seed Student Directory (16 Records)
+│   ├── faqs.json            # Categorized FAQ Questions (15 Records)
+│   └── registrations.json   # Flat-File Fallback Storage
 │
 ├── uploads/                 # Media & File Storage
-│   └── events/              # Sanitized Event Posters (JPG, PNG)
+│   └── events/              # Sanitized Uploaded Event Posters (JPG, PNG)
 │
 ├── sql/                     # Relational Database Schema & Migrations
-│   └── studenthub.sql       # DDL Schema, Foreign Keys & Seed Data
+│   └── studenthub.sql       # 3NF Schema DDL, Foreign Keys, Indexes & Seed Data
 │
-├── docs/                    # Technical & Laboratory Documentation
+├── docs/                    # Laboratory Practical Manuals (Practicals 01 to 15)
 │   ├── requirements.md      # Functional & Non-Functional Specifications
 │   ├── sitemap.md           # 15-Page Sitemap & User Navigation Flows
 │   ├── wireframe.md         # Low-Fidelity Layout Wireframes
-│   ├── practical-01.md      # Practical 01 Lab Report & Viva Q&A
-│   └── ...                  # Practicals 02 to 15 Reports
+│   ├── practical-01.md      # Lab 01 Report & Viva Guide
+│   ├── practical-02.md      # Lab 02 Report & Viva Guide
+│   ├── ...                  # Lab 03 to Lab 14 Reports
+│   └── practical-15.md      # Final Integration & Deployment Manual
 │
 ├── README.md                # Master Project Documentation
 └── .gitignore               # Version Control Exclusions
@@ -112,15 +117,15 @@ StudentHub/
 
 ---
 
-## 🗄️ Database Architecture (`studenthub`)
+## 🗄️ Relational Database Schema (`studenthub`)
 
-The application utilizes a normalized relational schema with 5 core tables:
+The normalized relational database comprises 5 interconnected tables:
 
-1. **`users`**: Authentication credentials, hashed passwords, user roles (`student`, `admin`), timestamps.
-2. **`students`**: Detailed academic profiles linked to `users.id` (mobile, course, year, gender, status).
-3. **`events`**: Campus events (title, description, event date, category, poster path, status).
-4. **`registrations`**: Event enrollment records linking `students.id` and `events.id` with status tracking.
-5. **`audit_logs`**: Security activity logs recording user actions, affected entities, client IPs, and timestamps.
+1. **`users`**: User ID, Name, Unique Email, BCRYPT Hashed Password, Role (`student`, `admin`), Timestamps.
+2. **`students`**: Student ID, Foreign Key `user_id` (Cascading), Name, Email, Mobile, Department/Course, Academic Year, Gender, Status (`Active`, `Pending`, `Inactive`).
+3. **`events`**: Event ID, Title, Description, Date, Time Slot, Venue, Category (`technical`, `workshop`, `cultural`, `sports`), Poster Path, Seating Capacity, Status (`Active`, `Upcoming`, `Completed`, `Cancelled`).
+4. **`registrations`**: Registration ID, Foreign Keys `student_id` and `event_id` (Unique Composite Pair), Status (`Confirmed`, `Waitlisted`, `Cancelled`), Registration Date.
+5. **`audit_logs`**: Log ID, Foreign Key `user_id`, Action Event, Entity, Entity ID, Client IP Address, Activity Details, Timestamp.
 
 ---
 
@@ -131,79 +136,78 @@ The application utilizes a normalized relational schema with 5 core tables:
 - Install [Git](https://git-scm.com/) and [VS Code](https://code.visualstudio.com/).
 
 ### Step-by-Step Installation
-1. **Clone the Repository:**
+1. **Clone the Repository into XAMPP Web Root:**
    ```bash
    cd C:/xampp/htdocs
    git clone https://github.com/cs-cspit/25cs102-student-portel.git studenthub
    cd studenthub
    ```
 
-2. **Start Services in XAMPP Control Panel:**
-   - Start **Apache** module.
-   - Start **MySQL** module.
+2. **Start Apache & MySQL:**
+   - Launch the **XAMPP Control Panel**.
+   - Start the **Apache** and **MySQL** services.
 
 3. **Import Database in phpMyAdmin:**
    - Open browser at `http://localhost/phpmyadmin/`.
    - Create a new database named `studenthub`.
    - Navigate to the **Import** tab and select `sql/studenthub.sql`.
-   - Click **Go** to execute and seed the database.
+   - Click **Go** to execute DDL schema and seed all tables.
 
-4. **Verify Database Configuration:**
-   - Check `php/db.php` settings:
+4. **Verify Database Connection:**
+   - Database credentials in `php/db.php`:
      ```php
-     $host = "localhost";
-     $user = "root";
-     $pass = "";
-     $dbname = "studenthub";
+     define('DB_HOST', 'localhost');
+     define('DB_USER', 'root');
+     define('DB_PASS', '');
+     define('DB_NAME', 'studenthub');
      ```
 
 5. **Launch Application:**
-   - Open your browser and visit: `http://localhost/studenthub/`
+   - Open browser and visit: `http://localhost/studenthub/`
 
 ---
 
 ## 👤 Default Demo Credentials
 
-| Role | Email | Password | Access Area |
+| User Role | Email Address | Password | Landing Dashboard |
 | :--- | :--- | :--- | :--- |
-| **Administrator** | `admin@studenthub.edu` | `Admin@123` | Full Admin Console (`/admin`) |
-| **Student** | `daksh@charusat.edu.in` | `Student@123` | Student Dashboard (`/dashboard.php`) |
-
-*(All passwords are automatically verified via `password_verify()` against bcrypt hashes).*
+| **Administrator** | `admin@studenthub.edu` | `Admin@123` | Admin Console (`/admin/index.php`) |
+| **Student** | `25cs102@charusat.edu.in` | `Student@123` | Student Dashboard (`/dashboard.php`) |
 
 ---
 
-## 🗺️ Practical Roadmap & Progress
+## 🗺️ Complete 15-Practical Roadmap & Commit Mapping
 
-| Practical | Topic / Milestone | Status |
-| :---: | :--- | :---: |
-| **01** | Project Initiation, Requirements, Sitemap, Wireframe & GitHub Setup | ✅ COMPLETED |
-| **02** | Semantic HTML5 Pages with Accessibility Landmarks | ⏳ PENDING |
-| **03** | Responsive UI Design using CSS Grid, Flexbox & Design Tokens | ⏳ PENDING |
-| **04** | JavaScript DOM Manipulation, Event Handling & Theme Switching | ⏳ PENDING |
-| **05** | Registration Form Validation with Real-Time Feedback | ⏳ PENDING |
-| **06** | Rendering JSON Data via Fetch API, Search, Filter & Pagination | ⏳ PENDING |
-| **07** | PHP Form Processing with Server-Side Validation & File Storage | ⏳ PENDING |
-| **08** | MySQL Schema Design, ER Modeling & Database Connectivity | ⏳ PENDING |
-| **09** | Secure Registration with Duplicate Checks & Password Hashing | ⏳ PENDING |
-| **10** | Secure Login/Logout with Sessions, RBAC & Inactivity Timeout | ⏳ PENDING |
-| **11** | Administrative Student Management CRUD with Search & Filters | ⏳ PENDING |
-| **12** | Event Management CRUD with Secure Poster Image Uploads | ⏳ PENDING |
-| **13** | RESTful PHP JSON API & AJAX/Fetch-Based Asynchronous CRUD | ⏳ PENDING |
-| **14** | Admin Analytics Dashboard, Dynamic Navigation & Audit Logging | ⏳ PENDING |
-| **15** | Final Integration, Security Auditing, Deployment & Viva Prep | ⏳ PENDING |
-
----
-
-## 🔒 Security Architecture
-- **Password Security:** BCRYPT password hashing via `password_hash()`.
-- **SQL Injection Defense:** 100% Prepared Statements for all dynamic queries.
-- **XSS Sanitization:** `htmlspecialchars()` encoding on all rendered outputs.
-- **Session Protection:** `session_regenerate_id(true)` upon authentication, cookie flags (`HttpOnly`, `SameSite=Strict`), 30-minute inactivity timeout.
-- **Secure File Upload:** Extension whitelisting, MIME type verification via `finfo_file()`, image dimension verification, and sanitized randomized naming.
+| Lab | Milestone Title | Commit Hash | Status |
+| :---: | :--- | :---: | :---: |
+| **P01** | Project Initiation, Requirements, Sitemap, Wireframe & GitHub Setup | `d946761` | ✅ COMPLETE |
+| **P02** | Semantic HTML5 Pages with Accessibility Landmarks | `67a29d5` | ✅ COMPLETE |
+| **P03** | Responsive UI Design using CSS Grid, Flexbox & Design Tokens | `9562518` | ✅ COMPLETE |
+| **P04** | JavaScript DOM Manipulation, Event Handling & Theme Switching | `75cdac7` | ✅ COMPLETE |
+| **P05** | Registration Form Validation with Real-Time Feedback | `c4af09a` | ✅ COMPLETE |
+| **P06** | Rendering JSON Data via Fetch API, Search, Filter & Pagination | `d193eab` | ✅ COMPLETE |
+| **P07** | PHP Form Processing with Server-Side Validation & File Storage | `f3e4742` | ✅ COMPLETE |
+| **P08** | MySQL Schema Design, ER Modeling & Database Connectivity | `e3be404` | ✅ COMPLETE |
+| **P09** | Secure Registration with Duplicate Checks & Password Hashing | `d7148df` | ✅ COMPLETE |
+| **P10** | Secure Login/Logout with Sessions, RBAC & Inactivity Timeout | `be96a7f` | ✅ COMPLETE |
+| **P11** | Administrative Student Management CRUD with Search & Filters | `0ad670b` | ✅ COMPLETE |
+| **P12** | Event Management CRUD with Secure Poster Image Uploads | `a14a379` | ✅ COMPLETE |
+| **P13** | RESTful PHP JSON API & AJAX/Fetch-Based Asynchronous CRUD | `a25a488` | ✅ COMPLETE |
+| **P14** | Admin Analytics Dashboard, Dynamic Navigation & Audit Logging | `f53d985` | ✅ COMPLETE |
+| **P15** | Final Integration Testing, Deployment & Viva Prep | `[P15 Hash]` | ✅ COMPLETE |
 
 ---
 
-## 📄 License & Attribution
-Developed as part of the academic curriculum for **ITUE203: Web Development Frameworks** at **CHARUSAT (CSPIT)**.  
-Academic Year 2026-27.
+## 🔒 Security Architecture Highlights
+- **Password Protection:** Industry-standard BCRYPT hashing via `password_hash()` and `password_verify()`.
+- **SQL Injection Elimination:** 100% Prepared Statements (`bind_param`) for all dynamic queries.
+- **Session Security:** `session_regenerate_id(true)` to prevent session fixation, `HttpOnly` and `SameSite=Strict` flags, and 30-minute inactivity timeouts.
+- **XSS Sanitization:** `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')` on all rendered output.
+- **Secure File Uploads:** Whitelist extension checks, binary MIME inspection via `finfo_file()`, 2MB size limit, and randomized filename hashing.
+- **Audit Logging:** IP origin and user action recording for forensic security auditing.
+
+---
+
+## 📄 Academic Attribution
+Developed for **ITUE203: Web Development Frameworks** at **CHARUSAT (CSPIT)**.  
+Department of Computer Science & Engineering | Academic Year 2026-27.
