@@ -16,11 +16,16 @@ if ($db_connected && isset($conn)) {
             WHERE 1=1";
     
     if ($actionFilter !== 'all' && !empty($actionFilter)) {
-        $sql .= " AND a.action = '" . $conn->real_escape_string($actionFilter) . "'";
+        $sql .= " AND a.action = ? ORDER BY a.created_at DESC LIMIT 50";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $actionFilter);
+        $stmt->execute();
+        $res = $stmt->get_result();
+    } else {
+        $sql .= " ORDER BY a.created_at DESC LIMIT 50";
+        $res = $conn->query($sql);
     }
 
-    $sql .= " ORDER BY a.created_at DESC LIMIT 50";
-    $res = $conn->query($sql);
     if ($res) {
         while ($row = $res->fetch_assoc()) {
             $logs[] = $row;

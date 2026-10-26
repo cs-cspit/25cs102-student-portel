@@ -53,6 +53,17 @@
                     <p>Enter your student or administrator credentials to access your StudentHub workspace.</p>
                 </header>
 
+                <div id="login-alert-container"></div>
+
+                <!-- Demo Account Selector for Evaluation / Practical Assessment -->
+                <div class="card" style="background-color: var(--secondary-50); padding: 0.85rem; margin-bottom: 1.25rem; font-size: 0.85rem; border: 1px dashed var(--secondary-300);">
+                    <div style="font-weight: 600; color: var(--secondary-800); margin-bottom: 0.35rem;">⚡ Quick Test Credentials:</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="fillCredentials('student')" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">👤 Student Demo</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="fillCredentials('admin')" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">🛡️ Admin Demo</button>
+                    </div>
+                </div>
+
                 <!-- Login Form -->
                 <form action="php/login.php" method="POST" novalidate>
                     <div class="form-group">
@@ -81,10 +92,46 @@
 
                     <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
                         <p>Don't have an account yet? <a href="register.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Register as a student</a></p>
-                        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Campus Faculty / Admin? <a href="admin/index.html" style="color: var(--secondary-color);">Go to Admin Console &rarr;</a></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Campus Faculty / Admin? <a href="admin/index.php" style="color: var(--secondary-color);">Go to Admin Console &rarr;</a></p>
                     </div>
                 </form>
             </div>
+
+            <script>
+                function fillCredentials(role) {
+                    const emailInput = document.getElementById('login-email');
+                    const passInput = document.getElementById('login-password');
+                    if (role === 'admin') {
+                        emailInput.value = 'admin@studenthub.edu';
+                        passInput.value = 'Admin@123';
+                    } else {
+                        emailInput.value = '25cs102@charusat.edu.in';
+                        passInput.value = 'Student@123';
+                    }
+                }
+
+                // Check URL params for status / error
+                document.addEventListener('DOMContentLoaded', () => {
+                    const params = new URLSearchParams(window.location.search);
+                    const alertBox = document.getElementById('login-alert-container');
+                    const status = params.get('status');
+                    const error = params.get('error');
+
+                    if (status === 'logged_out') {
+                        alertBox.innerHTML = '<div class="alert alert-success" style="margin-bottom: 1rem;">✅ You have been logged out successfully. Session destroyed.</div>';
+                    } else if (error === 'session_expired') {
+                        alertBox.innerHTML = '<div class="alert alert-warning" style="margin-bottom: 1rem;">⏱️ Your session has expired due to inactivity. Please log in again.</div>';
+                    } else if (error === 'auth_required') {
+                        alertBox.innerHTML = '<div class="alert alert-warning" style="margin-bottom: 1rem;">🔒 Please log in to access your protected portal dashboard.</div>';
+                    } else if (error === 'admin_access_required' || error === 'admin_login_required') {
+                        alertBox.innerHTML = '<div class="alert alert-danger" style="margin-bottom: 1rem;">🚫 Administrator credentials required to access the Admin Console.</div>';
+                    } else if (error === 'forbidden_admin_access') {
+                        alertBox.innerHTML = '<div class="alert alert-danger" style="margin-bottom: 1rem;">🚫 403 Forbidden: Student accounts cannot access the Admin Console.</div>';
+                    } else if (error === 'student_access_only') {
+                        alertBox.innerHTML = '<div class="alert alert-info" style="margin-bottom: 1rem;">ℹ️ Please sign in with your student credentials.</div>';
+                    }
+                });
+            </script>
         </div>
     </main>
 

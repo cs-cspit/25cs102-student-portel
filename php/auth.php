@@ -1,11 +1,12 @@
 <?php
 /**
- * StudentHub - Unified Authentication & Role-Based Access Control Middleware (Practical 10)
- * Manages PHP Session lifecycle, session fixation defense, inactivity timeouts, and role checks.
+ * StudentHub - Unified Authentication & Role-Based Access Control Middleware (Practical 10 & 15)
+ * Manages PHP Session lifecycle, session fixation defense, inactivity timeouts,
+ * CSRF token generation/verification, login rate limiting, and role checks.
  */
 
 if (session_status() === PHP_SESSION_NONE) {
-    // Secure session cookie settings
+    // Secure session cookie settings (Practical 15 security hardening)
     ini_set('session.cookie_httponly', 1);
     ini_set('session.use_only_cookies', 1);
     ini_set('session.cookie_samesite', 'Strict');
@@ -83,6 +84,78 @@ function requireAdmin($redirectPath = "../login.html") {
     if ($_SESSION['user_role'] !== 'admin') {
         header("Location: " . $redirectPath . "?error=admin_access_required");
         exit;
+    }
+}
+
+/**
+ * CSRF Protection: Generate or return existing CSRF token
+ */
+function generateCsrfToken() {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+/**
+ * CSRF Protection: Verify submitted CSRF token
+ */
+function verifyCsrfToken($token) {
+    if (empty($token) || empty($_SESSION['csrf_token'])) {
+        return false;
+    }
+    return hash_equals($_SESSION['csrf_token'], $token);
+}
+
+/**
+ * Login Throttling: Check rate limit for IP/email
+ */
+function checkLoginRateLimit($key, $maxAttempts = 5, $lockoutSeconds = 60) {
+    $now = time();
+    if (!isset($_SESSION['rate_limits'])) {
+        $_SESSION['rate_limits'] = [];
+    }
+
+    if (isset($_SESSION['rate_limits'][$key])) {
+        $data = $_SESSION['rate_limits'][$key];
+        if ($data['attempts'] >= $maxAttempts) {
+            $elapsed = $now - $data['last_attempt'];
+            if ($elapsed < $lockoutSeconds) {
+                return [
+                    'allowed' => false,
+                    'wait_seconds' => $lockoutSeconds - $elapsed
+                ];
+            } else {
+                // Lockout period expired; reset counter
+                $_SESSION['rate_limits'][$key] = ['attempts' => 0, 'last_attempt' => $now];
+            }
+        }
+    }
+    return ['allowed' => true, 'wait_seconds' => 0];
+}
+
+/**
+ * Login Throttling: Record failed attempt
+ */
+function recordFailedLoginAttempt($key) {
+    $now = time();
+    if (!isset($_SESSION['rate_limits'])) {
+        $_SESSION['rate_limits'] = [];
+    }
+    if (!isset($_SESSION['rate_limits'][$key])) {
+        $_SESSION['rate_limits'][$key] = ['attempts' => 1, 'last_attempt' => $now];
+    } else {
+        $_SESSION['rate_limits'][$key]['attempts']++;
+        $_SESSION['rate_limits'][$key]['last_attempt'] = $now;
+    }
+}
+
+/**
+ * Login Throttling: Clear attempts on successful authentication
+ */
+function resetLoginRateLimit($key) {
+    if (isset($_SESSION['rate_limits'][$key])) {
+        unset($_SESSION['rate_limits'][$key]);
     }
 }
 ?>

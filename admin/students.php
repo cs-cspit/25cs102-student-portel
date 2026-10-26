@@ -13,9 +13,14 @@ $errorMsg = "";
 // 1. Handle Form Actions (Create, Update, Delete)
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
     $action = $_POST['action'];
+    $csrfToken = $_POST['csrf_token'] ?? '';
 
-    // CREATE STUDENT
-    if ($action === "create") {
+    // Enforce CSRF token verification
+    if (!verifyCsrfToken($csrfToken)) {
+        $errorMsg = "Security validation failed: Invalid or expired CSRF token. Please refresh and try again.";
+    } else {
+        // CREATE STUDENT
+        if ($action === "create") {
         $name = trim(strip_tags($_POST['name'] ?? ''));
         $email = trim(filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL));
         $mobile = trim(strip_tags($_POST['mobile'] ?? ''));
@@ -104,6 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
             }
         }
     }
+    }
 }
 
 // 2. Fetch Students with Search & Filters
@@ -174,9 +180,13 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/admin.css">
     <script src="../js/main.js" defer></script>
+    <script src="../js/api.js" defer></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" style="position: fixed; top: 1.5rem; right: 1.5rem; z-index: 99999; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;"></div>
 
     <header class="site-header" style="background-color: var(--secondary-900); border-bottom: 1px solid var(--secondary-800);">
         <div class="container header-inner">
@@ -203,9 +213,11 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
             <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
                     <h1>Student Directory & Management</h1>
-                    <p>Search, filter, enroll new students, edit records, and manage academic profiles.</p>
+                    <p>Search, filter, enroll new students, edit records, and manage academic profiles via MySQL Prepared Statements or RESTful Fetch API.</p>
                 </div>
-                <button type="button" class="btn btn-primary" data-modal-target="add-student-modal">+ Add New Student</button>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button type="button" class="btn btn-primary" data-modal-target="add-student-modal">+ Add New Student</button>
+                </div>
             </header>
 
             <?php if (!empty($successMsg)): ?>
@@ -244,12 +256,13 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
 
             <!-- Student Directory Table -->
             <section class="card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2 style="font-size: 1.25rem; margin-bottom: 0;">Enrolled Students (<?php echo count($students); ?> Records)</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <h2 style="font-size: 1.25rem; margin-bottom: 0;">Enrolled Students (<span id="student-count-display"><?php echo count($students); ?></span> Records)</h2>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">⚡ Supports both standard form mutations and Fetch API AJAX CRUD</span>
                 </div>
 
                 <div class="table-responsive">
-                    <table>
+                    <table id="students-table">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -262,31 +275,35 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="students-tbody">
                             <?php if (empty($students)): ?>
-                                <tr>
+                                <tr id="empty-row">
                                     <td colspan="8" style="text-align: center; padding: 2rem; color: var(--text-muted);">
                                         No student records found matching the specified filters.
                                     </td>
                                 </tr>
                             <?php else: ?>
                                 <?php foreach ($students as $s): ?>
-                                    <tr>
+                                    <tr id="student-row-<?php echo $s['id']; ?>">
                                         <td><strong>#<?php echo htmlspecialchars($s['id'], ENT_QUOTES, 'UTF-8'); ?></strong></td>
-                                        <td><?php echo htmlspecialchars($s['name'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($s['email'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($s['mobile'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($s['course'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($s['year'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="col-name"><?php echo htmlspecialchars($s['name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="col-email"><?php echo htmlspecialchars($s['email'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="col-mobile"><?php echo htmlspecialchars($s['mobile'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="col-course"><?php echo htmlspecialchars($s['course'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="col-year"><?php echo htmlspecialchars($s['year'], ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><span class="status-badge status-confirmed"><?php echo htmlspecialchars($s['status'] ?? 'Active', ENT_QUOTES, 'UTF-8'); ?></span></td>
                                         <td>
-                                            <div style="display: flex; gap: 0.35rem;">
+                                            <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
                                                 <button type="button" class="btn btn-secondary btn-sm" onclick="openEditModal(<?php echo htmlspecialchars(json_encode($s), ENT_QUOTES, 'UTF-8'); ?>)">Edit</button>
-                                                <form action="students.php" method="POST" onsubmit="return confirm('Are you sure you want to delete student #<?php echo $s['id']; ?> (<?php echo addslashes($s['name']); ?>)? This action cannot be undone.');" style="display:inline;">
+                                                <!-- Form POST Delete with CSRF -->
+                                                <form action="students.php" method="POST" onsubmit="return confirm('Delete student #<?php echo $s['id']; ?> (<?php echo addslashes($s['name']); ?>)?');" style="display:inline;">
                                                     <input type="hidden" name="action" value="delete">
+                                                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                                                     <input type="hidden" name="student_id" value="<?php echo $s['id']; ?>">
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
+                                                <!-- Asynchronous AJAX Delete without page reload -->
+                                                <button type="button" class="btn btn-outline btn-sm" onclick="ajaxDeleteStudent(<?php echo $s['id']; ?>, '<?php echo addslashes($s['name']); ?>', this)" title="Delete without page reload via Fetch API">⚡ AJAX</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -304,8 +321,9 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
         <div class="modal-box" style="max-width: 600px;">
             <button type="button" class="modal-close-btn" data-modal-close aria-label="Close dialog">&times;</button>
             <h2 style="color: var(--primary-600); margin-bottom: 1rem;">Enroll New Student</h2>
-            <form action="students.php" method="POST">
+            <form id="add-student-form" action="students.php" method="POST">
                 <input type="hidden" name="action" value="create">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                 <div class="form-group">
                     <label for="m-name">Full Name *</label>
                     <input type="text" id="m-name" name="name" class="form-control" required placeholder="Student name">
@@ -339,8 +357,9 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
                         </select>
                     </div>
                 </div>
-                <div style="margin-top: 1.5rem; text-align: right;">
+                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.5rem; flex-wrap: wrap;">
                     <button type="button" class="btn btn-secondary" data-modal-close>Cancel</button>
+                    <button type="button" class="btn btn-outline" onclick="ajaxCreateStudent(this)">⚡ Add via Fetch API</button>
                     <button type="submit" class="btn btn-primary">Save Student</button>
                 </div>
             </form>
@@ -352,8 +371,9 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
         <div class="modal-box" style="max-width: 600px;">
             <button type="button" class="modal-close-btn" onclick="closeEditModal()" aria-label="Close dialog">&times;</button>
             <h2 style="color: var(--primary-600); margin-bottom: 1rem;">Edit Student Record</h2>
-            <form action="students.php" method="POST">
+            <form id="edit-student-form" action="students.php" method="POST">
                 <input type="hidden" name="action" value="update">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                 <input type="hidden" id="edit-student-id" name="student_id" value="">
                 <div class="form-group">
                     <label for="edit-name">Full Name</label>
@@ -392,8 +412,9 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
                         <option value="Inactive">Inactive</option>
                     </select>
                 </div>
-                <div style="margin-top: 1.5rem; text-align: right;">
+                <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.5rem; flex-wrap: wrap;">
                     <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="button" class="btn btn-outline" onclick="ajaxUpdateStudent(this)">⚡ Update via Fetch API</button>
                     <button type="submit" class="btn btn-primary">Update Record</button>
                 </div>
             </form>
@@ -401,6 +422,35 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
     </div>
 
     <script>
+        function showToast(message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.style.padding = '0.85rem 1.25rem';
+            toast.style.background = isError ? '#991b1b' : '#065f46';
+            toast.style.color = '#ffffff';
+            toast.style.borderRadius = '8px';
+            toast.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.2)';
+            toast.style.fontSize = '0.9rem';
+            toast.style.fontWeight = '500';
+            toast.style.pointerEvents = 'auto';
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-10px)';
+            toast.style.transition = 'all 0.3s ease';
+            toast.innerHTML = message;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            }, 10);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-10px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
         function openEditModal(student) {
             document.getElementById('edit-student-id').value = student.id;
             document.getElementById('edit-name').value = student.name;
@@ -413,10 +463,144 @@ if (empty($students) && empty($searchQuery) && $courseFilter === 'all') {
             modal.classList.add('active');
             modal.setAttribute('aria-hidden', 'false');
         }
+
         function closeEditModal() {
             const modal = document.getElementById('edit-student-modal');
             modal.classList.remove('active');
             modal.setAttribute('aria-hidden', 'true');
+        }
+
+        // Asynchronous Delete using Fetch API (No page reload)
+        async function ajaxDeleteStudent(id, name, btn) {
+            if (!confirm(`[Fetch API / AJAX] Permanently delete student #${id} (${name}) without page reload?`)) {
+                return;
+            }
+            btn.disabled = true;
+            btn.textContent = '...';
+
+            const res = await StudentHubAPI.delete('../api/students.php', { id: id });
+            if (res.ok) {
+                const row = document.getElementById(`student-row-${id}`) || btn.closest('tr');
+                if (row) {
+                    row.style.transition = 'all 0.4s ease';
+                    row.style.backgroundColor = '#fee2e2';
+                    row.style.opacity = '0';
+                    setTimeout(() => {
+                        row.remove();
+                        const countEl = document.getElementById('student-count-display');
+                        if (countEl) {
+                            const cur = parseInt(countEl.textContent, 10);
+                            if (cur > 0) countEl.textContent = cur - 1;
+                        }
+                    }, 400);
+                }
+                showToast(`✅ Student #${id} (${name}) deleted successfully via Fetch API (No page reload).`);
+            } else {
+                showToast(`❌ Failed to delete student: ${res.data?.message || res.error || 'Server error'}`, true);
+                btn.disabled = false;
+                btn.textContent = '⚡ AJAX';
+            }
+        }
+
+        // Asynchronous Create using Fetch API (No page reload)
+        async function ajaxCreateStudent(btn) {
+            const name = document.getElementById('m-name').value.trim();
+            const email = document.getElementById('m-email').value.trim();
+            const mobile = document.getElementById('m-mobile').value.trim();
+            const course = document.getElementById('m-course').value;
+            const year = document.getElementById('m-year').value;
+
+            if (!name || !email || !mobile) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Creating...';
+
+            const payload = { name, email, mobile, course, year, gender: 'Male' };
+            const res = await StudentHubAPI.post('../api/students.php', payload);
+
+            btn.disabled = false;
+            btn.textContent = '⚡ Add via Fetch API';
+
+            if (res.ok && res.data && res.data.data) {
+                const newStudent = res.data.data;
+                const tbody = document.getElementById('students-tbody');
+                const emptyRow = document.getElementById('empty-row');
+                if (emptyRow) emptyRow.remove();
+
+                const newRow = document.createElement('tr');
+                newRow.id = `student-row-${newStudent.id}`;
+                newRow.style.backgroundColor = '#dcfce7';
+                newRow.style.transition = 'background-color 1s ease';
+                newRow.innerHTML = `
+                    <td><strong>#${newStudent.id}</strong></td>
+                    <td class="col-name">${newStudent.name}</td>
+                    <td class="col-email">${newStudent.email}</td>
+                    <td class="col-mobile">${mobile}</td>
+                    <td class="col-course">${newStudent.course}</td>
+                    <td class="col-year">${newStudent.year}</td>
+                    <td><span class="status-badge status-confirmed">Active</span></td>
+                    <td>
+                        <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                            <button type="button" class="btn btn-secondary btn-sm" onclick="openEditModal(${JSON.stringify({id: newStudent.id, name: newStudent.name, email: newStudent.email, mobile: mobile, course: newStudent.course, year: newStudent.year, status: 'Active'})})">Edit</button>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="ajaxDeleteStudent(${newStudent.id}, '${newStudent.name.replace(/'/g, "\\'")}', this)">⚡ AJAX</button>
+                        </div>
+                    </td>
+                `;
+                tbody.prepend(newRow);
+                setTimeout(() => { newRow.style.backgroundColor = ''; }, 1500);
+
+                const countEl = document.getElementById('student-count-display');
+                if (countEl) countEl.textContent = parseInt(countEl.textContent, 10) + 1;
+
+                // Close modal and reset form
+                const modal = document.getElementById('add-student-modal');
+                if (modal) {
+                    modal.classList.remove('active');
+                    modal.setAttribute('aria-hidden', 'true');
+                }
+                document.getElementById('add-student-form').reset();
+                showToast(`🎉 Student #${newStudent.id} (${newStudent.name}) created via Fetch API!`);
+            } else {
+                showToast(`❌ Create failed: ${res.data?.message || res.data?.errors?.email || 'Error'}`, true);
+            }
+        }
+
+        // Asynchronous Update using Fetch API (No page reload)
+        async function ajaxUpdateStudent(btn) {
+            const id = document.getElementById('edit-student-id').value;
+            const name = document.getElementById('edit-name').value.trim();
+            const mobile = document.getElementById('edit-mobile').value.trim();
+            const course = document.getElementById('edit-course').value;
+            const year = document.getElementById('edit-year').value;
+            const status = document.getElementById('edit-status').value;
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Updating...';
+
+            const payload = { id, name, mobile, course, year, status };
+            const res = await StudentHubAPI.put('../api/students.php', payload);
+
+            btn.disabled = false;
+            btn.textContent = '⚡ Update via Fetch API';
+
+            if (res.ok) {
+                const row = document.getElementById(`student-row-${id}`);
+                if (row) {
+                    row.querySelector('.col-name').textContent = name;
+                    row.querySelector('.col-mobile').textContent = mobile;
+                    row.querySelector('.col-course').textContent = course;
+                    row.querySelector('.col-year').textContent = year;
+                    row.style.backgroundColor = '#dbeafe';
+                    setTimeout(() => { row.style.backgroundColor = ''; }, 1200);
+                }
+                closeEditModal();
+                showToast(`✅ Student #${id} details updated via Fetch API!`);
+            } else {
+                showToast(`❌ Update failed: ${res.data?.message || 'Error'}`, true);
+            }
         }
     </script>
 </body>

@@ -47,6 +47,7 @@ Higher education institutions conduct numerous academic, co-curricular, and extr
 ```
 StudentHub/
 │
+├── index.php                # Root Entry Point Router (Role-Aware Dispatcher)
 ├── index.html               # Public Home Page with Content Slider & Modal Dialogs
 ├── about.html               # Mission, Objectives & Academic Framework
 ├── register.html            # Student Registration with Real-Time Regex Validation
@@ -57,13 +58,17 @@ StudentHub/
 ├── contact.html             # Contact Directory & Support Inquiry Form
 ├── faq.html                 # Interactive Accordion FAQ Knowledge Base
 ├── feedback.html            # Student Feedback & Satisfaction Rating Form
+├── studenthub.sql           # Complete MySQL Relational Database Export (Root Submission)
+├── .env.example             # Environment Configuration Template
+├── .gitignore               # Version Control Exclusions
+├── README.md                # Master Project Documentation & Quickstart
 │
 ├── admin/                   # Administrative Management Console (Admin Role Only)
-│   ├── index.php            # Admin Overview KPI Dashboard & Monthly Participation Chart
+│   ├── index.php            # Admin Overview KPI Dashboard & Live Database Metrics
 │   ├── students.php         # Student Directory CRUD with Department Search & Filter
 │   ├── events.php           # Event Publishing, Seating CRUD & Secure Poster Upload
 │   ├── registrations.php    # Participant Roster Oversight & Status Updates
-│   └── audit-logs.php       # Security Activity Audit Trail with IP Origin Logging
+│   └── audit-logs.php       # Forensic Activity Audit Trail with Client IP Origin
 │
 ├── php/                     # Server-Side Business Logic & Security Guards
 │   ├── db.php               # Database Connection & Parameterized Query Helpers
@@ -102,17 +107,13 @@ StudentHub/
 ├── sql/                     # Relational Database Schema & Migrations
 │   └── studenthub.sql       # 3NF Schema DDL, Foreign Keys, Indexes & Seed Data
 │
-├── docs/                    # Laboratory Practical Manuals (Practicals 01 to 15)
-│   ├── requirements.md      # Functional & Non-Functional Specifications
-│   ├── sitemap.md           # 15-Page Sitemap & User Navigation Flows
-│   ├── wireframe.md         # Low-Fidelity Layout Wireframes
-│   ├── practical-01.md      # Lab 01 Report & Viva Guide
-│   ├── practical-02.md      # Lab 02 Report & Viva Guide
-│   ├── ...                  # Lab 03 to Lab 14 Reports
-│   └── practical-15.md      # Final Integration & Deployment Manual
-│
-├── README.md                # Master Project Documentation
-└── .gitignore               # Version Control Exclusions
+└── docs/                    # Laboratory Practical Manuals & Verification Deliverables
+    ├── TEST_SECURITY_REPORT.md # 25-Point Functional Test Suite & Security Audit Report
+    ├── LOCAL_DEPLOYMENT.md     # Step-by-Step XAMPP Setup & Troubleshooting Guide
+    ├── DEMO_GUIDE.md           # 5-7 Minute Practical Viva & Evaluator Demo Script
+    ├── screenshots/            # Verified Screenshots (01-home.png to 11-database-tables.png)
+    ├── practical-15.md         # Practical 15 Integration & Testing Manual
+    └── practical-01.md to 14.md# Previous Continuous Practical Reports
 ```
 
 ---

@@ -30,25 +30,56 @@ function initEventsEngine() {
         </div>
     `;
 
-    // Fetch Events via Fetch API
-    fetch("data/events.json")
+    // Fetch Events via REST API with fallback to static JSON
+    fetch("api/events.php")
         .then((res) => {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             return res.json();
         })
-        .then((data) => {
-            allEvents = data;
+        .then((json) => {
+            const list = json.data || (Array.isArray(json) ? json : []);
+            allEvents = list.map(ev => ({
+                id: ev.id,
+                title: ev.title,
+                category: ev.category,
+                date: ev.date || ev.event_date,
+                time: ev.time || ev.time_slot || '10:00 AM - 04:00 PM',
+                venue: ev.venue,
+                seats: ev.seats || 100,
+                description: ev.description,
+                poster: ev.poster || 'uploads/events/default.jpg'
+            }));
             filteredEvents = [...allEvents];
             applyFiltersAndRender();
         })
         .catch((err) => {
-            console.error("Failed to load events data:", err);
-            container.innerHTML = `
-                <div class="card" style="grid-column: 1 / -1; text-align: center; border-color: #fecaca; background-color: #fef2f2; padding: 2.5rem;">
-                    <h3 style="color: #dc2626;">⚠️ Unable to Load Events Catalog</h3>
-                    <p style="color: #7f1d1d;">Could not retrieve events from the local JSON data source. Please ensure data/events.json exists.</p>
-                </div>
-            `;
+            console.warn("API failed, falling back to data/events.json:", err);
+            return fetch("data/events.json")
+                .then(res => res.json())
+                .then(data => {
+                    allEvents = data.map(ev => ({
+                        id: ev.id,
+                        title: ev.title,
+                        category: ev.category,
+                        date: ev.date || ev.event_date,
+                        time: ev.time || ev.time_slot || '10:00 AM - 04:00 PM',
+                        venue: ev.venue,
+                        seats: ev.seats || 100,
+                        description: ev.description,
+                        poster: ev.poster || 'uploads/events/default.jpg'
+                    }));
+                    filteredEvents = [...allEvents];
+                    applyFiltersAndRender();
+                })
+                .catch((fatalErr) => {
+                    console.error("Failed to load events data from all sources:", fatalErr);
+                    container.innerHTML = `
+                        <div class="card" style="grid-column: 1 / -1; text-align: center; border-color: #fecaca; background-color: #fef2f2; padding: 2.5rem;">
+                            <h3 style="color: #dc2626;">⚠️ Unable to Load Events Catalog</h3>
+                            <p style="color: #7f1d1d;">Could not retrieve events from either api/events.php or data/events.json.</p>
+                        </div>
+                    `;
+                });
         });
 
     // Event Listeners for Live Filtering

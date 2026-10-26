@@ -18,9 +18,13 @@ if (!is_dir($uploadDir)) {
 // 1. Handle Event CRUD Actions
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
     $action = $_POST['action'];
+    $csrfToken = $_POST['csrf_token'] ?? '';
 
-    // CREATE EVENT WITH POSTER UPLOAD
-    if ($action === "create") {
+    if (!verifyCsrfToken($csrfToken)) {
+        $errorMsg = "Security validation failed: Invalid or expired CSRF token.";
+    } else {
+        // CREATE EVENT WITH POSTER UPLOAD
+        if ($action === "create") {
         $title = trim(strip_tags($_POST['title'] ?? ''));
         $description = trim(strip_tags($_POST['description'] ?? ''));
         $event_date = trim($_POST['event_date'] ?? '');
@@ -231,6 +235,7 @@ if ($db_connected && isset($conn)) {
                                                 <button type="button" class="btn btn-secondary btn-sm" onclick="openEditEventModal(<?php echo htmlspecialchars(json_encode($ev), ENT_QUOTES, 'UTF-8'); ?>)">Edit</button>
                                                 <form action="events.php" method="POST" onsubmit="return confirm('Delete event #<?php echo $ev['id']; ?>? This will cancel all student registrations for this event.');" style="display:inline;">
                                                     <input type="hidden" name="action" value="delete">
+                                                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                                                     <input type="hidden" name="event_id" value="<?php echo $ev['id']; ?>">
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
@@ -253,6 +258,7 @@ if ($db_connected && isset($conn)) {
             <h2 style="color: var(--primary-600); margin-bottom: 1rem;">Publish New Campus Event</h2>
             <form action="events.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="create">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                 <div class="form-group">
                     <label for="ev-title">Event Title *</label>
                     <input type="text" id="ev-title" name="title" class="form-control" required placeholder="e.g. AI & Cloud Hackathon 2026">
@@ -309,6 +315,7 @@ if ($db_connected && isset($conn)) {
             <h2 style="color: var(--primary-600); margin-bottom: 1rem;">Edit Event Details</h2>
             <form action="events.php" method="POST">
                 <input type="hidden" name="action" value="update">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                 <input type="hidden" id="edit-ev-id" name="event_id" value="">
                 <div class="form-group">
                     <label for="edit-ev-title">Event Title</label>

@@ -12,8 +12,12 @@ $errorMsg = "";
 // 1. Handle Status Update / Deletion
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
     $action = $_POST['action'];
+    $csrfToken = $_POST['csrf_token'] ?? '';
 
-    if ($action === "update_status") {
+    if (!verifyCsrfToken($csrfToken)) {
+        $errorMsg = "Security validation failed: Invalid or expired CSRF token.";
+    } else {
+        if ($action === "update_status") {
         $regId = intval($_POST['reg_id'] ?? 0);
         $newStatus = trim($_POST['status'] ?? 'Confirmed');
 
@@ -140,6 +144,7 @@ if (empty($registrations)) {
                                     <td>
                                         <form action="registrations.php" method="POST" style="display:flex; gap:0.25rem; align-items:center;">
                                             <input type="hidden" name="action" value="update_status">
+                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="reg_id" value="<?php echo $r['id']; ?>">
                                             <select name="status" class="form-control" style="padding:0.25rem 0.5rem; font-size:0.8rem; width:auto;">
                                                 <option value="Confirmed" <?php echo $r['status']==='Confirmed'?'selected':''; ?>>Confirmed</option>
@@ -152,6 +157,7 @@ if (empty($registrations)) {
                                     <td>
                                         <form action="registrations.php" method="POST" onsubmit="return confirm('Cancel registration #<?php echo $r['id']; ?>?');" style="display:inline;">
                                             <input type="hidden" name="action" value="delete_reg">
+                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken(), ENT_QUOTES, 'UTF-8'); ?>">
                                             <input type="hidden" name="reg_id" value="<?php echo $r['id']; ?>">
                                             <button type="submit" class="btn btn-danger btn-sm" style="padding:0.25rem 0.5rem;">Remove</button>
                                         </form>

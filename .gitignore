@@ -31,9 +31,14 @@ temp/
 tmp/
 *.tmp
 
-# Uploaded Files (Keep directory structure but ignore uploaded files in production)
+# Uploaded Files (Keep default seed images and directory structure)
 uploads/events/*
 !uploads/events/.gitkeep
+!uploads/events/default.jpg
+!uploads/events/event1.jpg
+!uploads/events/event2.jpg
+!uploads/events/event3.jpg
+!uploads/.htaccess
 
 # Cache & Vendor Directories (if any tooling is used)
 .cache/

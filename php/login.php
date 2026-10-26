@@ -1,8 +1,8 @@
 <?php
 /**
- * StudentHub - Secure Authentication & Session Login Handler (Practical 10)
+ * StudentHub - Secure Authentication & Session Login Handler (Practical 10 & 15)
  * Verifies credentials against MySQL using password_verify(), regenerates session ID,
- * establishes RBAC session state, logs audit entry, and routes students vs admins.
+ * enforces login throttling, establishes RBAC session state, logs audit entry, and routes students vs admins.
  */
 
 header('Content-Type: text/html; charset=UTF-8');
@@ -14,8 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = isset($_POST['email']) ? trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
     $remember = isset($_POST['remember']);
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $rateKey = "login_" . md5($ip . "_" . $email);
 
-    if (empty($email) || empty($password)) {
+    // 1. Rate Limiting Check (5 attempts / 60 seconds lockout)
+    $rateStatus = checkLoginRateLimit($rateKey, 5, 60);
+    if (!$rateStatus['allowed']) {
+        $error = "Too many failed login attempts. Please wait " . $rateStatus['wait_seconds'] . " seconds before trying again.";
+    } elseif (empty($email) || empty($password)) {
         $error = "Please provide both your registered email and password.";
     } else {
         if ($db_connected && isset($conn)) {
@@ -31,6 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 // Verify password against BCRYPT hash
                 if (password_verify($password, $user['password'])) {
+                    // Reset rate limit on success
+                    resetLoginRateLimit($rateKey);
+
                     // Prevent Session Fixation: Regenerate session ID
                     session_regenerate_id(true);
 
@@ -58,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     // Handle Remember Me (hashed token cookie)
                     if ($remember) {
                         $token = bin2hex(random_bytes(32));
-                        $tokenHash = hash('sha256', $token);
                         setcookie("studenthub_remember", $user['id'] . ":" . $token, time() + (86400 * 30), "/", "", false, true);
                     }
 
@@ -70,36 +78,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                     exit;
                 } else {
+                    recordFailedLoginAttempt($rateKey);
                     $error = "Invalid password. Please check your credentials.";
                     logAuditEvent($conn, null, "FAILED_LOGIN", "users", null, "Failed login attempt for: " . $email);
                 }
             } else {
+                recordFailedLoginAttempt($rateKey);
                 $error = "No registered account found with that email address.";
+                logAuditEvent($conn, null, "FAILED_LOGIN", "users", null, "Unregistered login attempt for: " . $email);
             }
         } else {
-            // Fallback for demonstration / offline mock login
-            if ($email === "admin@studenthub.edu" && $password === "Admin@123") {
-                session_regenerate_id(true);
-                $_SESSION['user_id'] = 1;
-                $_SESSION['user_name'] = "Admin (Dhara Ma'am)";
-                $_SESSION['user_email'] = $email;
-                $_SESSION['user_role'] = "admin";
-                $_SESSION['last_activity'] = time();
-                header("Location: ../admin/index.php");
-                exit;
-            } elseif ($email === "25cs102@charusat.edu.in" && ($password === "Student@123" || strlen($password) >= 8)) {
-                session_regenerate_id(true);
-                $_SESSION['user_id'] = 2;
-                $_SESSION['user_name'] = "Daksh Shah";
-                $_SESSION['user_email'] = $email;
-                $_SESSION['user_role'] = "student";
-                $_SESSION['student_id'] = 1;
-                $_SESSION['last_activity'] = time();
-                header("Location: ../dashboard.php");
-                exit;
-            } else {
-                $error = "Invalid credentials. Use demo: 25cs102@charusat.edu.in / Student@123 or admin@studenthub.edu / Admin@123.";
-            }
+            // Safe message if database is not reachable
+            $error = "Unable to connect to the StudentHub database. Please verify MySQL service is running in XAMPP.";
         }
     }
 }
@@ -109,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication Error | StudentHub</title>
+    <title>Authentication Notice | StudentHub</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
@@ -127,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="alert alert-danger" style="margin-bottom: 1.5rem;">
                 <p style="margin-bottom: 0;"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p>
             </div>
-            <div style="display: flex; gap: 0.75rem; justify-content: center;">
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
                 <a href="../login.html" class="btn btn-primary">Try Again</a>
                 <a href="../register.html" class="btn btn-secondary">Create Account</a>
             </div>
