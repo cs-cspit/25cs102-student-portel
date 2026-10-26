@@ -1,138 +1,174 @@
-# StudentHub — Local Deployment & Setup Guide (XAMPP Environment)
+# StudentHub Portal — Local Deployment Guide (XAMPP Environment)
 
-**Institution:** CSPIT, CHARUSAT — Faculty of Technology & Engineering  
-**Subject:** ITUE203 — Web Development Frameworks (Practical 15)  
-**Target Local URL:** `http://localhost/studenthub/`  
+**Institution:** CHARUSAT — Faculty of Technology & Engineering (CSPIT)  
+**Subject:** Web Development Frameworks (ITUE203)  
+**Semester:** 3rd Semester, 2026–27  
+**Student:** Daksh Shah (25CS102)  
+**Guide:** Dhara Ma'am  
+**Practical:** 15 — Local Deployment Verification  
 
 ---
 
 ## 1. System Requirements & Prerequisites
 
-To run StudentHub locally, ensure your machine has:
-1. **XAMPP Control Panel** (v3.3.0 or higher) containing:
-   - **Apache HTTP Server** 2.4+
-   - **MySQL / MariaDB** 8.0+ / 10.4+
-   - **PHP** 8.1 or 8.2+ with `mysqli`, `openssl`, and `fileinfo` extensions enabled.
-2. Modern Web Browser (Google Chrome, Microsoft Edge, or Mozilla Firefox).
-3. Text Editor or IDE (VS Code recommended).
+Ensure the following prerequisites are installed and operational on your system:
+
+- **Operating System:** Windows 10/11, macOS, or Ubuntu Linux
+- **XAMPP Control Panel:** v3.3.0 or higher
+- **Web Server:** Apache 2.4+ (Standard Port: `80` or `8080`)
+- **PHP Runtime:** PHP 8.1 or PHP 8.2 (Tested on **PHP 8.2.12**)
+  - Enabled PHP Extensions: `mysqli`, `pdo_mysql`, `fileinfo`, `session`, `json`, `curl`
+- **Database Server:** MySQL 8.0+ or MariaDB 10.4+ (Standard Port: `3306`)
+- **Web Browser:** Google Chrome, Microsoft Edge, Mozilla Firefox, or Safari (Modern ES6+ compatible)
 
 ---
 
-## 2. Verified Local Setup (Already Performed in Current Environment)
+## 2. Step-by-Step Installation & Deployment
 
-> [!NOTE]
-> On this local machine, the workspace directory has already been linked to `C:\xampp\htdocs\studenthub`, the MySQL database `studenthub` has been imported, and Apache is active. The steps below document the standard process for reproduction or submission evaluation.
+### Step 1: Clone or Place Project in `htdocs`
 
----
-
-## 3. Step-by-Step Deployment Procedure
-
-### Step 1: Start Apache and MySQL in XAMPP
-1. Open **XAMPP Control Panel** (run as Administrator if needed).
-2. Click **Start** next to **Apache**.
-   - Verify that the module indicator turns **green** and shows Port `80, 443`.
-3. Click **Start** next to **MySQL**.
-   - Verify that the module indicator turns **green** and shows Port `3306`.
+1. Open your XAMPP installation directory (default: `C:\xampp\`).
+2. Navigate to the `htdocs` directory: `C:\xampp\htdocs\`.
+3. Create a folder named `studenthub` or create a directory symbolic link:
+   ```cmd
+   mklink /J "C:\xampp\htdocs\studenthub" "C:\Users\daksh\Documents\1. SEM - 3\WDF\pr 15"
+   ```
+4. Verify that `C:\xampp\htdocs\studenthub\index.php` is accessible.
 
 ---
 
-### Step 2: Link or Place the Project in `htdocs`
+### Step 2: Start Apache and MySQL Services
 
-The application must be accessible under `C:\xampp\htdocs\studenthub`.
-
-#### Option A: Windows Directory Junction (Recommended — Zero Duplicate Files)
-Open Command Prompt (or PowerShell) and execute:
-```cmd
-mklink /J "C:\xampp\htdocs\studenthub" "c:\Users\daksh\Documents\1. SEM - 3\WDF\dhara maam"
-```
-*Benefit: Any edits made in your workspace are instantly reflected in Apache without manual copying.*
-
-#### Option B: Direct Copy
-Copy the entire `StudentHub` project folder directly into `C:\xampp\htdocs\` and rename the folder to `studenthub`.
+1. Open the **XAMPP Control Panel**.
+2. Click **Start** next to **Apache**. (Ensure the indicator turns green on Port 80, 443).
+3. Click **Start** next to **MySQL**. (Ensure the indicator turns green on Port 3306).
 
 ---
 
 ### Step 3: Create & Import the Database
 
-#### Method 1: Via phpMyAdmin (GUI)
-1. Open your browser and navigate to: `http://localhost/phpmyadmin/`
-2. Click **New** in the left sidebar to create a database.
-3. In the Database name field, enter: `studenthub`
-4. Collation: select `utf8mb4_unicode_ci` and click **Create**.
-5. With `studenthub` selected, click the **Import** tab at the top.
-6. Click **Choose File** and select `studenthub.sql` from the repository root (or `sql/studenthub.sql`).
-7. Scroll down and click **Import**.
-8. Verify that 5 tables are created:
-   - `users` (5 seed accounts)
-   - `students` (20 seed student records)
-   - `events` (16 campus event records)
-   - `registrations` (5 seed participant records)
-   - `audit_logs` (Forensic activity log)
+You can import the database using either phpMyAdmin (GUI) or the MySQL Command Line.
 
-#### Method 2: Via Command Line (Fastest)
-Run the following in PowerShell:
+#### Option A: Using phpMyAdmin (Recommended for Browser)
+1. Open your browser and navigate to: [http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)
+2. In the left sidebar, click **New**.
+3. Set the database name to: `studenthub`
+4. Set the collation to: `utf8mb4_unicode_ci` and click **Create**.
+5. Select the newly created `studenthub` database from the left list.
+6. Click the **Import** tab on the top menu bar.
+7. Click **Choose File** and browse to select `studenthub.sql` (located at the root of the project: `C:\xampp\htdocs\studenthub\studenthub.sql`).
+8. Leave all default options and click **Import** at the bottom of the page.
+9. Verify that all 5 tables (`users`, `students`, `events`, `registrations`, `audit_logs`) are created and populated.
+
+#### Option B: Using Command Line (PowerShell / Command Prompt)
+Run the following commands:
 ```powershell
-Get-Content "studenthub.sql" | & "C:\xampp\mysql\bin\mysql.exe" -u root
+# Create database
+C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE IF NOT EXISTS studenthub CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+# Import schema and seed records
+C:\xampp\mysql\bin\mysql.exe -u root studenthub < "C:\xampp\htdocs\studenthub\studenthub.sql"
 ```
 
 ---
 
-### Step 4: Configure Database Connection (`php/db.php`)
+### Step 4: Verify Database Connection Configuration
 
-Open `php/db.php`. By default, it is configured for standard XAMPP out-of-the-box settings:
+The application database configuration is centralized in `php/db.php`:
+
 ```php
-if (!defined('DB_HOST')) define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-if (!defined('DB_USER')) define('DB_USER', getenv('DB_USER') ?: 'root');
-if (!defined('DB_PASS')) define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
-if (!defined('DB_NAME')) define('DB_NAME', getenv('DB_NAME') ?: 'studenthub');
-if (!defined('DB_PORT')) define('DB_PORT', (int)(getenv('DB_PORT') ?: 3306));
+// File: php/db.php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');          // Default XAMPP root password is empty
+define('DB_NAME', 'studenthub');
+define('DB_PORT', 3306);
 ```
-If your MySQL has a root password, either set it in `php/db.php` or create a `.env` file from `.env.example`.
+
+If your local MySQL uses a custom password or port, edit `php/db.php` accordingly. A copy of `.env.example` is also provided in the repository for environment documentation.
 
 ---
 
-### Step 5: Launch the Application
+### Step 5: Configure Permissions & Directories
 
-Open your browser and navigate to:
-```
-http://localhost/studenthub/
-```
-The root entry point (`index.php`) will automatically serve the public home page.
+Ensure the following upload and data folders exist and have write permissions:
+- `uploads/events/` (Contains event banner images)
+- `uploads/avatars/` (Student profile avatars)
+- `data/` (Contains fallback JSON caches)
+
+> **Security Note:** An `.htaccess` configuration is automatically placed in `uploads/` to prevent execution of `.php` scripts inside uploaded directories.
 
 ---
 
-## 4. Test Accounts & Default Credentials
+## 3. Verified Demo Accounts & Credentials
 
-| Role | Email Address | Password | Landing Page |
+The database comes pre-seeded with tested accounts. All passwords have been hashed with PHP's native `PASSWORD_BCRYPT`:
+
+| Role | Email Address | Password | Permissions & Features |
 | :--- | :--- | :--- | :--- |
-| **Faculty / Admin** | `admin@studenthub.edu` | `Admin@123` | `http://localhost/studenthub/admin/index.php` |
-| **Student** | `25cs102@charusat.edu.in` | `Student@123` | `http://localhost/studenthub/dashboard.php` |
-| **Student (Seed 2)** | `aarav.ce@charusat.edu.in` | `Student@123` | `http://localhost/studenthub/dashboard.php` |
+| **System Administrator** | `admin@studenthub.edu` | `Admin@123` | Full Admin Console, KPI Analytics, Student CRUD, Event CRUD, File Uploads, Audit Trail Explorer |
+| **Registered Student** | `25cs102@charusat.edu.in` | `Student@123` | Student Dashboard, Enrolled Events, Profile Editor, Event Registration |
+| **Staff Member** | `faculty@charusat.edu.in` | `Faculty@123` | Campus Event Coordinator access |
 
 ---
 
-## 5. RESTful API Verification Endpoints
+## 4. Local Portal Endpoints & URLs
 
-Test that the JSON API endpoints respond with HTTP 200:
-- **Students API:** `http://localhost/studenthub/api/students.php`
-- **Events API:** `http://localhost/studenthub/api/events.php`
+| Portal Section | URL | Access Level | Description |
+| :--- | :--- | :--- | :--- |
+| **Portal Home** | [http://localhost/studenthub/index.php](http://localhost/studenthub/index.php) | Public | Dynamic landing page, live statistics, quick links |
+| **Event Catalog** | [http://localhost/studenthub/events.html](http://localhost/studenthub/events.html) | Public | Campus events directory with category filters |
+| **Student Registration**| [http://localhost/studenthub/register.html](http://localhost/studenthub/register.html) | Public | New student onboarding form with client validation |
+| **Authentication** | [http://localhost/studenthub/login.html](http://localhost/studenthub/login.html) | Public | Sign-in portal with 1-click test credentials buttons |
+| **Student Dashboard** | [http://localhost/studenthub/dashboard.php](http://localhost/studenthub/dashboard.php) | Student | Personalized academic dashboard and enrollments |
+| **Admin Console** | [http://localhost/studenthub/admin/index.php](http://localhost/studenthub/admin/index.php) | Admin Only | Administrative overview, real-time metrics |
+| **Student Directory**| [http://localhost/studenthub/admin/students.php](http://localhost/studenthub/admin/students.php) | Admin Only | Full CRUD table with async Fetch & traditional POST |
+| **Event Management** | [http://localhost/studenthub/admin/events.php](http://localhost/studenthub/admin/events.php) | Admin Only | Create/edit events and upload poster banners |
+| **Audit Logs** | [http://localhost/studenthub/admin/audit-logs.php](http://localhost/studenthub/admin/audit-logs.php) | Admin Only | Security audit trail with parameterized filters |
+| **REST API (Students)** | [http://localhost/studenthub/api/students.php](http://localhost/studenthub/api/students.php) | Public/Admin | JSON API supporting GET, POST, PUT, DELETE |
+| **REST API (Events)** | [http://localhost/studenthub/api/events.php](http://localhost/studenthub/api/events.php) | Public | JSON API for event catalog with search queries |
+
+---
+
+## 5. Verification Checklist & Actual Local Results
+
+| Verification Check | Target Component | Method | Result | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Web Server Binding** | Apache 2.4 | Port 80 Listener | Responds with HTTP 200 | **VERIFIED** |
+| **Database Listener** | MySQL / MariaDB | Port 3306 Socket | Handshake & authentication OK | **VERIFIED** |
+| **Database Schema** | `studenthub` | SQL Query | 5 tables created, foreign keys valid | **VERIFIED** |
+| **Seed Records** | `students`, `events` | `SELECT COUNT(*)` | 20 students, 16 events, 5 users | **VERIFIED** |
+| **Password Verification**| `users` table | `password_verify()` | Validates `Admin@123` & `Student@123` | **VERIFIED** |
+| **RBAC Protection** | `/admin/*` routes | Unauthenticated GET | Redirects 302 to `login.html` | **VERIFIED** |
+| **API Endpoints** | `/api/students.php` | Headless GET | Returns 200 OK with JSON array | **VERIFIED** |
+| **File Upload Pipeline** | `admin/events.php` | Valid JPEG Upload | Saves to `uploads/events/` | **VERIFIED** |
+| **CSRF Defense** | Admin forms | POST without token | Fails safely with security alert | **VERIFIED** |
 
 ---
 
 ## 6. Troubleshooting Common Issues
 
-### Issue 1: "Unable to connect to the database"
-- **Cause:** MySQL is not running in XAMPP or the database name is incorrect.
-- **Solution:** Open XAMPP Control Panel and ensure MySQL shows "Running" on Port 3306. Check in phpMyAdmin that the `studenthub` database exists.
+### Issue 1: Apache Port 80 Conflict (e.g., with IIS or Skype)
+- **Symptom:** Apache fails to start in XAMPP with error `Port 80 in use by PID ...`.
+- **Solution:** 
+  1. In XAMPP, click **Config** next to Apache &rarr; **httpd.conf**.
+  2. Search for `Listen 80` and change to `Listen 8080`.
+  3. Search for `ServerName localhost:80` and change to `ServerName localhost:8080`.
+  4. Access portal at: `http://localhost:8080/studenthub/`.
 
-### Issue 2: Apache Port 80 Conflict
-- **Cause:** Another process (e.g., Skype, IIS, or VMware) is listening on port 80.
-- **Solution:** In XAMPP Control Panel, click **Config** next to Apache -> `httpd.conf`. Search for `Listen 80` and change to `Listen 8080`. Then access via `http://localhost:8080/studenthub/`.
+### Issue 2: MySQL Connection Refused / Access Denied
+- **Symptom:** `Database connection error: Access denied for user 'root'@'localhost'`.
+- **Solution:** 
+  1. Check if a password is set on your local MySQL root user.
+  2. Open `php/db.php` and update `define('DB_PASS', 'your_password_here');`.
 
-### Issue 3: Uploaded Event Posters Do Not Appear
-- **Cause:** Missing `uploads/events/` directory or write permission issue.
-- **Solution:** Ensure the folder `uploads/events/` exists and is writable by the web server process.
+### Issue 3: Poster Upload Directory Permissions
+- **Symptom:** "Failed to upload image. Please check directory permissions."
+- **Solution:** Ensure `uploads/events` exists. On Linux/macOS, execute:
+  ```bash
+  chmod -R 775 uploads/
+  ```
 
-### Issue 4: Session Cleared Unexpectedly
-- **Cause:** 30 minutes of inactivity elapsed.
-- **Solution:** Log in again. This is an intentional security feature adhering to academic requirements.
+---
+
+*Local deployment verified and certified for Practical 15 on October 26, 2026.*

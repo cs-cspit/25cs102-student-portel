@@ -132,6 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
             }
         }
     }
+    }
 }
 
 // 2. Fetch Events List

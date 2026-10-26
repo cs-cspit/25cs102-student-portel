@@ -1,105 +1,139 @@
-# StudentHub — Practical 15 Viva & Demo Evaluation Guide
+# StudentHub Portal — Practical 15 Viva & Demo Guide
 
-**Subject:** ITUE203 — Web Development Frameworks  
-**Candidate Name:** Daksh Shah (Roll No: 25CS102)  
-**Evaluator:** Prof. Dhara Ma'am  
-**Target Duration:** 5 to 7 Minutes  
-
----
-
-## 1. Quick Demonstration Workflow (5–7 Minute Sequence)
-
-Follow this structured sequence to demonstrate the complete full-stack portal to the practical examiner:
-
-### Minute 1: Public Portal, Layout & Client Interactivity
-1. Open `http://localhost/studenthub/` in the browser.
-2. Highlight:
-   - Semantic HTML5 structure (Header, Nav, Hero, Stats, Footer).
-   - Theme toggle in the navbar (Toggle between **Light Mode** and **Dark Mode** to show CSS custom property variables and `localStorage` persistence).
-   - Responsive mobile navigation (hamburger menu).
-3. Navigate to `events.html`:
-   - Type a keyword (e.g. "Hackathon") in the search bar to demonstrate real-time client-side DOM filtering.
-   - Click category filter chips ("Workshop", "Sports", "Technical") to show dynamic categorization without page reloads.
-
-### Minute 2: Student Registration & Client-Side Regex Validation
-1. Click **Register** (`register.html`).
-2. Demonstrate Client-Side Validation:
-   - Click the "Create Student Account" button with blank inputs. Show the red outline highlighting and contextual warning badges.
-   - Enter an invalid email format (e.g., `invalid-email`). Show the real-time regex validation rejecting it.
-   - Enter a weak password (e.g., `123`). Show the password strength meter indicator.
-3. Explain that client validation enhances UX, while server-side validation in `php/register.php` acts as the mandatory security gatekeeper.
-
-### Minute 3: Student Authentication & Student Dashboard
-1. Click **Login** (`login.html`).
-2. Demonstrate failed authentication:
-   - Enter `25cs102@charusat.edu.in` with an incorrect password. Show the secure "Authentication Failed" error screen and mention that the attempt is captured in `audit_logs`.
-3. Demonstrate successful authentication:
-   - Enter `25cs102@charusat.edu.in` and password `Student@123`.
-   - Click **Login**. Show the 302 redirect landing on `dashboard.php`.
-4. Point out student-specific features:
-   - Greeting banner displaying "Daksh Shah (25CS102)".
-   - Enrolled events list populated dynamically from the `registrations` MySQL table.
-   - Quick actions to edit profile (`profile.php`).
-
-### Minute 4: Role-Based Access Control (RBAC) Security Proof
-1. While still logged in as the student, attempt to manually navigate to:
-   `http://localhost/studenthub/admin/index.php`
-2. Show that `php/admin-auth.php` immediately intercepts the request, blocks access, and renders a 403 **"Access Denied"** security page.
-3. Click **Logout** (`php/logout.php`) to demonstrate complete session destruction and cookie clearing.
-
-### Minute 5: Administrator Console & Management CRUD
-1. Log in with Administrator credentials:
-   - Email: `admin@studenthub.edu`
-   - Password: `Admin@123`
-2. Lands on `admin/index.php`:
-   - Point out real-time KPI counter cards: **20 Students, 16 Events, 5 Registrations, 5 User Accounts** sourced live from MySQL queries.
-3. Navigate to **Students** (`admin/students.php`):
-   - Show the 20 registered students.
-   - Demonstrate the search box filtering by name or course.
-   - Open the "Add New Student" modal to show the parameterized prepared statement form.
-4. Navigate to **Events** (`admin/events.php`):
-   - Show the campus event catalog with poster thumbnails.
-   - Explain file upload security: binary MIME verification via `finfo_file()`, extension whitelisting, 2MB size limit, and randomized filenames.
-
-### Minute 6: Forensic Audit Trail & RESTful JSON APIs
-1. Navigate to **Audit Logs** (`admin/audit-logs.php`):
-   - Point out the immutable audit table displaying recent `USER_LOGIN`, `FAILED_LOGIN`, and event registrations, including the client IP address (`::1` or `127.0.0.1`) and exact timestamp.
-2. Demonstrate RESTful JSON API:
-   - Open a new browser tab to `http://localhost/studenthub/api/students.php`.
-   - Show the standardized JSON payload (`{ "success": true, "data": [...] }`) with 20 student profiles.
-   - Open `http://localhost/studenthub/api/events.php` to show the 16 event records.
+**Institution:** CHARUSAT — Faculty of Technology & Engineering (CSPIT)  
+**Subject:** Web Development Frameworks (ITUE203)  
+**Semester:** 3rd Semester, 2026–27  
+**Candidate Name:** Daksh Shah  
+**Student ID:** 25CS102  
+**Faculty Evaluator:** Dhara Ma'am  
+**Target Duration:** 5–10 Minutes  
 
 ---
 
-## 2. Master Viva Voce Questions & Answers (Examiner Favorites)
+## 1. Quick Evaluator Credentials
 
-### Q1: What architecture does StudentHub follow?
-**Answer:** StudentHub follows a classic 3-Tier Web Architecture:
-- **Presentation Tier:** Semantic HTML5, CSS3 Grid/Flexbox design tokens, and Vanilla ES6+ JavaScript.
-- **Application / Business Tier:** PHP 8.2 modular controllers with Session RBAC, RESTful JSON APIs, and secure file upload handling.
-- **Database Persistence Tier:** MySQL 8.0 normalized relational schema (3NF) using InnoDB, foreign keys with cascading actions, and parameterized prepared statements via MySQLi.
+| Role | Email | Password | Quick Login Feature |
+| :--- | :--- | :--- | :--- |
+| **System Admin** | `admin@studenthub.edu` | `Admin@123` | On `login.html`, click **"Fill Admin Credentials"** |
+| **Student** | `25cs102@charusat.edu.in` | `Student@123` | On `login.html`, click **"Fill Student Credentials"** |
 
-### Q2: How does the application prevent SQL Injection attacks?
-**Answer:** All dynamic queries throughout the portal (in `php/db.php`, `login.php`, `register.php`, `admin/*.php`, and `api/*.php`) strictly utilize parameterized prepared statements (`$stmt->prepare()` and `$stmt->bind_param()`). User inputs are treated solely as literal values and are never directly concatenated into SQL query strings.
+---
 
-### Q3: How do you protect against Session Fixation and Session Hijacking?
-**Answer:**
-1. **Session Fixation Prevention:** We invoke `session_regenerate_id(true)` immediately upon credential verification during login, issuing a fresh session identifier and destroying the old one.
-2. **Session Hijacking Defenses:** Session cookies are configured with `HttpOnly=true` (disallowing client-side JavaScript access via XSS) and `SameSite=Strict` (preventing CSRF transmission).
-3. **Inactivity Expiration:** A 30-minute inactivity timer (`$_SESSION['last_activity']`) automatically invalidates abandoned sessions.
+## 2. Recommended Demonstration Flow (Step-by-Step)
 
-### Q4: How is Cross-Site Scripting (XSS) mitigated?
-**Answer:** Any user-supplied data or database fields displayed within HTML pages are encoded using `htmlspecialchars($data, ENT_QUOTES, 'UTF-8')`. This converts dangerous characters such as `<`, `>`, `"`, and `'` into harmless HTML character entities.
+### Step 1: Portal Landing Page & Dynamic Metrics (1 min)
+- **URL:** [http://localhost/studenthub/index.php](http://localhost/studenthub/index.php)
+- **Key Talking Points:**
+  - Dynamic PHP integration: Point out that the metrics (Total Students: 20+, Campus Events: 16, Active Registrations: 5) are queried directly from MySQL on page load.
+  - Session Awareness: Point out how the top navigation updates dynamically depending on whether a guest, student, or admin is browsing.
+  - Accessibility: Press <kbd>Tab</kbd> immediately on load to show the visible `"Skip to main content"` bypass link.
 
-### Q5: How do the RESTful API endpoints decouple frontend and backend?
-**Answer:** The endpoints in `/api/` return standardized JSON responses with standard HTTP status codes (`200 OK`, `201 Created`, `400 Bad Request`, `404 Not Found`). This allows client-side JavaScript to perform asynchronous CRUD operations using `fetch()` without full page reloads, and enables future expansion to native mobile apps.
+---
 
-### Q6: What security controls exist on the event poster file upload?
-**Answer:**
-1. Server-side extension check strictly limited to `.jpg`, `.jpeg`, and `.png`.
-2. Binary content inspection using PHP's `finfo_file(FILEINFO_MIME_TYPE)` to verify the actual file MIME type.
-3. 2MB file size ceiling.
-4. Storage in a dedicated directory (`uploads/events/`) with cryptographically randomized filenames (`event_<timestamp>_<hex>.ext`) to prevent arbitrary script execution or filename collision.
+### Step 2: Events Catalog & REST API Integration (1 min)
+- **URL:** [http://localhost/studenthub/events.html](http://localhost/studenthub/events.html)
+- **Key Talking Points:**
+  - Modern ES6 Fetch Architecture: Open Browser DevTools (<kbd>F12</kbd> &rarr; Network tab) and show that events are loaded via asynchronous `fetch('api/events.php')`.
+  - Filter Buttons: Click **"Technical"**, **"Cultural"**, and **"Sports"** filters to demonstrate client-side filtering without page reload.
+  - Rich Media: Point out the high-resolution event banners (`event1.jpg`, `event2.jpg`, `event3.jpg`) rendered with CSS aspect-ratio and responsive cards.
 
-### Q7: What is the purpose of the `audit_logs` table?
-**Answer:** It provides accountability and forensic traceability. Whenever sensitive actions occur (successful logins, failed login attempts, profile changes, student creations, or event deletions), the system records the actor user ID, action name, target entity, client IP address, and timestamp.
+---
+
+### Step 3: Student Registration & Validation (1.5 min)
+- **URL:** [http://localhost/studenthub/register.html](http://localhost/studenthub/register.html)
+- **Key Talking Points:**
+  - Client Validation: Submit empty fields to show client-side constraint feedback.
+  - Server Validation: Enter a duplicate email (`25cs102@charusat.edu.in`) and submit. Show that the backend catches duplicate keys and returns a friendly banner alert.
+  - Password Security: Explain that passwords are encrypted using PHP `password_hash()` with BCRYPT cost 10 before storage.
+
+---
+
+### Step 4: Role-Based Access Control (RBAC) Denial Test (30 sec)
+- **Action:** Open an Incognito / Private window (no active session).
+- **URL:** Attempt to access [http://localhost/studenthub/admin/index.php](http://localhost/studenthub/admin/index.php) directly.
+- **Key Talking Points:**
+  - Point out that `php/admin-auth.php` intercepts the request, verifies the lack of administrative privileges, and immediately redirects to `login.html?error=admin_login_required`.
+  - Mention that all admin endpoints verify role enforcement on the server side, preventing privilege escalation.
+
+---
+
+### Step 5: Admin Console & KPI Analytics (1 min)
+- **URL:** [http://localhost/studenthub/login.html](http://localhost/studenthub/login.html)
+- **Action:** Click **"Fill Admin Credentials"** &rarr; Submit.
+- **Key Talking Points:**
+  - Session Regeneration: Point out that upon login, `session_regenerate_id(true)` is executed to defeat session fixation.
+  - Admin Dashboard (`admin/index.php`): Show live KPI cards (Total Students, Active Events, Registrations, Audit Log Count) computed via MySQL queries.
+  - Quick Shortcuts & Recent Registrations table.
+
+---
+
+### Step 6: Dual-Mode Student Management CRUD (2 min)
+- **URL:** [http://localhost/studenthub/admin/students.php](http://localhost/studenthub/admin/students.php)
+- **Key Talking Points:**
+  - **Live Search & Filter:** Type `"Daksh"` or choose `"B.Tech CSE"` in the filter bar to demonstrate parameterized query filtering.
+  - **Asynchronous AJAX Delete:** Open the DevTools console, click **"Delete"** on a test row, confirm the prompt. Observe that the row smoothly fades out and a Toast notification appears with zero page reload (`ajaxDeleteStudent` function).
+  - **CSRF Protection:** Inspect the HTML form markup to show `<input type="hidden" name="csrf_token" value="...">`, proving all state changes require a cryptographic token.
+  - **SQL Injection Defense:** All queries utilize `executeQuery()` with bound parameters (e.g., `$stmt->bind_param("ss", ...)`).
+
+---
+
+### Step 7: Event Management & Secure File Upload (1.5 min)
+- **URL:** [http://localhost/studenthub/admin/events.php](http://localhost/studenthub/admin/events.php)
+- **Key Talking Points:**
+  - Click **"Add New Event"** modal.
+  - File Upload Security: Explain the 5-step server-side validation pipeline in `admin/events.php`:
+    1. Size verification: Strict &le; 2MB limit.
+    2. Extension whitelist: `.jpg`, `.jpeg`, `.png` only.
+    3. Binary MIME check: Inspected using PHP `finfo_file(FILEINFO_MIME_TYPE)` to prevent renamed scripts.
+    4. Safe renaming: File renamed to `event_{timestamp}_{hash}.ext`.
+    5. Directory execution guard: Show `uploads/.htaccess` with `php_flag engine off`, preventing execution of uploaded PHP scripts.
+
+---
+
+### Step 8: Audit Trail Explorer (1 min)
+- **URL:** [http://localhost/studenthub/admin/audit-logs.php](http://localhost/studenthub/admin/audit-logs.php)
+- **Key Talking Points:**
+  - Point out that every critical action (Admin login, Student deletion, Event creation) has been automatically logged into `audit_logs`.
+  - The log displays User ID, Action Type, Table Name, Record ID, IP Address (`127.0.0.1`), and Timestamp.
+  - Sensitive details (passwords, session cookies) are strictly excluded from the audit log payload.
+
+---
+
+### Step 9: Responsive Design & Accessibility (30 sec)
+- **Action:** In Browser DevTools, toggle Device Mode (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>) and select **iPhone 12 / Dimensions: 375x812**.
+- **Key Talking Points:**
+  - Responsive Grid: Show how cards and tables stack cleanly with zero horizontal overflow.
+  - Hamburger Navigation: Toggle the responsive mobile navigation drawer.
+  - Color Contrast: Text and UI badges comply with WCAG 2.1 AA color contrast standards.
+
+---
+
+### Step 10: Secure Logout (30 sec)
+- **Action:** Click **"Logout"** in the navigation bar.
+- **Key Talking Points:**
+  - `php/logout.php` clears `$_SESSION`, destroys the session file on the server, expires the `PHPSESSID` cookie, and safely redirects to `login.html?status=logged_out`.
+  - Pressing the browser "Back" button and clicking dashboard links redirects to login because the server-side session is fully invalidated.
+
+---
+
+## 3. Potential Viva Voce Questions & Model Answers
+
+**Q1: How do you prevent SQL Injection across your portal?**  
+*Answer:* We completely avoid dynamic string concatenation in SQL queries. Instead, we use MySQLi prepared statements through our helper wrapper (`executeQuery($sql, $types, $params)`). User input is treated strictly as data parameters rather than executable SQL code.
+
+**Q2: How is CSRF mitigated in your admin operations?**  
+*Answer:* We generate a cryptographically strong 32-byte pseudo-random token using `random_bytes(32)` stored in the user's session. Every mutating form includes this token as a hidden input. Before executing state modifications, the backend uses `hash_equals()` to prevent timing attacks while verifying token authenticity.
+
+**Q3: How do you prevent malicious executable file uploads (like PHP web shells)?**  
+*Answer:* We implement defense-in-depth:
+1. File extension validation against a strict whitelist (`.jpg, .jpeg, .png`).
+2. MIME-type validation using `finfo_file()` to inspect the binary file header.
+3. Randomization of uploaded filenames so attackers cannot know or predict the path.
+4. An `.htaccess` configuration inside `uploads/` that disables PHP script execution (`php_flag engine off`) and directory indexing.
+
+**Q4: What is the difference between your Fetch API operations and traditional form submits?**  
+*Answer:* Traditional forms submit multipart/form-data causing a full page refresh and 302 redirect. Our Fetch API implementation (`api/students.php` and `ajaxDeleteStudent`) uses asynchronous HTTP requests returning JSON responses, updating the DOM and displaying user feedback via Toast notifications without reloading the page.
+
+---
+
+*Demo guide prepared and verified for Practical 15 evaluation.*

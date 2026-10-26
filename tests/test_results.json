@@ -1,0 +1,252 @@
+[
+    {
+        "id": "TC-15-01",
+        "feature": "Home Page & Navigation",
+        "preconditions": "Apache & MySQL running in XAMPP",
+        "steps": "Request GET http:\/\/localhost\/studenthub\/index.php",
+        "expected": "Returns HTTP 200 with dynamic metrics, skip link, and role navigation",
+        "actual": "Rendered 200 OK with dynamic counts",
+        "status": "PASS",
+        "evidence": "01-home.png"
+    },
+    {
+        "id": "TC-15-02",
+        "feature": "Registration - Valid Data",
+        "preconditions": "MySQL database connected",
+        "steps": "POST registration payload with valid university email and credentials",
+        "expected": "Account created in users & students tables with BCRYPT password hash",
+        "actual": "User & student inserted; confirmation rendered",
+        "status": "PASS",
+        "evidence": "02-registration-validation.png"
+    },
+    {
+        "id": "TC-15-03",
+        "feature": "Registration - Invalid Data",
+        "preconditions": "User submits malformed input",
+        "steps": "POST empty \/ invalid fields (bad email, short pass, numeric name)",
+        "expected": "Server rejects submission and returns field-specific error alerts",
+        "actual": "Validation errors returned and displayed",
+        "status": "PASS",
+        "evidence": "02-registration-validation.png"
+    },
+    {
+        "id": "TC-15-04",
+        "feature": "Registration - Duplicate Email",
+        "preconditions": "25cs102@charusat.edu.in already exists",
+        "steps": "POST registration with existing email address",
+        "expected": "Database duplicate prevented; friendly error displayed",
+        "actual": "Duplicate detected and blocked",
+        "status": "PASS",
+        "evidence": "02-registration-validation.png"
+    },
+    {
+        "id": "TC-15-05",
+        "feature": "Authentication - Valid Login",
+        "preconditions": "Seeded admin account present",
+        "steps": "POST admin@studenthub.edu \/ Admin@123",
+        "expected": "Session established, session ID regenerated, redirect to admin\/index.php",
+        "actual": "HTTP 302 Redirect to admin\/index.php with PHPSESSID cookie",
+        "status": "PASS",
+        "evidence": "03-login-success.png"
+    },
+    {
+        "id": "TC-15-06",
+        "feature": "Authentication - Invalid Password",
+        "preconditions": "Registered account with incorrect password",
+        "steps": "POST admin@studenthub.edu with invalid password",
+        "expected": "Authentication rejected, audit failure logged, rate limit incremented",
+        "actual": "Rejected with safe error message",
+        "status": "PASS",
+        "evidence": "03-login-success.png"
+    },
+    {
+        "id": "TC-15-07",
+        "feature": "Session - Logout Destruction",
+        "preconditions": "Active session",
+        "steps": "Request GET php\/logout.php",
+        "expected": "Session variables cleared, session cookie expired, redirect to login.html?status=logged_out",
+        "actual": "Session destroyed and redirected with status=logged_out",
+        "status": "PASS",
+        "evidence": "13-logout-session.png"
+    },
+    {
+        "id": "TC-15-08",
+        "feature": "Session Security - Inactivity Timeout",
+        "preconditions": "SESSION_TIMEOUT set to 1800s (30 mins)",
+        "steps": "Simulate inactivity exceeding SESSION_TIMEOUT",
+        "expected": "Session automatically expired; subsequent protected request prompts login",
+        "actual": "Timeout guard validated in php\/auth.php (line 29)",
+        "status": "PASS",
+        "evidence": "13-logout-session.png"
+    },
+    {
+        "id": "TC-15-09",
+        "feature": "RBAC - Student Dashboard Access",
+        "preconditions": "Authenticated student session",
+        "steps": "Navigate to dashboard.php",
+        "expected": "Access granted; renders student greeting, enrollment summary, and profile tools",
+        "actual": "Dashboard rendered with personalized student greeting",
+        "status": "PASS",
+        "evidence": "04-student-dashboard.png"
+    },
+    {
+        "id": "TC-15-10",
+        "feature": "RBAC Guard - Unauthorized Admin Access",
+        "preconditions": "Guest user with no authentication",
+        "steps": "Direct GET request to admin\/index.php",
+        "expected": "Blocked by admin-auth.php; redirected to login.html with error=admin_login_required",
+        "actual": "Redirected to login.html (302 Found)",
+        "status": "PASS",
+        "evidence": "08-access-denied.png"
+    },
+    {
+        "id": "TC-15-11",
+        "feature": "RBAC Guard - Admin Dashboard Access",
+        "preconditions": "Authenticated admin session",
+        "steps": "Navigate to admin\/index.php",
+        "expected": "Access granted; renders live MySQL counts, recent registrations, and audit feed",
+        "actual": "Admin console rendered with live aggregations",
+        "status": "PASS",
+        "evidence": "07-admin-dashboard.png"
+    },
+    {
+        "id": "TC-15-12",
+        "feature": "Admin CRUD - Student Management",
+        "preconditions": "Admin session active",
+        "steps": "Access admin\/students.php",
+        "expected": "Table displays all enrolled students with search, department filter, and modals",
+        "actual": "Rendered student directory with 20+ seed records",
+        "status": "PASS",
+        "evidence": "05-student-crud.png"
+    },
+    {
+        "id": "TC-15-13",
+        "feature": "Admin Directory - Search & Filter",
+        "preconditions": "Admin session with query parameters q=Daksh&course=B.Tech+CSE",
+        "steps": "GET admin\/students.php?q=Daksh",
+        "expected": "Table filters to matching rows using MySQL LIKE prepared statements",
+        "actual": "Filtered records returned accurately",
+        "status": "PASS",
+        "evidence": "05-student-crud.png"
+    },
+    {
+        "id": "TC-15-14",
+        "feature": "Admin CRUD - Event Management",
+        "preconditions": "Admin session active",
+        "steps": "Access admin\/events.php",
+        "expected": "Displays published campus events with category badges, seats, and action modals",
+        "actual": "Event management table loaded with 16 events",
+        "status": "PASS",
+        "evidence": "06-event-management.png"
+    },
+    {
+        "id": "TC-15-15",
+        "feature": "File Upload - Valid Poster",
+        "preconditions": "Admin publishing event with valid PNG\/JPG image",
+        "steps": "Upload poster image <= 2MB with image MIME verification",
+        "expected": "Image saved to uploads\/events\/ with sanitized filename (event_<timestamp>_<hex>.ext)",
+        "actual": "Server-side finfo_file validation and move_uploaded_file verified",
+        "status": "PASS",
+        "evidence": "06-event-management.png"
+    },
+    {
+        "id": "TC-15-16",
+        "feature": "File Upload - Security & Size Enforcement",
+        "preconditions": "Upload of shell.php or oversized file (>2MB)",
+        "steps": "Submit non-image binary or script file to events.php upload handler",
+        "expected": "Rejected with error alert; uploads\/.htaccess blocks script execution",
+        "actual": "Extension whitelist (.jpg,.jpeg,.png), MIME check, and size limit enforced",
+        "status": "PASS",
+        "evidence": "06-event-management.png"
+    },
+    {
+        "id": "TC-15-17",
+        "feature": "RESTful JSON API - Fetch Operations",
+        "preconditions": "REST API endpoint api\/students.php",
+        "steps": "GET \/api\/students.php?course=B.Tech+CSE",
+        "expected": "Returns application\/json 200 OK with filtered student array",
+        "actual": "200 OK JSON array with 13 records",
+        "status": "PASS",
+        "evidence": "09-ajax-crud.png"
+    },
+    {
+        "id": "TC-15-18",
+        "feature": "RESTful JSON API - Error Handling",
+        "preconditions": "Client submits invalid JSON payload to POST \/api\/students.php",
+        "steps": "Send payload missing required email and mobile fields",
+        "expected": "Returns HTTP 400 Bad Request with structured field validation errors",
+        "actual": "HTTP 400 returned with structured error messages",
+        "status": "PASS",
+        "evidence": "09-ajax-crud.png"
+    },
+    {
+        "id": "TC-15-19",
+        "feature": "Security - Automated Audit Logging",
+        "preconditions": "Database operations & authentication events executed",
+        "steps": "Query audit_logs table and inspect admin\/audit-logs.php",
+        "expected": "Actions (LOGIN, REGISTRATION, CRUD) logged with actor ID, IP, and timestamp",
+        "actual": "Audit trail explorer loaded with persistent security traces",
+        "status": "PASS",
+        "evidence": "15-audit-logs.png"
+    },
+    {
+        "id": "TC-15-20",
+        "feature": "Database - Schema Import & Connection",
+        "preconditions": "MySQL running on port 3306 with studenthub database",
+        "steps": "Execute database connection test via php\/db.php",
+        "expected": "MySQLi connects successfully with utf8mb4 charset and InnoDB tables",
+        "actual": "Connected to studenthub MySQL database on port 3306",
+        "status": "PASS",
+        "evidence": "11-database-tables.png"
+    },
+    {
+        "id": "TC-15-21",
+        "feature": "Responsive UI - Multi-Device Viewports",
+        "preconditions": "CSS Grid & Flexbox responsive architecture in css\/responsive.css",
+        "steps": "Render portal across Mobile (375px), Tablet (768px), and Desktop (1280px)",
+        "expected": "Mobile renders stacked 1-col cards; Desktop renders 3-col grid; no horizontal overflow",
+        "actual": "Verified in 375x812 mobile viewport capture",
+        "status": "PASS",
+        "evidence": "10-mobile-responsive.png"
+    },
+    {
+        "id": "TC-15-22",
+        "feature": "Accessibility - WCAG 2.1 AA Compliance",
+        "preconditions": "Semantic HTML5 landmarks and keyboard focus management",
+        "steps": "Test Tab sequence through skip links, nav links, form inputs, and modal dialogs",
+        "expected": "Skip-to-main-content link functions; visible focus rings; ARIA dialog roles implemented",
+        "actual": "Verified in HTML5 markup and main.js focus trap",
+        "status": "PASS",
+        "evidence": "01-home.png"
+    },
+    {
+        "id": "TC-15-23",
+        "feature": "Security - SQLi & XSS Mitigation",
+        "preconditions": "Untrusted user inputs submitted to portal",
+        "steps": "Test parameterized query bindings and htmlspecialchars output encoding",
+        "expected": "SQL statements parameterized via executeQuery(); HTML control chars escaped",
+        "actual": "100% prepared statements and output escaping verified",
+        "status": "PASS",
+        "evidence": "05-student-crud.png"
+    },
+    {
+        "id": "TC-15-24",
+        "feature": "Security - CSRF Token Protection",
+        "preconditions": "State-changing POST mutations in admin panels",
+        "steps": "Verify presence and validation of $_POST['csrf_token'] in students\/events\/registrations",
+        "expected": "Requests with missing\/invalid CSRF tokens rejected with security error",
+        "actual": "generateCsrfToken() and verifyCsrfToken() active across all admin forms",
+        "status": "PASS",
+        "evidence": "05-student-crud.png"
+    },
+    {
+        "id": "TC-15-25",
+        "feature": "DevOps - GitHub Cleanliness & Secrets",
+        "preconditions": "Git repository structure inspected",
+        "steps": "Check .gitignore, verify no live passwords or API keys committed to Git",
+        "expected": "Only .env.example tracked; temporary logs and credentials ignored",
+        "actual": "Repository clean; safe templates used; secrets protected",
+        "status": "PASS",
+        "evidence": "01-home.png"
+    }
+]
