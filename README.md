@@ -13,7 +13,7 @@
 | **Academic Year** | 2026–27 |
 | **Institution** | Chandubhai S. Patel Institute of Technology (CSPIT), CHARUSAT |
 | **Project Type** | Continuous 15-Phase Progressive Web Development Project |
-| **Student Name** | Daksh Shah |
+| **Student Name** | Daksh Soni |
 | **Student ID / Roll** | 25CS102 |
 | **Faculty Mentor** | Dhara Ma'am |
 | **GitHub Repository** | [cs-cspit/25cs102-student-portel](https://github.com/cs-cspit/25cs102-student-portel.git) |
